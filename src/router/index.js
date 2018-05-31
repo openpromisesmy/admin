@@ -6,8 +6,6 @@ import Politicians from '@/components/Politicians'
 import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
 import Account from '@/components/Account'
-
-
 import store from '../store'
 
 Vue.use(Router)
