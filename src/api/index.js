@@ -56,10 +56,12 @@ async function getSomething (path) {
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
 const listContributors = () => getSomething('/contributors/')
+const listPoliticians = () => getSomething('/politicians/')
 
 export {
   googleSignIn,
   googleLogout,
   getContributor,
-  listContributors
+  listContributors,
+  listPoliticians
 }
