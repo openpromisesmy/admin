@@ -6,14 +6,12 @@ import Politicians from '@/components/Politicians'
 import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
 import Account from '@/components/Account'
-
-
 import store from '../store'
 
 Vue.use(Router)
 
 const ifNotAuthenticated = (to, from, next) => {
-  if (!store.state.user.authenticated) {
+  if (store.state.user.status !== 'Admin') {
     next()
     return
   }
@@ -21,7 +19,7 @@ const ifNotAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticated = (to, from, next) => {
-  if (store.state.user.authenticated) {
+  if (store.state.user.status === 'Admin') {
     next()
     return
   }

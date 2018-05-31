@@ -8,20 +8,23 @@
 </template>
 
 <script>
-import { googleSignIn } from '@/api'
+import { googleSignIn, getContributor } from '@/api'
 
 export default {
   name: 'Auth',
   data () {
     return {
-      authenticated: this.$store.state.user.authenticated
+      authenticated: this.$store.state.user.authenticated,
+      status: this.$store.state.user.status
     }
   },
   methods: {
     googleSignInHandler: async function () {
       try {
         const user = await googleSignIn()
-        this.$store.commit('login', user)
+        const userData = await getContributor(user.email)
+        this.$store.commit('login', Object.assign({}, user, userData[0]))
+        this.$router.push('/home')
       } catch (e) {
         console.error(e)
       }

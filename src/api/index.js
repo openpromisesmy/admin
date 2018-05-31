@@ -1,4 +1,5 @@
-import { firebase } from '@/config'
+import { firebase, API_URL } from '@/config'
+import axios from 'axios'
 const provider = new firebase.auth.GoogleAuthProvider()
 
 function googleSignIn () {
@@ -42,7 +43,20 @@ function googleLogout () {
   })
 }
 
+async function getSomething (path) {
+  try {
+    const response = await axios.get(API_URL + path)
+    const { data } = response
+    return data
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+const getContributor = email => getSomething(`/contributors/?email=${email}`)
+
 export {
   googleSignIn,
-  googleLogout
+  googleLogout,
+  getContributor
 }

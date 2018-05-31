@@ -15,6 +15,7 @@ export default {
   data () {
     return {
       authenticated: this.$store.state.user.authenticated,
+      user: this.$store.state.user,
       email: this.$store.state.user.email
     }
   }
