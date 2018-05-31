@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Promises from '@/components/Promises'
 import Politicians from '@/components/Politicians'
+import Contributors from '@/components/Contributors'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/politicians',
       name: 'Politicians',
       component: Politicians
+    },
+    {
+      path: '/contributors',
+      name: 'Contributors',
+      component: Contributors
     }
   ]
 })

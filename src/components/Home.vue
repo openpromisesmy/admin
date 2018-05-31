@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <router-link to="/promises/">Promises</router-link>
-    <router-link to="/politicians/">Politicians</router-link>
+    <router-link to="/promises">Promises</router-link>
+    <router-link to="/politicians">Politicians</router-link>
+    <router-link to="/contributors">Contributors</router-link>
   </div>
 </template>
 
