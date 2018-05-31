@@ -20,6 +20,7 @@ function googleSignIn () {
           .currentUser.getIdToken(/* forceRefresh */ true)
           .then(idToken => {
             user.token = idToken
+            localStorage.setItem('openpromises', idToken)
             resolve(user)
           })
           .catch(error => {
@@ -54,9 +55,11 @@ async function getSomething (path) {
 }
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
+const listContributors = () => getSomething('/contributors/')
 
 export {
   googleSignIn,
   googleLogout,
-  getContributor
+  getContributor,
+  listContributors
 }
