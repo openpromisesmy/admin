@@ -1,13 +1,12 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <router-link to="/promises/">Promises</router-link>
+  <div>
+    <h1>Promises</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Promises',
   data () {
     return {
       msg: ''
