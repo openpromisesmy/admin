@@ -9,15 +9,8 @@
             {{ this.$store.state.user.authenticated ? email : 'Login' }}
           </router-link>
         </el-menu-item>
-        <el-menu-item index="5" id="submit">
-          <router-link to="/submit">
-            <el-button type="info" v-on:click="googleLogoutHandler">
-              Submit A Promise
-            </el-button>
-          </router-link>
-        </el-menu-item>
         <!-- move below to inside account page -->
-        <el-menu-item index="6" v-if="this.$store.state.user.authenticated">
+        <el-menu-item index="5" v-if="this.$store.state.user.authenticated">
             <el-button type="info" v-on:click="googleLogoutHandler">
               Logout
             </el-button>
