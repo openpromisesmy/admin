@@ -5,6 +5,8 @@ import Promises from '@/components/Promises'
 import Politicians from '@/components/Politicians'
 import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
+import Account from '@/components/Account'
+
 
 import store from '../store'
 
@@ -51,6 +53,12 @@ export default new Router({
       path: '/contributors',
       name: 'Contributors',
       component: Contributors,
+      beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/account',
+      name: 'Account',
+      component: Account,
       beforeEnter: ifAuthenticated
     },
     {
