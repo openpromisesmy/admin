@@ -8,8 +8,7 @@
 </template>
 
 <script>
-// import { googleSignIn } from '@/api'
-function googleSignIn () {}
+import { googleSignIn } from '@/api'
 
 export default {
   name: 'Auth',
