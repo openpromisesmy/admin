@@ -14,13 +14,12 @@
     </el-table-column>
     <el-table-column
       prop="primary_position"
-      label="Primary Position"
-      width="150">
+      label="Primary Position">
     </el-table-column>
     <el-table-column
       prop="live"
       label="Live"
-      width="180">
+      width="120">
       <template slot-scope="scope">
         <p>{{ scope.row.live }}</p>
       </template>
@@ -28,7 +27,7 @@
     <el-table-column
       prop="status"
       label="Status"
-      width="150">
+      width="120">
     </el-table-column>
     <el-table-column
       prop="created_at"
@@ -42,6 +41,11 @@
       <template slot-scope="scope">
         <img class="profile_img" :src="scope.row.profile_image" />
       </template>
+    </el-table-column>
+    <el-table-column
+      prop="contributor_id"
+      label="Contributor ID"
+      width="150">
     </el-table-column>
   </el-table>
   </div>
