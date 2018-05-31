@@ -9,25 +9,25 @@
             {{ this.$store.state.user.authenticated ? email : 'Login' }}
           </router-link>
         </el-menu-item>
-        <!-- <el-menu-item index="5" id="submit">
+        <el-menu-item index="5" id="submit">
           <router-link to="/submit">
             <el-button type="info" v-on:click="googleLogoutHandler">
               Submit A Promise
             </el-button>
           </router-link>
-        </el-menu-item> -->
+        </el-menu-item>
         <!-- move below to inside account page -->
-        <!-- <el-menu-item index="6" v-if="this.$store.state.user.authenticated">
+        <el-menu-item index="6" v-if="this.$store.state.user.authenticated">
             <el-button type="info" v-on:click="googleLogoutHandler">
               Logout
             </el-button>
-        </el-menu-item> -->
+        </el-menu-item>
     </el-menu>
   </el-header>
 </template>
 
 <script>
-// import { googleLogout } from '@/api'
+import { googleLogout } from '@/api'
 export default {
   name: 'Navbar',
   data () {
@@ -49,7 +49,7 @@ export default {
     },
     async googleLogoutHandler () {
       try {
-        // await googleLogout()
+        await googleLogout()
         this.$store.commit('logout')
         this.$router.push('/')
       } catch (e) {

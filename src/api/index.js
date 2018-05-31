@@ -1,4 +1,4 @@
-import { firebase, API_URL } from '@/config'
+import { firebase } from '@/config'
 const provider = new firebase.auth.GoogleAuthProvider()
 
 function googleSignIn () {
