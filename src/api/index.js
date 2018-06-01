@@ -10,7 +10,6 @@ axios.interceptors.request.use(
     const email = localStorage.getItem('openpromises_email')
     const name = localStorage.getItem('openpromises_name')
     const photo = localStorage.getItem('openpromises_photo')
-    
     if (token) {
       config.headers['X-FIREBASE-TOKEN'] = token
       config.headers['X-USER-EMAIL'] = email
