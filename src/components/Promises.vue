@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import { listPromises } from '@/api'
 export default {
   name: 'Promises',
   data () {
     return {
-      msg: ''
+      promises: []
     }
+  },
+  async created () {
+    this.promises = await listPromises()
   }
 }
 </script>
