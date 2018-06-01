@@ -60,7 +60,7 @@ export default {
       politicians: []
     }
   },
-    async created () {
+  async created () {
     this.politicians = await listPoliticians()
   }
 }
