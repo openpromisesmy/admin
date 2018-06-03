@@ -2,8 +2,11 @@
   <div>
     <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : 0 }}</h1>
     <p v-if="promises.length === 0">Loading promises...</p>
+    <template v-else>
+      <div class="stats_container">
+    <el-button v-for="stat in stats" :key="stat.value"><b>{{ stat.value }}</b> {{ stat.number }} </el-button>
+    </div>
     <el-table
-    v-else
     :data="promises"
     border
     style="width: 100%">
@@ -53,6 +56,7 @@
       width="125">
     </el-table-column>
   </el-table>
+  </template>
   </div>
 </template>
 
@@ -66,6 +70,17 @@ export default {
     return {
       promises: [],
       politicians: []
+    }
+  },
+  computed: {
+    stats: function () {
+      const statusOptions = new Set(this.promises.map(promise => promise.status))
+      const stats = []
+      statusOptions.forEach(statusOption => {
+        const hits = this.promises.filter(promise => promise.status === statusOption)
+        stats.push({ value: statusOption || 'undefined', number: hits.length })
+      })
+      return stats
     }
   },
   async created () {
@@ -95,4 +110,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.stats_container {
+  margin: 0 0 20px
+}
 </style>
