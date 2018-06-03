@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { listPromises } from '@/api'
+import { listPromises, listPoliticians } from '@/api'
 import moment from 'moment'
 
 export default {
@@ -68,28 +68,26 @@ export default {
   async created () {
     try {
       const promises = await listPromises()
-      // const politicians = await listPoliticians()
-      // this.politicians = politicians
-      this.promises = this.parsePromises(promises/*, politicians */)
-      // this.promises = promises
+      const politicians = await listPoliticians()
+      this.politicians = politicians
+      this.promises = this.parsePromises(promises, politicians)
     } catch (e) {
       console.error(e)
     }
   },
   methods: {
-    parsePromises (promises, politicians) {
-      return promises.map(promise =>
-        ({
-          ...promise,
-          status: promise.status ? promises.status : 'Review Needed',
-          source_date: moment(promise.source_date).format('D MMMM YYYY'),
-          politician_name: promise.politician_id
-          // politician_name: politicians.find(politician => politician.id === promise.politician_id).name
-        })
-      )
-    }
+    parsePromises: (promises, politicians) =>
+      promises.map(promise => ({
+        ...promise,
+        status: promise.status ? promises.status : 'Review Needed',
+        source_date: moment(promise.source_date).format('D MMMM YYYY'),
+        politician_name: politicians.find(
+          politician => politician.id === promise.politician_id
+        ).name
+      }))
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

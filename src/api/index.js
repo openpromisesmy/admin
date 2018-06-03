@@ -3,6 +3,7 @@ import axios from 'axios'
 const provider = new firebase.auth.GoogleAuthProvider()
 
 const PROMISES_PATH = '/promises/'
+const POLITICIANS_PATH = '/politicians/'
 
 axios.interceptors.request.use(
   function (config) {
@@ -80,7 +81,7 @@ async function getSomething (path) {
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
 const listContributors = () => getSomething('/contributors/')
-const listPoliticians = () => getSomething('/politicians/')
+const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
 
 export {
