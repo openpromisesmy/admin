@@ -10,7 +10,7 @@
     <el-table-column
       prop="title"
       label="Title"
-      width="220">
+      width="300">
     </el-table-column>
     <el-table-column
       prop="source_date"
