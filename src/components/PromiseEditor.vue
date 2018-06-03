@@ -112,12 +112,15 @@ export default {
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.submitAttractionHandler(this.attraction)
+          this.submitPromise(this.promise)
         } else {
           return false
         }
       })
     },
+    submitPromise (promise) {
+      console.log('to submit')
+    }
   }
 }
 </script>
