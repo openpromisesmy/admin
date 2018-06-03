@@ -10,7 +10,7 @@
     <el-table-column
       prop="title"
       label="Title"
-      width="180">
+      width="220">
     </el-table-column>
     <el-table-column
       prop="source_date"
@@ -34,7 +34,9 @@
     </el-table-column> -->
     <el-table-column
       prop="source_name"
-      label="Source">
+      label="Source"
+      width="180"
+      >
     </el-table-column>
     <!-- <el-table-column
       prop="source_url"
@@ -45,6 +47,7 @@
       </template>
     </el-table-column> -->
     <el-table-column
+      sortable
       prop="status"
       label="Status"
       width="125">
@@ -79,7 +82,7 @@ export default {
     parsePromises: (promises, politicians) =>
       promises.map(promise => ({
         ...promise,
-        status: promise.status ? promises.status : 'Review Needed',
+        status: promise.status,
         source_date: moment(promise.source_date).format('D MMMM YYYY'),
         politician_name: politicians.find(
           politician => politician.id === promise.politician_id
