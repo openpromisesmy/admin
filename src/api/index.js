@@ -80,6 +80,7 @@ async function getSomething (path) {
 }
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
+const getPromise = id => getSomething(PROMISES_PATH + id)
 const listContributors = () => getSomething('/contributors/')
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
@@ -90,5 +91,6 @@ export {
   getContributor,
   listContributors,
   listPoliticians,
-  listPromises
+  listPromises,
+  getPromise
 }
