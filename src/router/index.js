@@ -72,6 +72,6 @@ export default new Router({
       name: 'Promise Editor',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
-    },
+    }
   ]
 })
