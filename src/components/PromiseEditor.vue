@@ -8,15 +8,15 @@
     <el-form v-else v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
         <el-row >
 
-          <el-col :xs="24" :sm="12" >
+          <el-col :xs="24" :sm="8" >
             <p><b>Created at: </b>{{ promise.created_at }}</p>
           </el-col>
 
-           <el-col :xs="24" :sm="12" >
+           <el-col :xs="24" :sm="8" >
             <p><b>Updated at: </b>{{ promise.updated_at }}</p>
           </el-col>
 
-           <el-col :xs="24" :sm="12" >
+           <el-col :xs="24" :sm="8" >
             <p><b>Contributor ID: </b>{{ promise.contributor_id }}</p>
           </el-col>
 
@@ -28,6 +28,21 @@
                 :key="item.value"
                 :label="item.label"
                 :value="item.value">
+              </el-option>
+            </el-select>
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="12" >
+              <el-form-item label="Politician" prop="politician_id">
+            <el-select v-model="promise.politician_id">
+              <el-option
+                  default-first-option
+                  v-for="politician in politicians"
+                  :value="politician.id"
+                  :key="politician.id"
+                  :label="politician.name"
+              >
               </el-option>
             </el-select>
               </el-form-item>
