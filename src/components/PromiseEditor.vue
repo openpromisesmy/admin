@@ -17,7 +17,7 @@
           </el-col>
 
            <el-col :xs="24" :sm="8" >
-            <p><b>Contributor ID: </b>{{ promise.contributor_id }}</p>
+            <p><b>Contributor: </b>{{ contributor }}</p>
           </el-col>
 
         <el-col :xs="24" :sm="12" >
@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { getPromise, listPoliticians } from '@/api'
+import { getPromise, listPoliticians, listContributors } from '@/api'
 export default {
   name: 'PromiseEditor',
   data () {
@@ -106,6 +106,7 @@ export default {
       appStatus: '',
       promise: {},
       politicians: [],
+      contributors: [],
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
@@ -121,9 +122,18 @@ export default {
       }
     }
   },
+  computed: {
+    contributor: function () {
+      if (this.contributors) {
+        const contributor = this.contributors.find(contributor => contributor.id === this.promise.contributor_id)
+        return contributor.name + ' - ' + contributor.email
+      }
+    }
+  },
   async created () {
     try {
       this.politicians = await listPoliticians()
+      this.contributors = await listContributors()
       const promise = await getPromise(this.$route.params.id)
       this.promise = promise
     } catch (e) {
