@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { getPromise, listPoliticians, listContributors } from '@/api'
+import { getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
 export default {
   name: 'PromiseEditor',
   data () {
@@ -124,8 +124,9 @@ export default {
   },
   computed: {
     contributor: function () {
-      if (this.contributors) {
+      if (this.contributors.length > 0) {
         const contributor = this.contributors.find(contributor => contributor.id === this.promise.contributor_id)
+        if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
     }
@@ -137,7 +138,7 @@ export default {
       const promise = await getPromise(this.$route.params.id)
       this.promise = promise
     } catch (e) {
-
+      console.error(e)
     }
   },
   methods: {
@@ -150,8 +151,13 @@ export default {
         }
       })
     },
-    submitPromise (promise) {
-      console.log('to submit')
+    async submitPromise (promise) {
+      try {
+        const result = await updatePromise(promise)
+        console.log(result)
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }
