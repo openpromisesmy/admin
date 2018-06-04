@@ -92,11 +92,16 @@ export default {
       promise: {},
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
+        live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
         title: [{ required: true, message: 'Please select a politician', trigger: 'blur' }],
-        description: [{ required: true, message: 'Please enter description', trigger: 'blur' }],
-        imageUri: [{ required: true, type: 'url', message: 'Please input a valid url for the image', trigger: 'blur' }], // string
-        location: [{ required: true, message: 'Please indicate location of attraction', trigger: 'blur' }],
-        mapLink: [{ type: 'url', message: 'Please input a valid URL for the map', trigger: 'blur' }]
+        contributor_id: [{ required: true, message: 'contributor_id is required', trigger: 'blur' }],
+        politician_id: [{ required: true, message: 'politician_id is required', trigger: 'blur' }],
+        category: [{ required: true, message: 'Please enter category', trigger: 'blur' }],
+        date: [{ type: 'date', message: 'Please select a date', trigger: 'blur' }],
+        source_date: [{ type: 'date', message: 'Please select a source date', trigger: 'blur' }],
+        source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
+        source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
+        status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
       }
     }
   },
