@@ -83,13 +83,14 @@
 </template>
 
 <script>
-import { getPromise } from '@/api'
+import { getPromise, listPoliticians } from '@/api'
 export default {
   name: 'PromiseEditor',
   data () {
     return {
       appStatus: '',
       promise: {},
+      politicians: [],
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
@@ -107,6 +108,7 @@ export default {
   },
   async created () {
     try {
+      this.politicians = await listPoliticians()
       const promise = await getPromise(this.$route.params.id)
       this.promise = promise
     } catch (e) {
