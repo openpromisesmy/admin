@@ -80,7 +80,7 @@ async function getSomething (path) {
 
 async function updateSomething (path, data) {
   try {
-    const response = await axios.put(API_URL + path, data)
+    const response = await axios.post(API_URL + path, data)
     return response.data
   } catch (e) {
     console.error(e)
@@ -93,7 +93,7 @@ const listContributors = () => getSomething('/contributors/')
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
 
-const updatePromise = data => updateSomething(`${PROMISES_PATH}/${data.id}`, data)
+const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
 
 export {
   googleSignIn,
