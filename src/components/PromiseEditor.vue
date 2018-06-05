@@ -172,4 +172,8 @@ export default {
 </script>
 
 <style scoped>
+#PromiseEditor {
+  max-width: 900px
+}
+
 </style>
