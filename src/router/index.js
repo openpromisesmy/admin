@@ -6,6 +6,8 @@ import Politicians from '@/components/Politicians'
 import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
 import Account from '@/components/Account'
+import PromiseEditor from '@/components/PromiseEditor'
+
 import store from '../store'
 
 Vue.use(Router)
@@ -64,6 +66,12 @@ export default new Router({
       name: 'Login',
       component: Auth,
       beforeEnter: ifNotAuthenticated
+    },
+    {
+      path: '/promises/:id/edit',
+      name: 'Promise Editor',
+      component: PromiseEditor,
+      beforeEnter: ifAuthenticated
     }
   ]
 })

@@ -6,7 +6,7 @@
         </el-menu-item>
         <el-menu-item index="4" id="account">
           <router-link to="/account">
-            {{ this.$store.state.user.authenticated ? email : 'Login' }}
+            {{ this.$store.state.user.authenticated ? 'Account' : 'Login' }}
           </router-link>
         </el-menu-item>
         <!-- move below to inside account page -->
