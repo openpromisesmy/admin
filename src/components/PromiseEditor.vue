@@ -1,14 +1,13 @@
 <template>
   <main id="PromiseEditor">
     <h1>Edit Promise</h1>
-    <p v-if="appStatus === 'submitting'">Updating promise...</p>
     <template v-if="appStatus === 'loading'">
       <p>Loading promise...</p>
     </template>
-    <template v-if="appStatus === 'submitting'">
+    <template v-else-if="appStatus === 'submitting'">
       <p>Submitting promise...</p>
     </template>
-    <template v-if="appStatus === 'submitted'">
+    <template v-else-if="appStatus === 'submitted'">
       <p>Promise has been updated</p>
     </template>
     <el-form v-else v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
@@ -161,7 +160,8 @@ export default {
     async submitPromise (promise) {
       try {
         this.appStatus = 'submitting'
-        const result = await updatePromise(promise)
+        delete promise.contributor_id
+        await updatePromise(promise)
         this.appStatus = 'submitted'
       } catch (e) {
         console.error(e)
