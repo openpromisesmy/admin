@@ -39,6 +39,19 @@
           </el-col>
 
           <el-col :xs="24" :sm="12" >
+              <el-form-item label="Status" prop="status">
+            <el-select v-model="promise.status" placeholder="Select">
+              <el-option
+                v-for="status in statusOptions"
+                :key="status"
+                :label="status"
+                :value="status">
+              </el-option>
+            </el-select>
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="24" >
               <el-form-item label="Politician" prop="politician_id">
             <el-select v-model="promise.politician_id">
               <el-option
@@ -112,6 +125,14 @@ export default {
       promise: {},
       politicians: [],
       contributors: [],
+      statusOptions: [
+        'Review Needed',
+        'Fulfilled',
+        'Broken',
+        'Partially Fulfilled',
+        'In Progress',
+        'Not Started'
+      ],
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
