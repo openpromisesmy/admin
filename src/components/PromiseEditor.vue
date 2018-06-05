@@ -2,6 +2,9 @@
   <main id="PromiseEditor">
     <h1>Edit Promise</h1>
     <p v-if="appStatus === 'submitting'">Updating promise...</p>
+    <template v-if="appStatus === 'loading'">
+      <p>Loading promise...</p>
+    </template>
     <template v-if="appStatus === 'submitted'">
       <p>Promise has been updated</p>
     </template>
@@ -74,7 +77,7 @@
 
          <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Date" prop="source_date">
-            <el-input type="text" placeholder="enter source date" v-model="promise.source_date"></el-input>
+            <el-date-picker type="text" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
               </el-form-item>
           </el-col>
 
@@ -103,7 +106,7 @@ export default {
   name: 'PromiseEditor',
   data () {
     return {
-      appStatus: '',
+      appStatus: 'loading',
       promise: {},
       politicians: [],
       contributors: [],
@@ -111,11 +114,11 @@ export default {
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
         title: [{ required: true, message: 'Please select a politician', trigger: 'blur' }],
-        contributor_id: [{ required: true, message: 'contributor_id is required', trigger: 'blur' }],
+        contributor_id: [{ required: true, type: 'text', message: 'contributor_id is required', trigger: 'blur' }],
         politician_id: [{ required: true, message: 'politician_id is required', trigger: 'blur' }],
         category: [{ required: true, message: 'Please enter category', trigger: 'blur' }],
-        date: [{ type: 'date', message: 'Please select a date', trigger: 'blur' }],
-        source_date: [{ type: 'date', message: 'Please select a source date', trigger: 'blur' }],
+        date: [{ message: 'Please select a date', trigger: 'blur' }],
+        source_date: [{ message: 'Please select a source date', trigger: 'blur' }],
         source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
         source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
         status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
@@ -137,6 +140,7 @@ export default {
       this.contributors = await listContributors()
       const promise = await getPromise(this.$route.params.id)
       this.promise = promise
+      this.appStatus = ''
     } catch (e) {
       console.error(e)
     }
@@ -154,7 +158,7 @@ export default {
     async submitPromise (promise) {
       try {
         const result = await updatePromise(promise)
-        console.log(result)
+        this.appStatus = 'submitted'
       } catch (e) {
         console.error(e)
       }
