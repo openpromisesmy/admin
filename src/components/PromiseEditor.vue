@@ -5,6 +5,9 @@
     <template v-if="appStatus === 'loading'">
       <p>Loading promise...</p>
     </template>
+    <template v-if="appStatus === 'submitting'">
+      <p>Submitting promise...</p>
+    </template>
     <template v-if="appStatus === 'submitted'">
       <p>Promise has been updated</p>
     </template>
@@ -157,6 +160,7 @@ export default {
     },
     async submitPromise (promise) {
       try {
+        this.appStatus = 'submitting'
         const result = await updatePromise(promise)
         this.appStatus = 'submitted'
       } catch (e) {
