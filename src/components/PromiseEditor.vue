@@ -78,8 +78,8 @@
           </el-col>
 
          <el-col :xs="24" :sm="12" >
-              <el-form-item label="Source Date" prop="source_date">
-            <el-date-picker type="text" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
+              <el-form-item label="Source Date" prop="source_date_raw">
+            <el-date-picker type="date" placeholder="enter source date" v-model="source_date_raw"></el-date-picker>
               </el-form-item>
           </el-col>
 
@@ -112,6 +112,7 @@ export default {
       promise: {},
       politicians: [],
       contributors: [],
+      source_date_raw: '',
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
@@ -120,7 +121,7 @@ export default {
         politician_id: [{ required: true, message: 'politician_id is required', trigger: 'blur' }],
         category: [{ required: true, message: 'Please enter category', trigger: 'blur' }],
         date: [{ message: 'Please select a date', trigger: 'blur' }],
-        source_date: [{ message: 'Please select a source date', trigger: 'blur' }],
+        source_date_raw: [{ message: 'Please select a source date', trigger: 'blur' }],
         source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
         source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
         status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
@@ -134,6 +135,9 @@ export default {
         if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
+    },
+    source_date: function () {
+      return this.source_date_raw.toISOString()
     }
   },
   async created () {
@@ -151,6 +155,8 @@ export default {
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.promise.source_date = this.source_date
+          console.log(this.source_date)
           this.submitPromise(this.promise)
         } else {
           return false
