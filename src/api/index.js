@@ -80,6 +80,9 @@ async function getSomething (path) {
 
 async function updateSomething (path, data) {
   try {
+    delete data.id
+    delete data.created_at
+    delete data.updated_at
     const response = await axios.post(API_URL + path, data)
     return response.data
   } catch (e) {
