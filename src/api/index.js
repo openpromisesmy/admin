@@ -115,6 +115,7 @@ export {
   getContributor,
   listContributors,
   listPoliticians,
+  postPolitician,
   listPromises,
   getPromise,
   updatePromise
