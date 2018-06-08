@@ -7,6 +7,7 @@ import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
 import Account from '@/components/Account'
 import PromiseEditor from '@/components/PromiseEditor'
+import PoliticianEditor from '@/components/PoliticianEditor'
 
 import store from '../store'
 
@@ -71,6 +72,12 @@ export default new Router({
       path: '/promises/:id/edit',
       name: 'Promise Editor',
       component: PromiseEditor,
+      beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/politicians/new',
+      name: 'Politician Editor',
+      component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     }
   ]
