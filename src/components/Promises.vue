@@ -1,7 +1,10 @@
 <template>
   <div>
-    <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : 0 }}</h1>
-    <p v-if="promises.length === 0">Loading promises...</p>
+    <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
+    <template v-if="promises.length === 0">
+      <p>Loading promises...This will take 3-5 seconds.</p>
+      <LoadingSpinner />
+      </template>
     <template v-else>
       <div class="stats_container">
     <el-button v-for="stat in stats" :key="stat.value"><b>{{ stat.value }}</b> {{ stat.number }} </el-button>
@@ -75,6 +78,7 @@
 <script>
 import { listPromises, listPoliticians } from '@/api'
 import moment from 'moment'
+import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
   name: 'Promises',
@@ -84,6 +88,7 @@ export default {
       politicians: []
     }
   },
+  components: { LoadingSpinner },
   computed: {
     stats: function () {
       const statusOptions = new Set(this.promises.map(promise => promise.status))
