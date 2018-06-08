@@ -78,6 +78,15 @@ async function getSomething (path) {
   }
 }
 
+async function postSomething (path, data) {
+  try {
+    const response = await axios.post(API_URL + path, data)
+    return response.data
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 async function updateSomething (path, data) {
   try {
     delete data.id
@@ -93,6 +102,8 @@ async function updateSomething (path, data) {
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
 const getPromise = id => getSomething(PROMISES_PATH + id)
 const listContributors = () => getSomething('/contributors/')
+
+const postPolitician = data => postSomething(POLITICIANS_PATH, data)
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
 
