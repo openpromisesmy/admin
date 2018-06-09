@@ -108,6 +108,7 @@ export default {
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.appStatus = 'submitting'
           this.submitPolitician(this.politician)
         } else {
           return false
@@ -116,7 +117,6 @@ export default {
     },
     async submitPolitician (politician) {
       try {
-        this.appStatus = 'submitting'
         const res = await postPolitician(politician)
         console.log(res)
         if(res.id) {
@@ -124,7 +124,6 @@ export default {
         } else if(res.response.status === 200) {
           return alert(res.response.data)
         }
-
       } catch (e) {
         console.error(e)
       }
