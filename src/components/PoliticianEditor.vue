@@ -1,6 +1,6 @@
 <template>
   <main id="PoliticianEditor">
-    <h1>{{ mode }} Politician</h1>
+    <h1 class="PoliticianEditor_header">{{ mode }} Politician</h1>
     <template v-if="appStatus === 'loading'">
       <p>Loading ...</p>
     </template>
@@ -134,6 +134,10 @@ export default {
 <style scoped>
 #PoliticianEditor {
   max-width: 900px
+}
+
+.PoliticianEditor_header {
+  text-transform: capitalize
 }
 
 </style>
