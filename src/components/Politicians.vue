@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Politicians</h1>
-    <p v-if="politicians.length == 0">Loading contributors...</p>
+    <p v-if="politicians.length == 0">Loading politicians...</p>
     <el-table
     v-else
     :data="politicians"
