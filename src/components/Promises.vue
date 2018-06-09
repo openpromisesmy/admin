@@ -19,9 +19,13 @@
       width="350">
     </el-table-column>
     <el-table-column
+      sortable
       prop="source_date"
       label="Date"
       width="150">
+      <template slot-scope="scope">
+        <p>{{ formatDate(scope.row.source_date) }}</p>
+      </template>
     </el-table-column>
     <el-table-column
       prop="category"
@@ -79,6 +83,7 @@
 import { listPromises, listPoliticians } from '@/api'
 import moment from 'moment'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import { formatDate } from '@/utils'
 
 export default {
   name: 'Promises',
@@ -115,11 +120,11 @@ export default {
       promises.map(promise => ({
         ...promise,
         status: promise.status,
-        source_date: moment(promise.source_date).format('D MMMM YYYY'),
         politician_name: politicians.find(
           politician => politician.id === promise.politician_id
         ).name
-      }))
+      })),
+      formatDate
   }
 }
 
