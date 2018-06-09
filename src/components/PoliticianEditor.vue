@@ -44,7 +44,6 @@
               </el-form-item>
           </el-col>
 
-
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Status" prop="stats">
             <el-input type="text" placeholder="enter status" v-model="politician.status"></el-input>
@@ -72,7 +71,7 @@ export default {
     return {
       appStatus: 'loading',
       mode: '',
-      liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false}], 
+      liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       politician: {
         contributor_id: this.$store.state.user.id
       },
@@ -118,10 +117,10 @@ export default {
     async submitPolitician (politician) {
       try {
         const res = await postPolitician(politician)
-        console.log(res)
-        if(res.id) {
-          return this.appStatus = 'submitted'
-        } else if(res.response.status === 200) {
+        if (res.id) {
+          this.appStatus = 'submitted'
+          return
+        } else if (res.response.status === 200) {
           return alert(res.response.data)
         }
       } catch (e) {
