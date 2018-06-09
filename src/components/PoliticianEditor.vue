@@ -26,6 +26,12 @@
               </el-form-item>
           </el-col>
 
+          <el-col :xs="24" :sm="12" >
+              <el-form-item label="Status" prop="stats">
+            <el-input type="text" placeholder="enter status" v-model="politician.status"></el-input>
+              </el-form-item>
+          </el-col>
+
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Name" prop="name">
             <el-input type="text" placeholder="enter name" v-model="politician.name"></el-input>
@@ -41,12 +47,6 @@
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Brief" prop="brief">
             <el-input type="textarea" placeholder="enter brief" v-model="politician.brief"></el-input>
-              </el-form-item>
-          </el-col>
-
-          <el-col :xs="24" :sm="12" >
-              <el-form-item label="Status" prop="stats">
-            <el-input type="text" placeholder="enter status" v-model="politician.status"></el-input>
               </el-form-item>
           </el-col>
 
