@@ -1,7 +1,18 @@
 <template>
   <div>
-    <h1>Politicians</h1>
-    <p v-if="politicians.length == 0">Loading contributors...</p>
+
+    <el-row>
+      <el-col :span="16">
+        <h1>Politicians</h1>
+      </el-col>
+      <el-col :span="8">
+        <router-link to="/politicians/new">
+          <el-button type="primary" class="add-button">Add Politician</el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+
+    <p v-if="politicians.length == 0">Loading politicians...</p>
     <el-table
     v-else
     :data="politicians"
@@ -33,6 +44,9 @@
       prop="created_at"
       label="Created At"
       width="150">
+       <template slot-scope="scope">
+        <p>{{ formatDate(scope.row.created_at) }}</p>
+      </template>
     </el-table-column>
     <el-table-column
       prop="profile_image"
@@ -53,12 +67,17 @@
 
 <script>
 import { listPoliticians } from '@/api'
+import { formatDate } from '@/utils'
+
 export default {
   name: 'Politicians',
   data () {
     return {
       politicians: []
     }
+  },
+  methods: {
+    formatDate
   },
   async created () {
     this.politicians = await listPoliticians()
@@ -70,5 +89,8 @@ export default {
 <style scoped>
 .profile_img {
   max-height: 80px
+}
+.add-button {
+
 }
 </style>
