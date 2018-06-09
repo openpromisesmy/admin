@@ -1,6 +1,17 @@
 <template>
   <div>
-    <h1>Politicians</h1>
+
+    <el-row>
+      <el-col :span="16">
+        <h1>Politicians</h1>
+      </el-col>
+      <el-col :span="8">
+        <router-link to="/politicians/new">
+          <el-button type="primary" class="add-button">Add Politician</el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+
     <p v-if="politicians.length == 0">Loading politicians...</p>
     <el-table
     v-else
@@ -70,5 +81,8 @@ export default {
 <style scoped>
 .profile_img {
   max-height: 80px
+}
+.add-button {
+
 }
 </style>
