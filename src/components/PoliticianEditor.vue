@@ -38,6 +38,12 @@
               </el-form-item>
           </el-col>
 
+          <el-col :xs="24" :sm="24" >
+              <el-form-item label="Brief" prop="brief">
+            <el-input type="text" placeholder="enter brief" v-model="politician.brief"></el-input>
+              </el-form-item>
+          </el-col>
+
 
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Status" prop="stats">
@@ -68,13 +74,14 @@ export default {
       mode: '',
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false}], 
       politician: {
-
+        contributor_id: this.$store.state.user.id
       },
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether politician is live.', trigger: 'blur' }],
         name: [{ required: true, message: 'Please input politician name', trigger: 'blur' }],
         // contributor_id: [{ required: true, type: 'text', message: 'contributor_id is required', trigger: 'blur' }],
         primary_position: [{ required: true, message: 'primary position is required', trigger: 'blur' }],
+        brief: [{ required: true, message: 'brief is required', trigger: 'blur' }],
         status: [{ required: true, message: 'Please enter status', trigger: 'blur' }],
         profile_image: [{ required: true, type: 'url', message: 'Please indicate the profile image url', trigger: 'blur' }]
       }
@@ -111,10 +118,11 @@ export default {
       try {
         this.appStatus = 'submitting'
         const res = await postPolitician(politician)
-        if(res.response.status === 200) {
-          this.appStatus = 'submitted'
-        } else {
-          alert(res.response.data)
+        console.log(res)
+        if(res.id) {
+          return this.appStatus = 'submitted'
+        } else if(res.response.status === 200) {
+          return alert(res.response.data)
         }
 
       } catch (e) {
