@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Contributors {{ contributors.length > 0 ? contributors.length : '' }}</h1>
-    <p v-if="contributors.length == 0">Loading contributors...</p>
+    <template v-if="contributors.length == 0">
+      <p>Loading contributors...This would take 1-3 seconds.</p>
+      <LoadingSpinner />
+      </template>
     <el-table
     v-else
     :data="contributors"
@@ -41,8 +44,11 @@
 
 <script>
 import { listContributors } from '@/api'
+import LoadingSpinner from '@/components/shared/LoadingSpinner'
+
 export default {
   name: 'Contributors',
+  components: { LoadingSpinner },
   data () {
     return {
       contributors: []

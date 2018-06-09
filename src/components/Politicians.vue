@@ -12,7 +12,10 @@
       </el-col>
     </el-row>
 
-    <p v-if="politicians.length == 0">Loading politicians...</p>
+    <template v-if="politicians.length == 0">
+      <p>Loading politicians...This will take 2-4 seconds.</p>
+      <LoadingSpinner />
+    </template>
     <el-table
     v-else
     :data="politicians"
@@ -68,9 +71,11 @@
 <script>
 import { listPoliticians } from '@/api'
 import { formatDate } from '@/utils'
+import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
   name: 'Politicians',
+  components: { LoadingSpinner },
   data () {
     return {
       politicians: []
