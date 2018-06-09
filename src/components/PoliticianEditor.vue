@@ -40,7 +40,7 @@
 
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Brief" prop="brief">
-            <el-input type="text" placeholder="enter brief" v-model="politician.brief"></el-input>
+            <el-input type="textarea" placeholder="enter brief" v-model="politician.brief"></el-input>
               </el-form-item>
           </el-col>
 
