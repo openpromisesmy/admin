@@ -8,7 +8,7 @@
       <p>Submitting politician...</p>
     </template>
     <template v-else-if="appStatus === 'submitted'">
-      <p>Politician has been updated</p>
+      <p>Politician has been {{ mode === 'new' ? 'submitted' : 'updated' }}</p>
     </template>
     <el-form v-else v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="politician">
         <el-row >
@@ -47,7 +47,7 @@
 
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Profile Image" prop="profile_image">
-            <el-input type="text" placeholder="enter profile image link" v-model="politician.profile"></el-input>
+            <el-input type="text" placeholder="enter profile image link" v-model="politician.profile_image"></el-input>
               </el-form-item>
           </el-col>
 
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { getPolitician, listPoliticians, listContributors, updatePolitician } from '@/api'
+import { postPolitician } from '@/api'
 export default {
   name: 'PoliticianEditor',
   data () {
@@ -110,9 +110,13 @@ export default {
     async submitPolitician (politician) {
       try {
         this.appStatus = 'submitting'
-        delete politician.contributor_id
-        await updatePolitician(politician)
-        this.appStatus = 'submitted'
+        const res = await postPolitician(politician)
+        if(res.response.status === 200) {
+          this.appStatus = 'submitted'
+        } else {
+          alert(res.response.data)
+        }
+
       } catch (e) {
         console.error(e)
       }

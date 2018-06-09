@@ -84,6 +84,7 @@ async function postSomething (path, data) {
     return response.data
   } catch (e) {
     console.error(e)
+    return e
   }
 }
 
