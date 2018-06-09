@@ -30,7 +30,7 @@ export default {
         const userData = await getContributor(user.email)
         this.appStatus = ''
         this.$store.commit('login', Object.assign({}, user, userData[0]))
-        this.$router.push('/home')
+        this.$router.push('/')
       } catch (e) {
         console.error(e)
       }
