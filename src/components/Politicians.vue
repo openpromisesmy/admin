@@ -44,6 +44,9 @@
       prop="created_at"
       label="Created At"
       width="150">
+       <template slot-scope="scope">
+        <p>{{ formatDate(scope.row.created_at) }}</p>
+      </template>
     </el-table-column>
     <el-table-column
       prop="profile_image"
@@ -64,12 +67,17 @@
 
 <script>
 import { listPoliticians } from '@/api'
+import { formatDate } from '@/utils'
+
 export default {
   name: 'Politicians',
   data () {
     return {
       politicians: []
     }
+  },
+  methods: {
+    formatDate
   },
   async created () {
     this.politicians = await listPoliticians()
