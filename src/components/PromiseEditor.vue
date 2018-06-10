@@ -10,6 +10,9 @@
     <template v-else-if="appStatus === 'submitted'">
       <p>Promise has been updated</p>
     </template>
+    <template v-else-if="appStatus === 'error'">
+      <p>There has been an error: {{ error }}</p>
+    </template>
     <el-form v-else v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
         <el-row >
 
@@ -122,6 +125,7 @@ export default {
   data () {
     return {
       appStatus: 'loading',
+      error: undefined,
       promise: {},
       politicians: [],
       contributors: [],
@@ -188,7 +192,9 @@ export default {
           this.appStatus = 'submitted'
           return
         } else if (res.response.status !== 200) {
-          return alert(res.response.data)
+          this.appStatus = 'error'
+          this.error = res.response.data
+          return
         }
       } catch (e) {
         console.error(e)
