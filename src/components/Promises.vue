@@ -14,6 +14,15 @@
     border
     style="width: 100%">
     <el-table-column
+      sortable
+      prop="created_at"
+      label="Created At"
+      width="150">
+      <template slot-scope="scope">
+        <p>{{ formatDate(scope.row.created_at) }}</p>
+      </template>
+    </el-table-column>
+    <el-table-column
       prop="title"
       label="Title"
       width="350">
@@ -21,7 +30,7 @@
     <el-table-column
       sortable
       prop="source_date"
-      label="Date"
+      label="Source Date"
       width="150">
       <template slot-scope="scope">
         <p>{{ formatDate(scope.row.source_date) }}</p>
