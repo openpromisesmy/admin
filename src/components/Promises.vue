@@ -81,7 +81,6 @@
 
 <script>
 import { listPromises, listPoliticians } from '@/api'
-import moment from 'moment'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 import { formatDate } from '@/utils'
 
@@ -124,7 +123,7 @@ export default {
           politician => politician.id === promise.politician_id
         ).name
       })),
-      formatDate
+    formatDate
   }
 }
 
