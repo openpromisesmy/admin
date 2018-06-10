@@ -137,8 +137,8 @@ export default {
           politician => politician.id === promise.politician_id
         ).name
       })),
-    filterPromisesByStatus: (status) => {
-      console.log(status)
+    filterPromisesByStatus (status) {
+      this.filteredPromises = filterByStatus(this.promises, status)
     },
     formatDate
   }
