@@ -11,6 +11,7 @@
     </div>
     <el-table
     :data="promises"
+    :default-sort = "{prop: 'created_at', order: 'descending'}"
     border
     style="width: 100%">
     <el-table-column
