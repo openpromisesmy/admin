@@ -4,8 +4,8 @@ function formatDate (date) {
   return moment(date).format('D MMM YYYY')
 }
 
-function filterByStatus (promises, status) {
-  return promises.filter(promise => promise.status === status)
+function filterByStatus (array, status) {
+  return array.filter(item => item.status === status)
 }
 
 export {
