@@ -120,7 +120,7 @@ export default {
         if (res.id) {
           this.appStatus = 'submitted'
           return
-        } else if (res.response.status === 200) {
+        } else if (res.response.status !== 200) {
           return alert(res.response.data)
         }
       } catch (e) {

@@ -131,7 +131,8 @@ export default {
         'Broken',
         'Partially Fulfilled',
         'In Progress',
-        'Not Started'
+        'Not Started',
+        'At Risk'
       ],
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
@@ -172,6 +173,7 @@ export default {
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          this.appStatus = 'submitting'
           this.submitPromise(this.promise)
         } else {
           return false
@@ -180,10 +182,14 @@ export default {
     },
     async submitPromise (promise) {
       try {
-        this.appStatus = 'submitting'
         delete promise.contributor_id
-        await updatePromise(promise)
-        this.appStatus = 'submitted'
+        const res = await updatePromise(promise)
+        if (res.id) {
+          this.appStatus = 'submitted'
+          return
+        } else if (res.response.status !== 200) {
+          return alert(res.response.data)
+        }
       } catch (e) {
         console.error(e)
       }
