@@ -7,10 +7,12 @@
       </template>
     <template v-else>
       <div class="stats_container">
-    <el-button v-for="stat in stats" :key="stat.value"><b>{{ stat.value }}</b> {{ stat.number }} </el-button>
+    <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
+      <b>{{ stat.value }}</b> {{ stat.number }}
+    </el-button>
     </div>
     <el-table
-    :data="promises"
+    :data="filteredPromises"
     :default-sort = "{prop: 'created_at', order: 'descending'}"
     border
     style="width: 100%">
@@ -92,13 +94,14 @@
 <script>
 import { listPromises, listPoliticians } from '@/api'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
-import { formatDate } from '@/utils'
+import { formatDate, filterByStatus } from '@/utils'
 
 export default {
   name: 'Promises',
   data () {
     return {
       promises: [],
+      filteredPromises: [],
       politicians: []
     }
   },
@@ -120,6 +123,7 @@ export default {
       const politicians = await listPoliticians()
       this.politicians = politicians
       this.promises = this.parsePromises(promises, politicians)
+      this.filteredPromises = [...this.promises]
     } catch (e) {
       console.error(e)
     }
@@ -133,6 +137,9 @@ export default {
           politician => politician.id === promise.politician_id
         ).name
       })),
+    filterPromisesByStatus: (status) => {
+      console.log(status)
+    },
     formatDate
   }
 }
