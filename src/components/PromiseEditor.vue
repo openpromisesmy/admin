@@ -188,16 +188,12 @@ export default {
       try {
         delete promise.contributor_id
         const res = await updatePromise(promise)
-        if (res.id) {
-          this.appStatus = 'submitted'
-          return
-        } else if (res.response.status !== 200) {
-          this.appStatus = 'error'
-          this.error = res.response.data
-          return
-        }
+        this.appStatus = 'submitted'
+        return
       } catch (e) {
         console.error(e)
+        this.appStatus = 'error'
+        this.error = e.response.data
       }
     }
   }
