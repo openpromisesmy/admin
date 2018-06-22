@@ -6,16 +6,13 @@ const PROMISES_PATH = '/promises/'
 const POLITICIANS_PATH = '/politicians/'
 
 axios.interceptors.request.use(
-  function (config) {
-    const token = localStorage.getItem('openpromises_token')
+  async function (config) {
     const email = localStorage.getItem('openpromises_email')
     const name = localStorage.getItem('openpromises_name')
     const photo = localStorage.getItem('openpromises_photo')
-    if (token) {
-      config.headers['X-FIREBASE-TOKEN'] = token
+    if (email) {
+      config.headers['X-FIREBASE-TOKEN'] = await firebase.auth().currentUser.getIdToken()
       config.headers['X-USER-EMAIL'] = email
-      config.headers['X-USER-NAME'] = name
-      config.headers['X-USER-PHOTO'] = photo
     }
     return config
   },
