@@ -121,8 +121,11 @@
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
 
-          <h2>Caption Text</h2>
-          <p>{{ captionText }}</p>
+          <el-card id="caption-text" class="box-card">
+            <h2>Caption Text</h2>
+            <p>{{ captionText }}</p>
+          </el-card>
+
         </el-form>
   </main>
 </template>
@@ -221,6 +224,10 @@ export default {
 <style scoped>
 #PromiseEditor {
   max-width: 900px
+}
+
+#caption-text{
+  margin: 20px
 }
 
 </style>
