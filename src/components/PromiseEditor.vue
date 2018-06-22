@@ -123,7 +123,11 @@
 
           <el-card id="caption-text" class="box-card">
             <h2>Caption Text</h2>
-            <p>{{ captionText }}</p>
+            <p>{{ captionText.statement }}</p>
+            <p>{{ captionText.quote }}</p>
+            <p>{{ captionText.source }}</p>
+            <p>{{ captionText.project_info }}</p>
+            <p>{{ captionText.cta }}</p>
           </el-card>
 
         </el-form>
@@ -178,9 +182,15 @@ export default {
     captionText: function () {
       const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)
       const { primary_position, name } = politician
-      const { source_date, title } = this.promise
+      const { source_date, title, quote, source_name, source_url } = this.promise
 
-      return `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`
+      return ({
+      statement: `${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
+      quote,
+      source: `Source: ${source_name} - ${source_url}`,
+      project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
+      cta: 'Join our community group at OpenPromises Malaysia Watchers to get involved in the discussion.'
+      })
     }
   },
   async created () {
