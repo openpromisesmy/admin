@@ -230,4 +230,8 @@ export default {
   margin: 20px
 }
 
+#caption-text > h2 {
+  margin: 0
+}
+
 </style>
