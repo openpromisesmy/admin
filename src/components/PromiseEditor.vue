@@ -185,7 +185,7 @@ export default {
       const { source_date, title, quote, source_name, source_url } = this.promise
 
       return ({
-      statement: `${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
+      statement: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
       quote,
       source: `Source: ${source_name} - ${source_url}`,
       project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
