@@ -111,6 +111,12 @@
               </el-form-item>
           </el-col>
 
+          <el-col :xs="24" :sm="24" >
+              <el-form-item label="Notes" prop="notes">
+            <el-input type="textarea" placeholder="enter notes" v-model="promise.notes"></el-input>
+              </el-form-item>
+          </el-col>
+
         </el-row>
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
