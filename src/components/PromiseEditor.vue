@@ -120,12 +120,20 @@
         </el-row>
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
+
+          <el-card id="caption-text" class="box-card">
+            <h2>Caption Text</h2>
+            <p>{{ captionText }}</p>
+          </el-card>
+
         </el-form>
   </main>
 </template>
 
 <script>
 import { getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
+import { formatDate } from '@/utils'
+
 export default {
   name: 'PromiseEditor',
   data () {
@@ -166,6 +174,13 @@ export default {
         if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
+    },
+    captionText: function () {
+      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)
+      const { primary_position, name } = politician
+      const { source_date, title } = this.promise
+
+      return `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`
     }
   },
   async created () {
@@ -209,6 +224,14 @@ export default {
 <style scoped>
 #PromiseEditor {
   max-width: 900px
+}
+
+#caption-text{
+  margin: 20px
+}
+
+#caption-text > h2 {
+  margin: 0
 }
 
 </style>

@@ -9,7 +9,6 @@ axios.interceptors.request.use(
   async function (config) {
     const email = localStorage.getItem('openpromises_email')
     const name = localStorage.getItem('openpromises_name')
-    const photo = localStorage.getItem('openpromises_photo')
     if (email) {
       config.headers['X-FIREBASE-TOKEN'] = await firebase.auth().currentUser.getIdToken()
       config.headers['X-USER-EMAIL'] = email
