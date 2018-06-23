@@ -9,7 +9,7 @@ axios.interceptors.request.use(
   async function (config) {
     const email = localStorage.getItem('openpromises_email')
     const name = localStorage.getItem('openpromises_name')
-    if (email) {
+    if (firebase.auth().currentUser) {
       config.headers['X-FIREBASE-TOKEN'] = await firebase.auth().currentUser.getIdToken()
       config.headers['X-USER-EMAIL'] = email
     }
