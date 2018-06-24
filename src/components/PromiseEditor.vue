@@ -154,7 +154,8 @@ export default {
         'Partially Fulfilled',
         'In Progress',
         'Not Started',
-        'At Risk'
+        'At Risk',
+        'Retracted'
       ],
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
