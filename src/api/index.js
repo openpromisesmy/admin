@@ -108,6 +108,7 @@ async function updateSomething (path, data) {
 }
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
+const getPolitician = id => getSomething(`/politicians/${id}`)
 const getPromise = id => getSomething(PROMISES_PATH + id)
 const listContributors = () => getSomething('/contributors/')
 
@@ -122,6 +123,7 @@ export {
   googleSignIn,
   googleLogout,
   getContributor,
+  getPolitician,
   listContributors,
   listPoliticians,
   postPolitician,
