@@ -85,6 +85,6 @@ export default new Router({
       name: 'Politician Editor',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
-    },
+    }
   ]
 })
