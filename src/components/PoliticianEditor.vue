@@ -98,7 +98,11 @@ export default {
   async created () {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
-      this.appStatus = ''
+      if (this.mode === 'edit') {
+        this.appStatus = 'loading'
+      } else {
+        this.appStatus = ''
+      }
     } catch (e) {
       console.error(e)
     }
