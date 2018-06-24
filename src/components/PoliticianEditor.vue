@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { postPolitician } from '@/api'
+import { postPolitician, getPolitician } from '@/api'
 export default {
   name: 'PoliticianEditor',
   data () {
@@ -100,6 +100,10 @@ export default {
       this.mode = this.$route.path.split('/').slice(-1)[0]
       if (this.mode === 'edit') {
         this.appStatus = 'loading'
+        const id = this.$route.path.split('/').slice(-2)[0]
+        const politician = await getPolitician(id)
+        this.politician = politician
+        this.appStatus = ''
       } else {
         this.appStatus = ''
       }
