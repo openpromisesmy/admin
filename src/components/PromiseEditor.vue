@@ -181,13 +181,13 @@ export default {
       }
     },
     captionText: function () {
-      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)
-      const { primary_position, name } = politician
+      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)// eslint-disable-next-line
+      const { primary_position, name } = politician// eslint-disable-next-line
       const { source_date, title, quote, source_name, source_url } = this.promise
 
-      return ({
+      return ({// eslint-disable-next-line
         statement: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
-        quote,
+        quote, // eslint-disable-next-line
         source: `Source: ${source_name} - ${source_url}`,
         project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
         cta: 'Join our community group at OpenPromises Malaysia Watchers to get involved in the discussion.'
