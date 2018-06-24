@@ -186,11 +186,11 @@ export default {
       const { source_date, title, quote, source_name, source_url } = this.promise
 
       return ({
-      statement: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
-      quote,
-      source: `Source: ${source_name} - ${source_url}`,
-      project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
-      cta: 'Join our community group at OpenPromises Malaysia Watchers to get involved in the discussion.'
+        statement: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
+        quote,
+        source: `Source: ${source_name} - ${source_url}`,
+        project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
+        cta: 'Join our community group at OpenPromises Malaysia Watchers to get involved in the discussion.'
       })
     }
   },
@@ -219,7 +219,7 @@ export default {
     async submitPromise (promise) {
       try {
         delete promise.contributor_id
-        const res = await updatePromise(promise)
+        await updatePromise(promise)
         this.appStatus = 'submitted'
         return
       } catch (e) {
