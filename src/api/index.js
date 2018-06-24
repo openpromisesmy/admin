@@ -116,6 +116,7 @@ const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
 
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
+const updatePolitician = data => updateSomething(`${POLITICIANS_PATH}${data.id}`, data)
 
 export {
   googleSignIn,
@@ -126,5 +127,6 @@ export {
   postPolitician,
   listPromises,
   getPromise,
-  updatePromise
+  updatePromise,
+  updatePolitician
 }
