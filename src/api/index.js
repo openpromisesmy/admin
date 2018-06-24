@@ -8,7 +8,6 @@ const POLITICIANS_PATH = '/politicians/'
 axios.interceptors.request.use(
   async function (config) {
     const email = localStorage.getItem('openpromises_email')
-    const name = localStorage.getItem('openpromises_name')
     if (firebase.auth().currentUser) {
       config.headers['X-FIREBASE-TOKEN'] = await firebase.auth().currentUser.getIdToken()
       config.headers['X-USER-EMAIL'] = email
@@ -109,6 +108,7 @@ async function updateSomething (path, data) {
 }
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
+const getPolitician = id => getSomething(`/politicians/${id}`)
 const getPromise = id => getSomething(PROMISES_PATH + id)
 const listContributors = () => getSomething('/contributors/')
 
@@ -117,15 +117,18 @@ const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
 
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
+const updatePolitician = data => updateSomething(`${POLITICIANS_PATH}${data.id}`, data)
 
 export {
   googleSignIn,
   googleLogout,
   getContributor,
+  getPolitician,
   listContributors,
   listPoliticians,
   postPolitician,
   listPromises,
   getPromise,
-  updatePromise
+  updatePromise,
+  updatePolitician
 }

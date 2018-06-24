@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { postPolitician } from '@/api'
+import { postPolitician, getPolitician, updatePolitician } from '@/api'
 export default {
   name: 'PoliticianEditor',
   data () {
@@ -98,7 +98,15 @@ export default {
   async created () {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
-      this.appStatus = ''
+      if (this.mode === 'edit') {
+        this.appStatus = 'loading'
+        const id = this.$route.path.split('/').slice(-2)[0]
+        const politician = await getPolitician(id)
+        this.politician = politician
+        this.appStatus = ''
+      } else {
+        this.appStatus = ''
+      }
     } catch (e) {
       console.error(e)
     }
@@ -116,12 +124,20 @@ export default {
     },
     async submitPolitician (politician) {
       try {
-        const res = await postPolitician(politician)
-        if (res.id) {
-          this.appStatus = 'submitted'
-          return
-        } else if (res.response.status !== 200) {
-          return alert(res.response.data)
+        if (this.mode === 'new') {
+          const res = await postPolitician(politician)
+          if (res.response.status !== 200) {
+            return alert(res.response.data)
+          } else {
+            this.appStatus = 'submitted'
+          }
+        } else if (this.mode === 'edit') {
+          const res = await updatePolitician(politician)
+          if (res !== '') {
+            return alert(res.response.data)
+          } else {
+            this.appStatus = 'submitted'
+          }
         }
       } catch (e) {
         console.error(e)
