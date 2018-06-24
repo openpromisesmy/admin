@@ -79,6 +79,12 @@ export default new Router({
       name: 'Politician Editor',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
-    }
+    },
+    {
+      path: '/politicians/:id/edit',
+      name: 'Politician Editor',
+      component: PoliticianEditor,
+      beforeEnter: ifAuthenticated
+    },
   ]
 })
