@@ -199,12 +199,13 @@ export default {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
       this.politicians = await listPoliticians()
+      this.contributors = await listContributors()
 
       if (this.mode === 'edit') {
-        this.contributors = await listContributors()
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
       } else if (this.mode === 'new') {
+        this.promise.contributor_id = this.$store.state.user.id
       }
       this.appStatus = ''
     } catch (e) {
