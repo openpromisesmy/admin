@@ -1,6 +1,6 @@
 <template>
   <main id="PromiseEditor">
-    <h1>Edit Promise</h1>
+    <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <template v-if="appStatus === 'loading'">
       <p>Loading promise...</p>
     </template>
@@ -241,6 +241,10 @@ export default {
 <style scoped>
 #PromiseEditor {
   max-width: 900px
+}
+
+#PromiseEditor_header {
+  text-transform: capitalize
 }
 
 #caption-text{
