@@ -1,6 +1,16 @@
 <template>
   <div>
-    <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
+    <el-row>
+      <el-col :span="16">
+        <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
+      </el-col>
+      <el-col :span="8">
+        <router-link to="/promises/new">
+          <el-button type="primary" class="add-button">Add Promise</el-button>
+        </router-link>
+      </el-col>
+    </el-row>
+
     <template v-if="promises.length === 0">
       <p>Loading promises...This will take 3-5 seconds.</p>
       <LoadingSpinner />
