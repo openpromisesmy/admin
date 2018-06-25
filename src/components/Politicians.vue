@@ -107,7 +107,4 @@ export default {
 .profile_img {
   max-height: 80px
 }
-.add-button {
-
-}
 </style>
