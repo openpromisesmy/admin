@@ -2,13 +2,13 @@
   <main id="PromiseEditor">
     <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <template v-if="appStatus === 'loading'">
-      <p>Loading promise...</p>
+      <p> Loading {{ mode === 'edit' ? 'promises' : '' }}...</p>
     </template>
     <template v-else-if="appStatus === 'submitting'">
       <p>Submitting promise...</p>
     </template>
     <template v-else-if="appStatus === 'submitted'">
-      <p>Promise has been {{ this.mode === 'edit' ? 'updated' : 'created' }}</p>
+      <p>Promise has been {{ mode === 'edit' ? 'updated' : 'created' }}</p>
     </template>
     <template v-else-if="appStatus === 'error'">
       <p>There has been an error: {{ error }}</p>
