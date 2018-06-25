@@ -182,7 +182,7 @@ export default {
       }
     },
     captionText: function () {
-      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)// eslint-disable-next-line
+      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id) || {}// eslint-disable-next-line
       const { primary_position, name } = politician// eslint-disable-next-line
       const { source_date, title, quote, source_name, source_url } = this.promise
 
