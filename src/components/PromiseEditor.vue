@@ -8,7 +8,7 @@
       <p>Submitting promise...</p>
     </template>
     <template v-else-if="appStatus === 'submitted'">
-      <p>Promise has been updated</p>
+      <p>Promise has been {{ this.mode === 'edit' ? 'updated' : 'created' }}</p>
     </template>
     <template v-else-if="appStatus === 'error'">
       <p>There has been an error: {{ error }}</p>
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
+import { postPromise, getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
 import { formatDate } from '@/utils'
 
 export default {
@@ -224,10 +224,14 @@ export default {
     },
     async submitPromise (promise) {
       try {
-        delete promise.contributor_id
-        await updatePromise(promise)
-        this.appStatus = 'submitted'
-        return
+        if (this.mode === 'edit') {
+          delete promise.contributor_id
+          await updatePromise(promise)
+        } else if (this.mode === 'new') {
+          await postPromise(promise)
+        }
+          this.appStatus = 'submitted'
+          return
       } catch (e) {
         console.error(e)
         this.appStatus = 'error'
