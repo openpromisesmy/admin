@@ -124,6 +124,7 @@ const getPolitician = id => getSomething(`/politicians/${id}`)
 const getPromise = id => getSomething(PROMISES_PATH + id)
 const listContributors = () => getSomething('/contributors/')
 
+const postPromise = data => postSomething(PROMISES_PATH, data)
 const postPolitician = data => postSomething(POLITICIANS_PATH, data)
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = () => getSomething(PROMISES_PATH + 'all')
@@ -138,6 +139,7 @@ export {
   getPolitician,
   listContributors,
   listPoliticians,
+  postPromise,
   postPolitician,
   listPromises,
   getPromise,

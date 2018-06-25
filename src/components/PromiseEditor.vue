@@ -1,6 +1,6 @@
 <template>
   <main id="PromiseEditor">
-    <h1>Edit Promise</h1>
+    <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <template v-if="appStatus === 'loading'">
       <p>Loading promise...</p>
     </template>
@@ -8,7 +8,7 @@
       <p>Submitting promise...</p>
     </template>
     <template v-else-if="appStatus === 'submitted'">
-      <p>Promise has been updated</p>
+      <p>Promise has been {{ this.mode === 'edit' ? 'updated' : 'created' }}</p>
     </template>
     <template v-else-if="appStatus === 'error'">
       <p>There has been an error: {{ error }}</p>
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
+import { postPromise, getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
 import { formatDate } from '@/utils'
 
 export default {
@@ -143,6 +143,7 @@ export default {
   data () {
     return {
       appStatus: 'loading',
+      mode: '',
       error: undefined,
       promise: {},
       politicians: [],
@@ -181,7 +182,7 @@ export default {
       }
     },
     captionText: function () {
-      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id)// eslint-disable-next-line
+      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id) || {}// eslint-disable-next-line
       const { primary_position, name } = politician// eslint-disable-next-line
       const { source_date, title, quote, source_name, source_url } = this.promise
 
@@ -196,10 +197,16 @@ export default {
   },
   async created () {
     try {
+      this.mode = this.$route.path.split('/').slice(-1)[0]
       this.politicians = await listPoliticians()
       this.contributors = await listContributors()
-      const promise = await getPromise(this.$route.params.id)
-      this.promise = promise
+
+      if (this.mode === 'edit') {
+        const promise = await getPromise(this.$route.params.id)
+        this.promise = promise
+      } else if (this.mode === 'new') {
+        this.promise.contributor_id = this.$store.state.user.id
+      }
       this.appStatus = ''
     } catch (e) {
       console.error(e)
@@ -218,8 +225,12 @@ export default {
     },
     async submitPromise (promise) {
       try {
-        delete promise.contributor_id
-        await updatePromise(promise)
+        if (this.mode === 'edit') {
+          delete promise.contributor_id
+          await updatePromise(promise)
+        } else if (this.mode === 'new') {
+          await postPromise(promise)
+        }
         this.appStatus = 'submitted'
         return
       } catch (e) {
@@ -235,6 +246,10 @@ export default {
 <style scoped>
 #PromiseEditor {
   max-width: 900px
+}
+
+#PromiseEditor_header {
+  text-transform: capitalize
 }
 
 #caption-text{
