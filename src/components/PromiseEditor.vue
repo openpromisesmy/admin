@@ -231,8 +231,8 @@ export default {
         } else if (this.mode === 'new') {
           await postPromise(promise)
         }
-          this.appStatus = 'submitted'
-          return
+        this.appStatus = 'submitted'
+        return
       } catch (e) {
         console.error(e)
         this.appStatus = 'error'
