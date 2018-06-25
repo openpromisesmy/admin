@@ -143,6 +143,7 @@ export default {
   data () {
     return {
       appStatus: 'loading',
+      mode: '',
       error: undefined,
       promise: {},
       politicians: [],
@@ -196,10 +197,15 @@ export default {
   },
   async created () {
     try {
+      this.mode = this.$route.path.split('/').slice(-1)[0]
       this.politicians = await listPoliticians()
-      this.contributors = await listContributors()
-      const promise = await getPromise(this.$route.params.id)
-      this.promise = promise
+
+      if (this.mode === 'edit') {
+        this.contributors = await listContributors()
+        const promise = await getPromise(this.$route.params.id)
+        this.promise = promise
+      } else if (this.mode === 'new') {
+      }
       this.appStatus = ''
     } catch (e) {
       console.error(e)
