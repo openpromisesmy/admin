@@ -69,6 +69,12 @@ export default new Router({
       beforeEnter: ifNotAuthenticated
     },
     {
+      path: '/promises/new',
+      name: 'Promise Editor',
+      component: PromiseEditor,
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/promises/:id/edit',
       name: 'Promise Editor',
       component: PromiseEditor,
