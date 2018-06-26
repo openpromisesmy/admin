@@ -12,7 +12,7 @@
     </el-row>
 
     <template v-if="appStatus === 'loading'">
-      <p>Loading promises...This will take 3-5 seconds.</p>
+      <p>Loading promises...This will take 2-4 seconds.</p>
       <LoadingSpinner />
       </template>
     <template v-else>
@@ -21,12 +21,14 @@
       <b>{{ stat.value }}</b> {{ stat.number }}
     </el-button>
     </div>
-    <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
+    <!-- <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
       Previous Page
-    </el-button>
+    </el-button> -->
+    <span><b>{{ pageNumber }}</b></span>
     <el-button type="primary" @click="nextPage()">
       Next Page
     </el-button>
+    <p>Pagination is based on {{ this.query.orderBy }}</p>
 
     <el-table
     :data="filteredPromises"
@@ -156,6 +158,7 @@ export default {
   },
   methods: {
     async listPromisesHandler (queryString) {
+      console.log(queryString)
       this.appStatus = 'loading'
       const promises = await listPromises(queryString)
       this.promises = this.parsePromises(promises, this.politicians)
@@ -174,25 +177,27 @@ export default {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
     formatDate,
-    updateStartAfter () {
-      console.log('updateStartAfter')
+    updateStartAfter (reverse) {
+      if (this.pageNumber === 1) delete this.query.startAfter
+
       if (this.pageNumber > 1) {
-        console.log('working')
-        this.query.startAfter = this.promises[this.promises.length - 1][this.query.orderBy]
+        this.query.startAfter = reverse ? this.promises[this.promises.length - 1][this.query.orderBy] : this.promises[0][this.query.orderBy]
       }
     },
     nextPage () {
       this.pageNumber++
+      this.query.reverse = true
       this.updateQuery()
     },
     previousPage () {
       if (this.pageNumber === 1) return
       this.pageNumber--
+      this.query.reverse = false
       this.updateQuery()
     },
     updateQuery (obj) {
       this.query = { ...this.query, ...obj }
-      this.updateStartAfter()
+      this.updateStartAfter(this.query.reverse)
       this.listPromisesHandler(this.queryString)
     }
   }
