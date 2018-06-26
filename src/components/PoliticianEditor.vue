@@ -126,10 +126,10 @@ export default {
       try {
         if (this.mode === 'new') {
           const res = await postPolitician(politician)
-          if (res.response.status !== 200) {
-            return alert(res.response.data)
-          } else {
+          if (res.id) {
             this.appStatus = 'submitted'
+          } else {
+            return alert(res.response.data)
           }
         } else if (this.mode === 'edit') {
           const res = await updatePolitician(politician)
