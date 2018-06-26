@@ -11,16 +11,25 @@
       </el-col>
     </el-row>
 
-    <template v-if="promises.length === 0">
-      <p>Loading promises...This will take 3-5 seconds.</p>
+    <template v-if="appStatus === 'loading'">
+      <p>Loading promises...This will take 2-4 seconds.</p>
       <LoadingSpinner />
       </template>
     <template v-else>
-      <div class="stats_container">
+    <div class="stats_container">
     <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
       <b>{{ stat.value }}</b> {{ stat.number }}
     </el-button>
     </div>
+    <!-- <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
+      Previous Page
+    </el-button> -->
+    <span><b>{{ pageNumber }}</b></span>
+    <el-button type="primary" @click="nextPage()">
+      Next Page
+    </el-button>
+    <p>Pagination is based on {{ this.query.orderBy }}</p>
+
     <el-table
     :data="filteredPromises"
     :default-sort = "{prop: 'created_at', order: 'descending'}"
@@ -105,11 +114,18 @@
 import { listPromises, listPoliticians } from '@/api'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 import { formatDate, filterByStatus } from '@/utils'
+import queryString from 'query-string'
 
 export default {
   name: 'Promises',
   data () {
     return {
+      pageNumber: 1,
+      query: {
+        pageSize: 25,
+        orderBy: 'source_date',
+        reverse: true
+      },
       promises: [],
       filteredPromises: [],
       politicians: []
@@ -125,20 +141,30 @@ export default {
         stats.push({ value: statusOption || 'undefined', number: hits.length })
       })
       return stats
+    },
+    queryString: function () {
+      return queryString.stringify(this.query)
     }
   },
   async created () {
     try {
-      const promises = await listPromises()
+      this.appStatus = 'loading'
       const politicians = await listPoliticians()
       this.politicians = politicians
-      this.promises = this.parsePromises(promises, politicians)
-      this.filteredPromises = [...this.promises]
+      this.listPromisesHandler(this.queryString)
     } catch (e) {
       console.error(e)
     }
   },
   methods: {
+    async listPromisesHandler (queryString) {
+      console.log(queryString)
+      this.appStatus = 'loading'
+      const promises = await listPromises(queryString)
+      this.promises = this.parsePromises(promises, this.politicians)
+      this.filteredPromises = [...this.promises]
+      this.appStatus = ''
+    },
     parsePromises: (promises, politicians) =>
       promises.map(promise => ({
         ...promise,
@@ -150,7 +176,30 @@ export default {
     filterPromisesByStatus (status) {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
-    formatDate
+    formatDate,
+    updateStartAfter (reverse) {
+      if (this.pageNumber === 1) delete this.query.startAfter
+
+      if (this.pageNumber > 1) {
+        this.query.startAfter = reverse ? this.promises[this.promises.length - 1][this.query.orderBy] : this.promises[0][this.query.orderBy]
+      }
+    },
+    nextPage () {
+      this.pageNumber++
+      this.query.reverse = true
+      this.updateQuery()
+    },
+    previousPage () {
+      if (this.pageNumber === 1) return
+      this.pageNumber--
+      this.query.reverse = false
+      this.updateQuery()
+    },
+    updateQuery (obj) {
+      this.query = { ...this.query, ...obj }
+      this.updateStartAfter(this.query.reverse)
+      this.listPromisesHandler(this.queryString)
+    }
   }
 }
 
