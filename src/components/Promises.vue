@@ -132,13 +132,15 @@ export default {
         stats.push({ value: statusOption || 'undefined', number: hits.length })
       })
       return stats
+    },
+    queryString: function () {
+      return queryString.stringify(this.query);
     }
   },
   async created () {
     try {
-      const query = queryString.stringify(this.query);
-      console.log(query)
-      const promises = await listPromises(query)
+      console.log(this.queryString)
+      const promises = await listPromises(this.queryString)
       const politicians = await listPoliticians()
       this.politicians = politicians
       this.promises = this.parsePromises(promises, politicians)
@@ -159,7 +161,16 @@ export default {
     filterPromisesByStatus (status) {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
-    formatDate
+    formatDate,
+    nextPage: () => {
+
+    },
+    previousPage: () => {
+
+    },
+    updateQuery: () => {
+      this.listPromises()
+    }
   }
 }
 
