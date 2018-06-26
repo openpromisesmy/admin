@@ -34,7 +34,7 @@ axios.interceptors.response.use(
   function (response) {
     return response
   }, function (error) {
-    if(!error.response) {
+    if (!error.response) {
       alert('no response from API')
     }
     if (error.response.status === 401) {
