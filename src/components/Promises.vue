@@ -11,7 +11,7 @@
       </el-col>
     </el-row>
 
-    <template v-if="promises.length === 0">
+    <template v-if="appStatus === 'loading'">
       <p>Loading promises...This will take 3-5 seconds.</p>
       <LoadingSpinner />
       </template>
@@ -146,18 +146,21 @@ export default {
   },
   async created () {
     try {
+      this.appStatus = 'loading'
       const politicians = await listPoliticians()
       this.politicians = politicians
-      this.listPromisesHandler()
+      this.listPromisesHandler(this.queryString)
     } catch (e) {
       console.error(e)
     }
   },
   methods: {
-    async listPromisesHandler () {
-      const promises = await listPromises(this.queryString)
+    async listPromisesHandler (queryString) {
+      this.appStatus = 'loading'
+      const promises = await listPromises(queryString)
       this.promises = this.parsePromises(promises, this.politicians)
       this.filteredPromises = [...this.promises]
+      this.appStatus = ''
     },
     parsePromises: (promises, politicians) =>
       promises.map(promise => ({
@@ -171,19 +174,26 @@ export default {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
     formatDate,
+    updateStartAfter () {
+      console.log('updateStartAfter')
+      if (this.pageNumber > 1) {
+        console.log('working')
+        this.query.startAfter = this.promises[this.promises.length - 1][this.query.orderBy]
+      }
+    },
     nextPage () {
-      this.updateQuery({ nextPage: this.pageNumber + 1 })
       this.pageNumber++
+      this.updateQuery()
     },
     previousPage () {
       if (this.pageNumber === 1) return
-      this.updateQuery({ nextPage: this.pageNumber - 1 })
       this.pageNumber--
+      this.updateQuery()
     },
     updateQuery (obj) {
       this.query = { ...this.query, ...obj }
-      console.log(JSON.stringify(this.query, null, 2))
-      // this.listPromises(this.queryString)
+      this.updateStartAfter()
+      this.listPromisesHandler(this.queryString)
     }
   }
 }
