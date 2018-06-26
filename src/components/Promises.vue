@@ -105,11 +105,18 @@
 import { listPromises, listPoliticians } from '@/api'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 import { formatDate, filterByStatus } from '@/utils'
+import queryString from 'query-string'
 
 export default {
   name: 'Promises',
   data () {
     return {
+      pageNumber: 1,
+      query: {
+        pageSize: 25,
+        orderBy: 'source_date',
+        reverse: true
+      },
       promises: [],
       filteredPromises: [],
       politicians: []
@@ -129,7 +136,9 @@ export default {
   },
   async created () {
     try {
-      const promises = await listPromises()
+      const query = queryString.stringify(this.query);
+      console.log(query)
+      const promises = await listPromises(query)
       const politicians = await listPoliticians()
       this.politicians = politicians
       this.promises = this.parsePromises(promises, politicians)
