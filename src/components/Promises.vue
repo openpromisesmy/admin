@@ -16,11 +16,18 @@
       <LoadingSpinner />
       </template>
     <template v-else>
-      <div class="stats_container">
+    <div class="stats_container">
     <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
       <b>{{ stat.value }}</b> {{ stat.number }}
     </el-button>
     </div>
+    <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
+      Previous Page
+    </el-button>
+    <el-button type="primary" @click="nextPage()">
+      Next Page
+    </el-button>
+
     <el-table
     :data="filteredPromises"
     :default-sort = "{prop: 'created_at', order: 'descending'}"
@@ -134,22 +141,24 @@ export default {
       return stats
     },
     queryString: function () {
-      return queryString.stringify(this.query);
+      return queryString.stringify(this.query)
     }
   },
   async created () {
     try {
-      console.log(this.queryString)
-      const promises = await listPromises(this.queryString)
       const politicians = await listPoliticians()
       this.politicians = politicians
-      this.promises = this.parsePromises(promises, politicians)
-      this.filteredPromises = [...this.promises]
+      this.listPromisesHandler()
     } catch (e) {
       console.error(e)
     }
   },
   methods: {
+    async listPromisesHandler () {
+      const promises = await listPromises(this.queryString)
+      this.promises = this.parsePromises(promises, this.politicians)
+      this.filteredPromises = [...this.promises]
+    },
     parsePromises: (promises, politicians) =>
       promises.map(promise => ({
         ...promise,
@@ -162,14 +171,19 @@ export default {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
     formatDate,
-    nextPage: () => {
-
+    nextPage () {
+      this.updateQuery({ nextPage: this.pageNumber + 1 })
+      this.pageNumber++
     },
-    previousPage: () => {
-
+    previousPage () {
+      if (this.pageNumber === 1) return
+      this.updateQuery({ nextPage: this.pageNumber - 1 })
+      this.pageNumber--
     },
-    updateQuery: () => {
-      this.listPromises()
+    updateQuery (obj) {
+      this.query = { ...this.query, ...obj }
+      console.log(JSON.stringify(this.query, null, 2))
+      // this.listPromises(this.queryString)
     }
   }
 }
