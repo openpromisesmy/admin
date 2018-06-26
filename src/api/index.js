@@ -34,7 +34,9 @@ axios.interceptors.response.use(
   function (response) {
     return response
   }, function (error) {
-    console.error(error)
+    if(!error.response) {
+      alert('no response from API')
+    }
     if (error.response.status === 401) {
       alert(`${error.response.data} [401] Try logging out then logging back in.`)
     }
