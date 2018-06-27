@@ -17,6 +17,7 @@
       </template>
     <template v-else>
     <div class="stats_container">
+    <el-button type="info" class="add-button" @click="resetFilter()">Reset Filter</el-button>
     <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
       <b>{{ stat.value }}</b> {{ stat.number }}
     </el-button>
@@ -175,6 +176,9 @@ export default {
       })),
     filterPromisesByStatus (status) {
       this.filteredPromises = filterByStatus(this.promises, status)
+    },
+    resetFilter() {
+      this.filteredPromises = [ ...this.promises]
     },
     formatDate,
     updateStartAfter (reverse) {
