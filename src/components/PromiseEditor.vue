@@ -162,11 +162,12 @@ export default {
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
         title: [{ required: true, message: 'Please select a politician', trigger: 'blur' }],
+        quote: [{ required: true, message: 'Please paste exact words from the source', trigger: 'blur' }],
         contributor_id: [{ required: true, type: 'text', message: 'contributor_id is required', trigger: 'blur' }],
         politician_id: [{ required: true, message: 'politician_id is required', trigger: 'blur' }],
         category: [{ required: true, message: 'Please enter category', trigger: 'blur' }],
         date: [{ message: 'Please select a date', trigger: 'blur' }],
-        source_date: [{ type: 'date', message: 'Please select a source date', trigger: 'blur' }],
+        source_date: [{ required: true, type: 'date', message: 'Please select a source date', trigger: 'blur' }],
         source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
         source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
         status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
