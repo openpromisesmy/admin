@@ -95,7 +95,6 @@
       width="125">
     </el-table-column>
     <el-table-column
-      sortable
       label="Actions"
       width="125">
       <template slot-scope="scope">
