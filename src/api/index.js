@@ -130,7 +130,7 @@ const postPromise = data => postSomething(PROMISES_PATH, data)
 const postPolitician = data => postSomething(POLITICIANS_PATH, data)
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
 const listPromises = query => getSomething(PROMISES_PATH + 'all?' + query)
-const listPoliticianPromises = id => getSomething(PROMISES_PATH + '?politician_id=' + id)
+const listPoliticianPromises = id => getSomething(PROMISES_PATH + 'all?politician_id=' + id)
 
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
 const updatePolitician = data => updateSomething(`${POLITICIANS_PATH}${data.id}`, data)
