@@ -35,6 +35,11 @@
       </template>
     </el-table-column>
     <el-table-column
+      prop="created_at"
+      label="Created Date"
+    >
+    </el-table-column>
+    <el-table-column
       prop="title"
       label="Title">
       <template slot-scope="scope">
@@ -43,7 +48,7 @@
     </el-table-column>
     <el-table-column
       prop="source_date"
-      label="Date"
+      label="Source Date"
       width="150">
     </el-table-column>
     <el-table-column
@@ -63,8 +68,7 @@
 
 <script>
 import { getPolitician, listPoliticianPromises } from '@/api'
-import { generateStats } from '@/utils'
-import moment from 'moment'
+import { generateStats, formatDate } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
@@ -86,7 +90,8 @@ export default {
       ({
         ...promise,
         status: promise.status ? promise.status : 'Review Needed',
-        source_date: moment(promise.source_date).format('D MMMM YYYY')
+        created_at: formatDate(promise.created_at),
+        source_date: formatDate(promise.source_date)
       })
     )
   },
