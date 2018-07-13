@@ -66,6 +66,17 @@
       label="Status"
       width="125">
     </el-table-column>
+    <el-table-column
+      label="Actions"
+      width="125">
+      <template slot-scope="scope">
+        <router-link :to="'/promises/' + scope.row.id + '/edit'">
+          <el-button type="info">
+          Edit
+          </el-button>
+        </router-link>
+      </template>
+    </el-table-column>
   </el-table>
     </template>
   </main>
