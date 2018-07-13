@@ -35,6 +35,7 @@
       </template>
     </el-table-column>
     <el-table-column
+      sortable
       prop="created_at"
       label="Created Date"
     >
@@ -47,6 +48,7 @@
       </template>
     </el-table-column>
     <el-table-column
+      sortable
       prop="source_date"
       label="Source Date"
       width="150">
