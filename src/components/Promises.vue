@@ -176,8 +176,8 @@ export default {
     filterPromisesByStatus (status) {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
-    resetFilter() {
-      this.filteredPromises = [ ...this.promises]
+    resetFilter () {
+      this.filteredPromises = [...this.promises]
     },
     formatDate,
     updateStartAfter (reverse) {
