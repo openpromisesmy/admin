@@ -27,6 +27,14 @@
       border
       style="width: 100%">
     <el-table-column
+      prop="live"
+      label="Live"
+      width="125">
+      <template slot-scope="scope">
+        {{ scope.row.live.toString() }}
+      </template>
+    </el-table-column>
+    <el-table-column
       prop="title"
       label="Title">
       <template slot-scope="scope">
