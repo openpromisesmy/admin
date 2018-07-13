@@ -69,6 +69,11 @@
       label="Actions"
       width="125">
       <template slot-scope="scope">
+        <router-link :to="'/politicians/' + scope.row.id">
+          <el-button type="primary">
+          View
+          </el-button>
+        </router-link>
         <router-link :to="'/politicians/' + scope.row.id + '/edit'">
           <el-button type="info">
           Edit

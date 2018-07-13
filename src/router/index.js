@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Promises from '@/components/Promises'
 import Politicians from '@/components/Politicians'
+import Politician from '@/components/Politician'
 import Contributors from '@/components/Contributors'
 import Auth from '@/components/Auth'
 import Account from '@/components/Account'
@@ -78,6 +79,12 @@ export default new Router({
       path: '/promises/:id/edit',
       name: 'Promise Editor',
       component: PromiseEditor,
+      beforeEnter: ifAuthenticated
+    },
+    {
+      path: '/politicians/:id',
+      name: 'Politician',
+      component: Politician,
       beforeEnter: ifAuthenticated
     },
     {
