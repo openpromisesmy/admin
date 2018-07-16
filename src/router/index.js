@@ -89,13 +89,13 @@ export default new Router({
     },
     {
       path: '/politicians/new',
-      name: 'Politician Editor',
+      name: 'New Politician',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     },
     {
       path: '/politicians/:id/edit',
-      name: 'Politician Editor',
+      name: 'Edit Politician',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     }
