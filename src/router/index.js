@@ -71,13 +71,13 @@ export default new Router({
     },
     {
       path: '/promises/new',
-      name: 'Promise Editor',
+      name: 'New Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
     },
     {
       path: '/promises/:id/edit',
-      name: 'Promise Editor',
+      name: 'Edit Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
     },
