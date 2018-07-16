@@ -21,8 +21,26 @@ function generateStats (promises) {
   return stats
 }
 
+function parsePromises (promises, politicians) {
+  function parseSinglePromise (promise, politicians) {
+    const politician = politicians.find(
+      politician => politician.id === promise.politician_id
+    )
+    if(!politician) alert(`Politician with ID ${promise.politician_id} not found Promise ${promise.id}: ${promise.title}. Please screenshot this and report to the tech team.`)
+
+    return ({
+      ...promise,
+      politician_name: politician.name
+    })
+
+  }
+
+  return promises.map(promise => parseSinglePromise(promise, politicians) )
+}
+
 export {
   formatDate,
   filterByStatus,
-  generateStats
+  generateStats,
+  parsePromises
 }
