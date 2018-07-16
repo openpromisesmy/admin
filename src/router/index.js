@@ -80,17 +80,17 @@ export default new Router({
       name: 'Edit Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
+    },    
+    {
+      path: '/politicians/new',
+      name: 'New Politician',
+      component: PoliticianEditor,
+      beforeEnter: ifAuthenticated
     },
     {
       path: '/politicians/:id',
       name: 'Politician',
       component: Politician,
-      beforeEnter: ifAuthenticated
-    },
-    {
-      path: '/politicians/new',
-      name: 'New Politician',
-      component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     },
     {
