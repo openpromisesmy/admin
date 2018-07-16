@@ -71,13 +71,13 @@ export default new Router({
     },
     {
       path: '/promises/new',
-      name: 'Promise Editor',
+      name: 'New Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
     },
     {
       path: '/promises/:id/edit',
-      name: 'Promise Editor',
+      name: 'Edit Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
     },
@@ -89,13 +89,13 @@ export default new Router({
     },
     {
       path: '/politicians/new',
-      name: 'Politician Editor',
+      name: 'New Politician',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     },
     {
       path: '/politicians/:id/edit',
-      name: 'Politician Editor',
+      name: 'Edit Politician',
       component: PoliticianEditor,
       beforeEnter: ifAuthenticated
     }

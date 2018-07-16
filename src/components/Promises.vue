@@ -113,7 +113,7 @@
 <script>
 import { listPromises, listPoliticians } from '@/api'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
-import { formatDate, filterByStatus } from '@/utils'
+import { formatDate, filterByStatus, parsePromises } from '@/utils'
 import queryString from 'query-string'
 
 export default {
@@ -149,8 +149,7 @@ export default {
   async created () {
     try {
       this.appStatus = 'loading'
-      const politicians = await listPoliticians()
-      this.politicians = politicians
+      this.politicians = await listPoliticians()
       this.listPromisesHandler(this.queryString)
     } catch (e) {
       console.error(e)
@@ -158,21 +157,13 @@ export default {
   },
   methods: {
     async listPromisesHandler (queryString) {
-      console.log(queryString)
       this.appStatus = 'loading'
       const promises = await listPromises(queryString)
       this.promises = this.parsePromises(promises, this.politicians)
       this.filteredPromises = [...this.promises]
       this.appStatus = ''
     },
-    parsePromises: (promises, politicians) =>
-      promises.map(promise => ({
-        ...promise,
-        status: promise.status,
-        politician_name: politicians.find(
-          politician => politician.id === promise.politician_id
-        ).name
-      })),
+    parsePromises,
     filterPromisesByStatus (status) {
       this.filteredPromises = filterByStatus(this.promises, status)
     },
