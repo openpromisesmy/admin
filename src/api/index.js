@@ -128,7 +128,7 @@ const listContributors = () => getSomething('/contributors/')
 
 const postPromise = data => postSomething(PROMISES_PATH, data)
 const postPolitician = data => postSomething(POLITICIANS_PATH, data)
-const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all')
+const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all?orderBy=name')
 const listPromises = query => getSomething(PROMISES_PATH + 'all?' + query)
 const listPoliticianPromises = id => getSomething(PROMISES_PATH + 'all?politician_id=' + id)
 

@@ -59,7 +59,7 @@
             <el-select v-model="promise.politician_id">
               <el-option
                   default-first-option
-                  v-for="politician in politicians.sort(sortByName)"
+                  v-for="politician in politicians"
                   :value="politician.id"
                   :key="politician.id"
                   :label="politician.name"
@@ -136,7 +136,7 @@
 
 <script>
 import { postPromise, getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
-import { formatDate, sortByName } from '@/utils'
+import { formatDate } from '@/utils'
 
 export default {
   name: 'PromiseEditor',
@@ -214,7 +214,6 @@ export default {
     }
   },
   methods: {
-    sortByName,
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
