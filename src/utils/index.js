@@ -37,9 +37,16 @@ function parsePromises (promises, politicians) {
   return promises.map(promise => parseSinglePromise(promise, politicians))
 }
 
+function sortByName (a, b) {
+  if (a.name < b.name) return -1
+  if (a.name > b.name) return 1
+  return 0
+}
+
 export {
   formatDate,
   filterByStatus,
   generateStats,
-  parsePromises
+  parsePromises,
+  sortByName
 }
