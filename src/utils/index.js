@@ -26,16 +26,15 @@ function parsePromises (promises, politicians) {
     const politician = politicians.find(
       politician => politician.id === promise.politician_id
     )
-    if(!politician) alert(`Politician with ID ${promise.politician_id} not found Promise ${promise.id}: ${promise.title}. Please screenshot this and report to the tech team.`)
+    if (!politician) alert(`Politician with ID ${promise.politician_id} not found Promise ${promise.id}: ${promise.title}. Please screenshot this and report to the tech team.`)
 
     return ({
       ...promise,
       politician_name: politician.name
     })
-
   }
 
-  return promises.map(promise => parseSinglePromise(promise, politicians) )
+  return promises.map(promise => parseSinglePromise(promise, politicians))
 }
 
 export {
