@@ -80,7 +80,7 @@ export default new Router({
       name: 'Edit Promise',
       component: PromiseEditor,
       beforeEnter: ifAuthenticated
-    },    
+    },
     {
       path: '/politicians/new',
       name: 'New Politician',
