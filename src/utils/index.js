@@ -37,7 +37,7 @@ function parsePromises (promises, politicians) {
   return promises.map(promise => parseSinglePromise(promise, politicians))
 }
 
-function sortByName (a, b) {
+function sortByName (a, b) { // to be supplied to Array.sort()
   if (a.name < b.name) return -1
   if (a.name > b.name) return 1
   return 0
