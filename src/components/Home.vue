@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <h1>OpenPromises Admin Dashboard</h1>
+    <h1>OpenPromises Tracking Dashboard</h1>
+    <h2 id="slogan">"Shifting Malaysia's political culture, one promise at a time."</h2>
     <router-link to="/promises">
       <el-button type="default"> Promises </el-button>
     </router-link>
@@ -26,4 +27,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#slogan {
+  font-weight: 300
+}
 </style>
