@@ -4,18 +4,14 @@
       <p>Loading politician...</p>
     </template>
     <template v-else>
-      <h1>{{ politician.name }}</h1>
-      <img class="image" :src="politician.profile_image">
-      <p><b>{{ politician.primary_position }}</b></p>
-      <p>{{ politician.brief }}</p>
-      <h2>Promises by {{ politician.name }}</h2>
+      <politician-details v-bind="{ politician }" />
     </template>
-
     <template v-if="promises === 'loading'">
       <p>Loading promises...This will take 2-4 seconds.</p>
       <LoadingSpinner />
     </template>
     <template v-else>
+    <h2>Promises by {{ politician.name }}</h2>
     <el-card id="Politician_stats">
       <b>Promise Statistics:</b>
       <el-button v-for="stat in stats" :key="stat.value">
@@ -86,10 +82,11 @@
 import { getPolitician, listPoliticianPromises } from '@/api'
 import { generateStats, formatDate } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import PoliticianDetails from '@/components/PoliticianDetails'
 
 export default {
   name: 'Politician',
-  components: { LoadingSpinner },
+  components: { LoadingSpinner, PoliticianDetails },
   data () {
     return {
       politician: 'loading',
