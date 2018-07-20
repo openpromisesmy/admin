@@ -35,11 +35,19 @@
 </template>
 
 <script>
+import { getGeneralStats } from '@/api'
 export default {
   name: 'Home',
   data () {
     return {
-      msg: ''
+      stats: {}
+    }
+  },
+  async created () {
+    try {
+    this.stats = await getGeneralStats()
+    } catch (e) {
+      alert(e)
     }
   }
 }
