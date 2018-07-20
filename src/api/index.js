@@ -135,6 +135,8 @@ const listPoliticianPromises = id => getSomething(PROMISES_PATH + 'all?politicia
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
 const updatePolitician = data => updateSomething(`${POLITICIANS_PATH}${data.id}`, data)
 
+const getGeneralStats = () => getSomething('/stats/general_stats')
+
 export {
   googleSignIn,
   googleLogout,
@@ -148,5 +150,6 @@ export {
   listPoliticianPromises,
   getPromise,
   updatePromise,
-  updatePolitician
+  updatePolitician,
+  getGeneralStats
 }
