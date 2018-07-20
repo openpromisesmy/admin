@@ -31,15 +31,27 @@
               </a>
             </el-row>
     </el-card>
+    <general-stats v-bind="{ generalStats }" />
   </div>
 </template>
 
 <script>
+import { getGeneralStats } from '@/api'
+import GeneralStats from '@/components/GeneralStats'
+
 export default {
   name: 'Home',
+  components: { GeneralStats },
   data () {
     return {
-      msg: ''
+      generalStats: {}
+    }
+  },
+  async created () {
+    try {
+      this.generalStats = await getGeneralStats()
+    } catch (e) {
+      alert(e)
     }
   }
 }
