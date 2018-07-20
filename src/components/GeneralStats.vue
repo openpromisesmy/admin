@@ -8,11 +8,12 @@
               {{ key }}: {{ value }}
           </p>
           <b>Promises</b>
-            <pre>{{ JSON.stringify(generalStats.promises, null, 2) }}</pre>
+          <p>livePromises: {{ generalStats.promises.livePromises }}</p>
+          <p>livePromisesByLivePoliticians: {{ generalStats.promises.livePromisesByLivePoliticians }}</p>
           <p>by status:</p>
-          <p v-for="(value, key) in generalStats.promises.countByStatus" :key="key">
-              {{ key }}: {{ value }}
-          </p>
+            <el-button v-for="(value,key) in generalStats.promises.countByStatus" :key="key" @click="filterPromisesByStatus(stat.value)">
+                <b>{{ key }}</b> {{ value }}
+            </el-button>
     </el-card>
 </template>
 
