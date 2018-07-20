@@ -35,7 +35,10 @@
       label="Live"
       width="120">
       <template slot-scope="scope">
-        <p>{{ scope.row.live }}</p>
+        <el-button v-if="scope.row.live" type="success" icon="el-icon-check" circle></el-button>
+        <span v-else>
+          {{ scope.row.live.toString() }}
+        </span>
       </template>
     </el-table-column>
     <el-table-column
