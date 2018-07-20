@@ -5,9 +5,17 @@
             <img class="image" :src="politician.profile_image">
         </el-col>
          <el-col :span="12">
-            <h1>{{ politician.name }}</h1>
+            <h1>
+                {{ politician.name }}
+                <el-button v-if="politician.live" type="success" icon="el-icon-check" circle></el-button>
+            </h1>
             <p><b>{{ politician.primary_position }}</b></p>
             <p>{{ politician.brief }}</p>
+            <router-link :to="'/politicians/' + politician.id + '/edit'">
+                <el-button type="info">
+                Edit
+                </el-button>
+            </router-link>
          </el-col>
     </el-row>
     </el-card>
