@@ -18,9 +18,23 @@
 </template>
 
 <script>
+import { getGeneralStats } from '@/api'
+import GeneralStats from '@/components/GeneralStats'
+
 export default {
   name: 'GeneralStats',
-  props: ['generalStats']
+  data () {
+    return {
+      generalStats: {}
+    }
+  },
+  async created () {
+    try {
+      this.generalStats = await getGeneralStats()
+    } catch (e) {
+      alert(e)
+    }
+  }
 }
 </script>
 
