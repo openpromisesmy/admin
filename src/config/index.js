@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+// @TODO: move these to config and use env vars
 const config = {
   apiKey: 'AIzaSyBR0GKAzyozw4tp_6Q0kOso1pT9XyHWHpQ',
   authDomain: 'openpromises-8526c.firebaseapp.com',
