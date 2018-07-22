@@ -7,7 +7,11 @@ Vue.use(Vuex)
 const state = {
   user: {
     authenticated: false
-  }
+  },
+  stats: {},
+  politicians: [],
+  contributors: [],
+  promises: []
 }
 
 const mutations = {
@@ -16,7 +20,23 @@ const mutations = {
   },
   logout (state) {
     state.user = {}
+  },
+  cacheStats (state, stats) {
+    state.stats = { ...stats }
+  },
+  cachePoliticians (state, politicians) {
+    state.politicians = [...politicians]
+  },
+  cacheContributors (state, contributors) {
+    state.contributors = [...contributors]
+  },
+  cachePromises (state, promises) {
+    state.promises = [...promises]
   }
 }
 
-export default new Vuex.Store({ state, mutations, plugins: [createPersistedState()] })
+export default new Vuex.Store({
+  state,
+  mutations,
+  plugins: [createPersistedState()]
+})

@@ -90,7 +90,7 @@
 
 <script>
 import { listPoliticians } from '@/api'
-import { formatDate } from '@/utils'
+import { formatDate, loadCache, updateCache } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
@@ -105,7 +105,18 @@ export default {
     formatDate
   },
   async created () {
-    this.politicians = await listPoliticians()
+    try {
+      this.politicians = await loadCache(this, 'politicians', listPoliticians())
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.politicians = await updateCache(this, 'politicians', listPoliticians())
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 </script>

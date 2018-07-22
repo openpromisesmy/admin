@@ -9,14 +9,14 @@
         </template>
         <div v-else>
           <b>Politicians</b>
-          <p v-for="(value, key) in generalStats.politicians" :key="key">
+          <p v-for="(value, key) in stats.politicians" :key="key">
               {{ key }}: {{ value }}
           </p>
           <b>Promises</b>
-          <p>livePromises: {{ generalStats.promises.livePromises }}</p>
-          <p>livePromisesByLivePoliticians: {{ generalStats.promises.livePromisesByLivePoliticians }}</p>
+          <p>livePromises: {{ stats.promises.livePromises }}</p>
+          <p>livePromisesByLivePoliticians: {{ stats.promises.livePromisesByLivePoliticians }}</p>
           <p>by status:</p>
-            <el-button v-for="(value,key) in generalStats.promises.countByStatus" :key="key" @click="filterPromisesByStatus(stat.value)">
+            <el-button v-for="(value,key) in stats.promises.countByStatus" :key="key" @click="filterPromisesByStatus(stat.value)">
                 <b>{{ key }}</b> {{ value }}
             </el-button>
         </div>
@@ -25,6 +25,7 @@
 
 <script>
 import { getGeneralStats } from '@/api'
+import { loadCache, updateCache } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
@@ -32,20 +33,28 @@ export default {
   components: { LoadingSpinner },
   data () {
     return {
-      generalStats: {},
+      stats: {},
       appStatus: ''
     }
   },
   async created () {
     try {
       this.appStatus = 'loading'
-      this.generalStats = await getGeneralStats()
+      this.stats = await loadCache(this, 'stats', getGeneralStats())
       this.appStatus = ''
+    } catch (e) {
+      alert(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.stats = await updateCache(this, 'stats', getGeneralStats())
     } catch (e) {
       alert(e)
     }
   }
 }
+
 </script>
 
 <style scoped>

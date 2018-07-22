@@ -35,15 +35,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #slogan {
-  font-weight: 300
+  font-weight: 300;
 }
 
 #shortcuts {
   max-width: 900px;
-  margin: 20px auto
+  margin: 20px auto;
 }
 
 .el-card .el-row {
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 </style>
