@@ -8,7 +8,9 @@ const state = {
   user: {
     authenticated: false
   },
-  stats: {}
+  stats: {},
+  politicians: [],
+  contributors: []
 }
 
 const mutations = {
@@ -20,6 +22,12 @@ const mutations = {
   },
   cacheStats (state, stats) {
     state.stats = { ...stats }
+  },
+  cachePoliticians (state, politicians) {
+    state.politicians = [ ...politicians ]
+  },
+  cacheContributors (state, contributors) {
+    state.contributors = [ ...contributors ]
   }
 }
 

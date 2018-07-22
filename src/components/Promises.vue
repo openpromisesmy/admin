@@ -113,7 +113,7 @@
 <script>
 import { listPromises, listPoliticians } from '@/api'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
-import { formatDate, filterByStatus, parsePromises } from '@/utils'
+import { formatDate, filterByStatus, parsePromises, loadCache, updateCache } from '@/utils'
 import queryString from 'query-string'
 
 export default {
@@ -149,7 +149,7 @@ export default {
   async created () {
     try {
       this.appStatus = 'loading'
-      this.politicians = await listPoliticians()
+      this.politicians = await loadCache(this, 'politicians', listPoliticians())
       this.listPromisesHandler(this.queryString)
     } catch (e) {
       console.error(e)
@@ -194,6 +194,13 @@ export default {
       this.updateStartAfter(this.query.reverse)
       this.listPromisesHandler(this.queryString)
     }
+  },
+  async mounted () {
+    try {
+      this.politicians = await updateCache(this, 'politicians', listPoliticians())
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 
@@ -202,6 +209,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .stats_container {
-  margin: 0 0 20px
+  margin: 0 0 20px;
 }
 </style>

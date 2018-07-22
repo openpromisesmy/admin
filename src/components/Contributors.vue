@@ -44,6 +44,7 @@
 
 <script>
 import { listContributors } from '@/api'
+import { loadCache, updateCache } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
@@ -55,7 +56,18 @@ export default {
     }
   },
   async created () {
-    this.contributors = await listContributors()
+    try {
+      this.contributors = await loadCache(this, 'contributors', listContributors())
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.contributors = await updateCache(this, 'contributors', listContributors())
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 </script>
