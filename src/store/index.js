@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const state = {
   user: {
     authenticated: false
-  }
+  },
+  stats: {}
 }
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
   },
   logout (state) {
     state.user = {}
+  },
+  cacheStats (state, stats) {
+    state.stats = { ...stats }
   }
 }
 

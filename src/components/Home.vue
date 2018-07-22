@@ -31,25 +31,33 @@
               </a>
             </el-row>
     </el-card>
-    <general-stats v-bind="{ generalStats }" />
+    <general-stats v-bind="{ stats }" />
   </div>
 </template>
 
 <script>
 import { getGeneralStats } from '@/api'
 import GeneralStats from '@/components/GeneralStats'
+import { loadCache, updateCache } from '@/utils'
 
 export default {
   name: 'Home',
   components: { GeneralStats },
   data () {
     return {
-      generalStats: {}
+      stats: {}
     }
   },
   async created () {
     try {
-      this.generalStats = await getGeneralStats()
+      this.stats = await loadCache(this, 'stats', getGeneralStats())
+    } catch (e) {
+      alert(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.stats = await updateCache(this, 'stats', getGeneralStats())
     } catch (e) {
       alert(e)
     }
@@ -60,15 +68,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #slogan {
-  font-weight: 300
+  font-weight: 300;
 }
 
 #shortcuts {
   max-width: 900px;
-  margin: 20px auto
+  margin: 20px auto;
 }
 
 .el-card .el-row {
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 </style>
