@@ -19,7 +19,6 @@
 
 <script>
 import { getGeneralStats } from '@/api'
-import GeneralStats from '@/components/GeneralStats'
 
 export default {
   name: 'GeneralStats',
