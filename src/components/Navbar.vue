@@ -30,7 +30,8 @@ export default {
         { text: 'Home', url: '/' },
         { text: 'Promises', url: '/promises' },
         { text: 'Politicians', url: '/politicians' },
-        { text: 'Contributors', url: '/contributors' }
+        { text: 'Contributors', url: '/contributors' },
+        { text: 'Stats', url: '/stats' }
       ],
       authenticated: this.$store.state.user.authenticated,
       email: this.$store.state.user.email
