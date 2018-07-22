@@ -3,6 +3,11 @@
         <div slot="header" class="clearfix">
           <b>General Stats</b>
         </div>
+        <template v-if="appStatus === 'loading'">
+          <p>Loading stats...This would take 1-3 seconds.</p>
+          <LoadingSpinner />
+        </template>
+        <div v-else>
           <b>Politicians</b>
           <p v-for="(value, key) in generalStats.politicians" :key="key">
               {{ key }}: {{ value }}
@@ -14,22 +19,28 @@
             <el-button v-for="(value,key) in generalStats.promises.countByStatus" :key="key" @click="filterPromisesByStatus(stat.value)">
                 <b>{{ key }}</b> {{ value }}
             </el-button>
+        </div>
     </el-card>
 </template>
 
 <script>
 import { getGeneralStats } from '@/api'
+import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
   name: 'GeneralStats',
+  components: { LoadingSpinner },
   data () {
     return {
-      generalStats: {}
+      generalStats: {},
+      appStatus: ''
     }
   },
   async created () {
     try {
+      this.appStatus = 'loading'
       this.generalStats = await getGeneralStats()
+      this.appStatus = ''
     } catch (e) {
       alert(e)
     }
