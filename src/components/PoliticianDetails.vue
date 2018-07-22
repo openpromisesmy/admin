@@ -48,7 +48,6 @@ export default {
 
 #PoliticianDetails{
     max-width: 750px;
-    margin: 10px auto
 }
 
 </style>
