@@ -43,6 +43,7 @@ export default {
   object-fit: cover; /* Do not scale the image */
   object-position: top; /* Center the image within the element */
   height: 300px;
+  width: 330px
 }
 
 #PoliticianDetails{
