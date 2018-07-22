@@ -33,17 +33,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-card {
+    text-align: left
+}
+
 .image {
   min-width: 30%;
   display: inline-block;
   object-fit: cover; /* Do not scale the image */
   object-position: top; /* Center the image within the element */
   height: 300px;
+  width: 330px
 }
 
 #PoliticianDetails{
-    max-width: 900px;
-    margin: 10px auto
+    max-width: 750px;
 }
 
 </style>

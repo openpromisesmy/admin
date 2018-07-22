@@ -4,7 +4,15 @@
       <p>Loading politician...</p>
     </template>
     <template v-else>
-      <politician-details v-bind="{ politician }" />
+      <el-row id="main-info">
+        <el-col :span="16">
+          <politician-details v-bind="{ politician }" />
+        </el-col>
+        <el-col :span="8">
+          <promise-stats-widget v-if="promises !== 'loading'"
+          :promises="promises"/>
+        </el-col>
+      </el-row>
     </template>
     <template v-if="promises === 'loading'">
       <p>Loading promises...This will take 2-4 seconds.</p>
@@ -12,12 +20,6 @@
     </template>
     <template v-else>
     <h2>Promises by {{ politician.name }}</h2>
-    <el-card id="Politician_stats">
-      <b>Promise Statistics:</b>
-      <el-button v-for="stat in stats" :key="stat.value">
-        <b>{{ stat.value }}</b> {{ stat.number }}
-      </el-button>
-    </el-card>
     <el-table
       :data="promises"
       border
@@ -80,22 +82,18 @@
 
 <script>
 import { getPolitician, listPoliticianPromises } from '@/api'
-import { generateStats, formatDate } from '@/utils'
+import { formatDate } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 import PoliticianDetails from '@/components/PoliticianDetails'
+import PromiseStatsWidget from '@/components/PromiseStatsWidget'
 
 export default {
   name: 'Politician',
-  components: { LoadingSpinner, PoliticianDetails },
+  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget },
   data () {
     return {
       politician: 'loading',
       promises: 'loading'
-    }
-  },
-  computed: {
-    stats: function () {
-      return generateStats(this.promises)
     }
   },
   methods: {
@@ -132,5 +130,9 @@ export default {
 
 #politicians p b {
   display: inline-block
+}
+
+#main-info {
+  padding: 20px
 }
 </style>
