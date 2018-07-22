@@ -61,7 +61,7 @@ async function updateCache (self, key, promise) {
 
 async function loadCache (self, key, promise) {
   if (isEmpty(self.$store.state[key])) {
-    return updateCache(key, promise)
+    return updateCache(self, key, promise)
   }
 
   return self.$store.state[key]
