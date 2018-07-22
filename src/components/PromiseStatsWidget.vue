@@ -13,9 +13,6 @@
       />
       <span>{{ promises.length }}</span>
     </div>
-    <el-button v-for="stat in stats" :key="stat.value">
-    <b>{{ stat.value }}</b> {{ stat.number }}
-    </el-button>
   </el-card>
 </template>
 
