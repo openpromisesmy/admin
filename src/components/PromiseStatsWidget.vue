@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { generateStats, formatDate } from '@/utils'
+import { generateStats } from '@/utils'
 
 export default {
   name: 'PromiseStatsWidget',
@@ -17,7 +17,7 @@ export default {
     stats: function () {
       return generateStats(this.promises)
     }
-  },
+  }
 }
 </script>
 
