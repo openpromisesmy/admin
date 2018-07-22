@@ -25,6 +25,7 @@
 
 <script>
 import { getGeneralStats } from '@/api'
+import { loadCache, updateCache } from '@/utils'
 import LoadingSpinner from '@/components/shared/LoadingSpinner'
 
 export default {
@@ -32,20 +33,28 @@ export default {
   components: { LoadingSpinner },
   data () {
     return {
-      generalStats: {},
+      stats: {},
       appStatus: ''
     }
   },
   async created () {
     try {
       this.appStatus = 'loading'
-      this.generalStats = await getGeneralStats()
+      this.stats = await loadCache(this, 'stats', getGeneralStats())
       this.appStatus = ''
+    } catch (e) {
+      alert(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.stats = await updateCache(this, 'stats', getGeneralStats())
     } catch (e) {
       alert(e)
     }
   }
 }
+
 </script>
 
 <style scoped>
