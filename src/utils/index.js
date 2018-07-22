@@ -55,7 +55,6 @@ function sortByName (a, b) {
 
 async function updateCache (self, key, promise) {
   self.$store.commit(`cache${capitalize(key)}`, await promise)
-  self[key] = self.$store.state[key]
 
   return self.$store.state[key]
 }
