@@ -10,7 +10,8 @@ const state = {
   },
   stats: {},
   politicians: [],
-  contributors: []
+  contributors: [],
+  promises: []
 }
 
 const mutations = {
@@ -24,11 +25,18 @@ const mutations = {
     state.stats = { ...stats }
   },
   cachePoliticians (state, politicians) {
-    state.politicians = [ ...politicians ]
+    state.politicians = [...politicians]
   },
   cacheContributors (state, contributors) {
-    state.contributors = [ ...contributors ]
+    state.contributors = [...contributors]
+  },
+  cachePromises (state, promises) {
+    state.promises = [...promises]
   }
 }
 
-export default new Vuex.Store({ state, mutations, plugins: [createPersistedState()] })
+export default new Vuex.Store({
+  state,
+  mutations,
+  plugins: [createPersistedState()]
+})

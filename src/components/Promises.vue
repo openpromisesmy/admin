@@ -158,7 +158,9 @@ export default {
   methods: {
     async listPromisesHandler (queryString) {
       this.appStatus = 'loading'
+
       const promises = await listPromises(queryString)
+
       this.promises = this.parsePromises(promises, this.politicians)
       this.filteredPromises = [...this.promises]
       this.appStatus = ''
@@ -192,7 +194,7 @@ export default {
     updateQuery (obj) {
       this.query = { ...this.query, ...obj }
       this.updateStartAfter(this.query.reverse)
-      this.listPromisesHandler(this.queryString)
+      this.listPromisesHandler(this.queryString, true)
     }
   },
   async mounted () {
