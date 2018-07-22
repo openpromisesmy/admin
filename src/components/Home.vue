@@ -4,28 +4,20 @@
     <h2 id="slogan">"Shifting Malaysia's political culture, one promise at a time."</h2>
     <el-card id="shortcuts">
         <div slot="header" class="clearfix">
-          <b>Shortcuts to make your life easier</b>
+          <b>Shortcuts</b>
         </div>
             <el-row>
-              <span>Ensuring words are kept: </span>
               <router-link to="/promises/new">
                 <el-button type="primary"> New Promise </el-button>
               </router-link>
-            </el-row>
-            <el-row>
-              <span>With power, comes responsibility: </span>
               <router-link to="/politicians">
                 <el-button type="primary"> New Politician </el-button>
               </router-link>
             </el-row>
             <el-row>
-              <span>Helping Malaysians stay up to date: </span>
               <a href="https://www.facebook.com/openpromises.malaysia/" target="_blank">
                   <el-button type="default"> Facebook Page </el-button>
               </a>
-            </el-row>
-            <el-row>
-              <span>Curating constructive discussions: </span>
               <a href="https://www.facebook.com/groups/1809117962724326/" target="_blank">
                   <el-button type="default"> Watchers Group </el-button>
               </a>
