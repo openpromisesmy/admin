@@ -1,12 +1,13 @@
-import { firebase } from '@/config'
 import axios from 'axios'
 import {
   getSomething,
   postSomething,
   updateSomething
 } from './utils'
-
-const provider = new firebase.auth.GoogleAuthProvider()
+import {
+  googleSignIn,
+  googleLogout
+} from './google'
 
 const PROMISES_PATH = '/promises/'
 const PROMISE_UPDATES_PATH = '/promiseUpdates/'
@@ -24,51 +25,6 @@ axios.interceptors.response.use(
     }
     return Promise.reject(error)
   })
-
-function googleSignIn () {
-  return new Promise((resolve, reject) => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        const raw = result.user
-        let user = {}
-
-        user.name = raw.displayName
-        user.email = raw.email
-        user.photoURL = raw.photoURL
-
-        firebase
-          .auth()
-          .currentUser.getIdToken(/* forceRefresh */ true)
-          .then(idToken => {
-            user.token = idToken
-            localStorage.setItem('openpromises_token', idToken)
-            localStorage.setItem('openpromises_email', user.email)
-            localStorage.setItem('openpromises_name', user.name)
-            localStorage.setItem('openpromises_photo', user.photoURL)
-            resolve(user)
-          })
-          .catch(error => {
-            reject(error)
-          })
-      })
-      .catch(error => {
-        console.error(error)
-        reject(error)
-      })
-  })
-}
-
-function googleLogout () {
-  return new Promise((resolve, reject) => {
-    firebase.auth().signOut().then(function () {
-      resolve()
-    }, function (error) {
-      reject(error)
-    })
-  })
-}
 
 const getContributor = email => getSomething(`/contributors/?email=${email}`)
 const getPolitician = id => getSomething(`/politicians/${id}`)
