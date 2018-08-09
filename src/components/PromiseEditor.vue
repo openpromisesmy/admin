@@ -2,7 +2,7 @@
   <main id="PromiseEditor">
     <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <template v-if="appStatus === 'loading'">
-      <p> Loading {{ mode === 'edit' ? 'promises' : '' }}...</p>
+      <p> Loading {{ mode === 'edit' ? 'promise' : '' }}...</p>
     </template>
     <template v-else-if="appStatus === 'submitting'">
       <p>Submitting promise...</p>
@@ -135,7 +135,14 @@
 </template>
 
 <script>
-import { postPromise, getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
+import {
+  postPromise,
+  getPromise,
+  listPoliticians,
+  listContributors,
+  updatePromise,
+  listPromiseUpdates
+} from '@/api'
 import { formatDate } from '@/utils'
 
 export default {
@@ -146,6 +153,7 @@ export default {
       mode: '',
       error: undefined,
       promise: {},
+      promiseUpdates: [],
       politicians: [],
       contributors: [],
       statusOptions: [
@@ -199,12 +207,14 @@ export default {
   async created () {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
+      // TODO: use Promise.all to make faster?
       this.politicians = await listPoliticians()
       this.contributors = await listContributors()
 
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
+        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}`)
       } else if (this.mode === 'new') {
         this.promise.contributor_id = this.$store.state.user.id
       }
