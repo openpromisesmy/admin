@@ -2,7 +2,7 @@
   <main id="PromiseEditor">
     <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <template v-if="appStatus === 'loading'">
-      <p> Loading {{ mode === 'edit' ? 'promises' : '' }}...</p>
+      <p> Loading {{ mode === 'edit' ? 'promise' : '' }}...</p>
     </template>
     <template v-else-if="appStatus === 'submitting'">
       <p>Submitting promise...</p>
@@ -121,31 +121,41 @@
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
 
-          <el-card id="caption-text" class="box-card">
-            <h2>Caption Text</h2>
-            <p>{{ captionText.statement }}</p>
-            <p>{{ captionText.quote }}</p>
-            <p>{{ captionText.source }}</p>
-            <p>{{ captionText.project_info }}</p>
-            <p>{{ captionText.cta }}</p>
-          </el-card>
-
         </el-form>
-  </main>
+        <el-card id="caption-text" class="box-card">
+          <h2>Caption Text</h2>
+          <p>{{ captionText.statement }}</p>
+          <p>{{ captionText.quote }}</p>
+          <p>{{ captionText.source }}</p>
+          <p>{{ captionText.project_info }}</p>
+          <p>{{ captionText.cta }}</p>
+        </el-card>
+        <promise-updates :promiseUpdates="promiseUpdates"/>
+</main>
 </template>
 
 <script>
-import { postPromise, getPromise, listPoliticians, listContributors, updatePromise } from '@/api'
+import {
+  postPromise,
+  getPromise,
+  listPoliticians,
+  listContributors,
+  updatePromise,
+  listPromiseUpdates
+} from '@/api'
+import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate } from '@/utils'
 
 export default {
   name: 'PromiseEditor',
+  components: { PromiseUpdates },
   data () {
     return {
       appStatus: 'loading',
       mode: '',
       error: undefined,
       promise: {},
+      promiseUpdates: [],
       politicians: [],
       contributors: [],
       statusOptions: [
@@ -199,12 +209,14 @@ export default {
   async created () {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
+      // TODO: use Promise.all to make faster?
       this.politicians = await listPoliticians()
       this.contributors = await listContributors()
 
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
+        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}`)
       } else if (this.mode === 'new') {
         this.promise.contributor_id = this.$store.state.user.id
       }
