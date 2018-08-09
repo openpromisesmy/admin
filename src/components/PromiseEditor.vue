@@ -122,7 +122,7 @@
           <el-button v-on:click="onSubmit"> Submit </el-button>
 
         </el-form>
-        <el-card id="caption-text" class="box-card">
+        <el-card v-if="appStatus === ''" id="caption-text" class="box-card">
           <h2>Caption Text</h2>
           <p>{{ captionText.statement }}</p>
           <p>{{ captionText.quote }}</p>
