@@ -225,7 +225,7 @@ export default {
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
-        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}`)
+        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
       } else if (this.mode === 'new') {
         this.promise.contributor_id = this.$store.state.user.id
       }
