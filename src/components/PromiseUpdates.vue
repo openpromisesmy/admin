@@ -1,5 +1,5 @@
 <template>
-  <main class="account">
+  <main>
       <el-card
         v-for="promiseUpdate in promiseUpdates"
         :key="promiseUpdate.id"
@@ -12,14 +12,21 @@
           <b>{{ key }}</b>: {{ value }}
         </p>
       </el-card>
-      <p v-else>No promise updates.</p>
+      <promise-update-editor
+        :contributors="contributors"
+        :promiseID="promiseID"
+        mode="new"
+      />
   </main>
 </template>
 
 <script>
+import PromiseUpdateEditor from '@/components/PromiseUpdateEditor'
+
 export default {
   name: 'PromiseUpdates',
-  props: ['promiseUpdates']
+  props: ['promiseUpdates', 'contributors', 'promiseID'],
+  components: { PromiseUpdateEditor }
 }
 </script>
 
