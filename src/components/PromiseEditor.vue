@@ -121,17 +121,17 @@
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
 
-          <el-card id="caption-text" class="box-card">
-            <h2>Caption Text</h2>
-            <p>{{ captionText.statement }}</p>
-            <p>{{ captionText.quote }}</p>
-            <p>{{ captionText.source }}</p>
-            <p>{{ captionText.project_info }}</p>
-            <p>{{ captionText.cta }}</p>
-          </el-card>
-
         </el-form>
-  </main>
+        <el-card id="caption-text" class="box-card">
+          <h2>Caption Text</h2>
+          <p>{{ captionText.statement }}</p>
+          <p>{{ captionText.quote }}</p>
+          <p>{{ captionText.source }}</p>
+          <p>{{ captionText.project_info }}</p>
+          <p>{{ captionText.cta }}</p>
+        </el-card>
+        <promise-updates :promiseUpdates="promiseUpdates"/>
+</main>
 </template>
 
 <script>
@@ -143,10 +143,12 @@ import {
   updatePromise,
   listPromiseUpdates
 } from '@/api'
+import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate } from '@/utils'
 
 export default {
   name: 'PromiseEditor',
+  components: { PromiseUpdates },
   data () {
     return {
       appStatus: 'loading',

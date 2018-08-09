@@ -1,6 +1,8 @@
 <template>
   <main class="account">
-      {{ promiseUpdates }}
+      <el-card v-for="promiseUpdate in promiseUpdates" :key="promiseUpdate.id">
+        <p v-for="(value,key) in promiseUpdate" :key="key"><b>{{ key }}</b>: {{ value }}</p>
+      </el-card>
   </main>
 </template>
 
