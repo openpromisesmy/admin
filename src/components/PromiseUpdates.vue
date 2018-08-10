@@ -1,25 +1,27 @@
 <template>
-  <main class="account">
-      <el-card
+  <main>
+      <promise-update-card
         v-for="promiseUpdate in promiseUpdates"
         :key="promiseUpdate.id"
         v-if="promiseUpdates.length > 0"
-      >
-        <p
-          v-for="(value,key) in promiseUpdate"
-          :key="key"
-        >
-          <b>{{ key }}</b>: {{ value }}
-        </p>
-      </el-card>
-      <p v-else>No promise updates.</p>
+        :promiseUpdate="promiseUpdate"
+      />
+      <promise-update-editor
+        :contributors="contributors"
+        :promiseID="promiseID"
+        mode="new"
+      />
   </main>
 </template>
 
 <script>
+import PromiseUpdateEditor from '@/components/PromiseUpdateEditor'
+import PromiseUpdateCard from '@/components/PromiseUpdateCard'
+
 export default {
   name: 'PromiseUpdates',
-  props: ['promiseUpdates']
+  props: ['promiseUpdates', 'contributors', 'promiseID'],
+  components: { PromiseUpdateEditor, PromiseUpdateCard }
 }
 </script>
 

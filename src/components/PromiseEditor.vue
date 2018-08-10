@@ -13,7 +13,8 @@
     <template v-else-if="appStatus === 'error'">
       <p>There has been an error: {{ error }}</p>
     </template>
-    <el-form v-else v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
+    <template v-else>
+    <el-form v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
         <el-row >
 
           <el-col :xs="24" :sm="8" >
@@ -122,7 +123,8 @@
           <el-button v-on:click="onSubmit"> Submit </el-button>
 
         </el-form>
-        <el-card id="caption-text" class="box-card">
+
+        <el-card v-if="appStatus === ''" id="caption-text" class="box-card">
           <h2>Caption Text</h2>
           <p>{{ captionText.statement }}</p>
           <p>{{ captionText.quote }}</p>
@@ -130,7 +132,14 @@
           <p>{{ captionText.project_info }}</p>
           <p>{{ captionText.cta }}</p>
         </el-card>
-        <promise-updates :promiseUpdates="promiseUpdates"/>
+
+        <promise-updates
+          :promiseUpdates="promiseUpdates"
+          :contributors="contributors"
+          :promiseID="promise.id"
+        />
+
+    </template>
 </main>
 </template>
 
@@ -216,7 +225,7 @@ export default {
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
-        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}`)
+        this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
       } else if (this.mode === 'new') {
         this.promise.contributor_id = this.$store.state.user.id
       }
