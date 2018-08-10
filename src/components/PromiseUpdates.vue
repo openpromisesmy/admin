@@ -1,17 +1,11 @@
 <template>
   <main>
-      <el-card
+      <promise-update-card
         v-for="promiseUpdate in promiseUpdates"
         :key="promiseUpdate.id"
         v-if="promiseUpdates.length > 0"
-      >
-        <p
-          v-for="(value,key) in promiseUpdate"
-          :key="key"
-        >
-          <b>{{ key }}</b>: {{ value }}
-        </p>
-      </el-card>
+        :promiseUpdate="promiseUpdate"
+      />
       <promise-update-editor
         :contributors="contributors"
         :promiseID="promiseID"
@@ -22,11 +16,12 @@
 
 <script>
 import PromiseUpdateEditor from '@/components/PromiseUpdateEditor'
+import PromiseUpdateCard from '@/components/PromiseUpdateCard'
 
 export default {
   name: 'PromiseUpdates',
   props: ['promiseUpdates', 'contributors', 'promiseID'],
-  components: { PromiseUpdateEditor }
+  components: { PromiseUpdateEditor, PromiseUpdateCard }
 }
 </script>
 
