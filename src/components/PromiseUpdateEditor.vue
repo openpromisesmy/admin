@@ -114,10 +114,8 @@
 import {
   postPromiseUpdate,
   getPromiseUpdate,
-  updatePromiseUpdate,
-  listPromiseUpdates
+  updatePromiseUpdate
 } from '@/api'
-import { formatDate } from '@/utils'
 
 export default {
   name: 'PromiseUpdateEditor',
@@ -159,11 +157,10 @@ export default {
         if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
-    },
+    }
   },
   async created () {
     try {
-
       if (this.mode === 'edit') {
         const promiseUpdate = await getPromiseUpdate(this.$route.params.id)
         this.promiseUpdate = promiseUpdate
