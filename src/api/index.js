@@ -41,7 +41,7 @@ const getPromise = id => getSomething(PROMISES_PATH + id)
 const postPromise = data => postSomething(PROMISES_PATH, data)
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
 
-const listPromiseUpdates = query => getSomething(PROMISE_UPDATES_PATH + query)
+const listPromiseUpdates = query => getSomething(PROMISE_UPDATES_PATH + 'all?' + query)
 const getPromiseUpdate = id => getSomething(PROMISE_UPDATES_PATH + id)
 const postPromiseUpdate = data => postSomething(PROMISE_UPDATES_PATH, data)
 const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${data.id}`, data)
