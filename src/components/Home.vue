@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home container">
     <h1>OpenPromises Tracking Dashboard</h1>
     <h2 id="slogan">"Shifting Malaysia's political culture, one promise at a time."</h2>
     <el-card id="shortcuts">
