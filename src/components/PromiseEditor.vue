@@ -134,6 +134,7 @@
         </el-card>
 
         <promise-updates
+          v-if="mode === edit"
           :promiseUpdates="promiseUpdates"
           :contributors="contributors"
           :promiseID="promise.id"
