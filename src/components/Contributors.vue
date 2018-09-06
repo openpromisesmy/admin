@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Contributors {{ contributors.length > 0 ? contributors.length : '' }}</h1>
     <template v-if="contributors.length == 0">
       <p>Loading contributors...This would take 1-3 seconds.</p>

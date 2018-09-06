@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <el-row>
       <el-col :span="16">
         <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
