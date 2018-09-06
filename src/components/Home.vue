@@ -13,8 +13,6 @@
               <router-link to="/politicians">
                 <el-button type="primary"> New Politician </el-button>
               </router-link>
-            </el-row>
-            <el-row>
               <a href="https://www.facebook.com/openpromises.malaysia/" target="_blank">
                   <el-button type="default"> Facebook Page </el-button>
               </a>
@@ -39,7 +37,7 @@ export default {
 }
 
 #shortcuts {
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 20px auto;
 }
 
