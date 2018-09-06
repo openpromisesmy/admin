@@ -1,4 +1,5 @@
 <template>
+    <main class="container">
     <el-card id="shortcuts">
         <div slot="header" class="clearfix">
           <b>General Stats</b>
@@ -21,6 +22,7 @@
             </el-button>
         </div>
     </el-card>
+    </main>
 </template>
 
 <script>
