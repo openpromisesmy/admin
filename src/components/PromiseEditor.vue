@@ -153,7 +153,7 @@ import {
   listPromiseUpdates
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
-import { formatDate } from '@/utils'
+import { formatDate, loadCache, updateCache } from '@/utils'
 
 export default {
   name: 'PromiseEditor',
@@ -219,8 +219,8 @@ export default {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
       // TODO: use Promise.all to make faster?
-      this.politicians = await listPoliticians()
-      this.contributors = await listContributors()
+      this.politicians = await loadCache(this, 'politicians', listPoliticians())
+      this.contributors = await await loadCache(this, 'contributors', listContributors())
 
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
@@ -230,6 +230,14 @@ export default {
         this.promise.contributor_id = this.$store.state.user.id
       }
       this.appStatus = ''
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  async mounted () {
+    try {
+      this.politicians = await updateCache(this, 'politicians', listPoliticians())
+      this.contributors = await updateCache(this, 'contributors', listContributors())
     } catch (e) {
       console.error(e)
     }
