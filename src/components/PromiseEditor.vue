@@ -226,7 +226,7 @@ export default {
         const promise = await getPromise(this.$route.params.id)
         this.promise = promise
         this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
-      } else if (this.mode === 'new') {
+      } else {
         this.promise.contributor_id = this.$store.state.user.id
       }
       this.appStatus = ''
@@ -258,7 +258,7 @@ export default {
         if (this.mode === 'edit') {
           delete promise.contributor_id
           await updatePromise(promise)
-        } else if (this.mode === 'new') {
+        } else {
           await postPromise(promise)
         }
         this.appStatus = 'submitted'
