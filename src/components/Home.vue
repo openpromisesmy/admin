@@ -31,12 +31,17 @@
                 </el-card>
               </el-col>
             </el-row>
+            <el-card>
+              <promise-editor />
+            </el-card>
     </div>
 </template>
 
 <script>
+import PromiseEditor from '@/components/PromiseEditor'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: { PromiseEditor }
 }
 </script>
 
