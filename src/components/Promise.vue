@@ -34,6 +34,8 @@
         <img :src="promise.cover_image" />
       </el-card> 
 
+      <el-button type="success" class="edit-button"> Edit Promise </el-button>
+
     </template>
 
   </main>
@@ -122,5 +124,11 @@ export default {
   width: 50%;
   text-align: center;
   border-radius: 5%
+}
+
+.edit-button {
+  width: 100%;
+  padding: 20px;
+  font-size: 2rem
 }
 </style>
