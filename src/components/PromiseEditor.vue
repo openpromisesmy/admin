@@ -120,21 +120,30 @@
 
         </el-row>
 
-          <el-button v-on:click="onSubmit"> Submit </el-button>
+          <el-button @click="onSubmit"> Submit </el-button>
 
         </el-form>
 
         <el-card v-if="appStatus === ''" id="caption-text" class="box-card">
-          <h2>Caption Text</h2>
-          <p>{{ captionText.header }}</p>
-          <p>{{ captionText.brief }}</p>
-          <p><b>ELABORATION_HERE</b></p>
-          <p>{{ captionText.project_info }}</p>
-          <p>{{ captionText.cta }}</p>
-          <p> Source: {{ promise.source_name }}
-            <a :href="promise.source_url"> {{ promise.source_url }}</a>
-          </p>
-          <p>{{ captionText.hashtags }}</p>
+          <h1>Caption Text Generator
+            <el-button type="success" v-if="!viewCaption" @click="toggleViewCaption">
+              View Caption Text
+            </el-button>
+            <el-button type="primary" v-else @click="toggleViewCaption">
+              Hide Caption Text
+              </el-button>
+          </h1>
+          <div v-if="viewCaption">
+            <p>{{ captionText.header }}</p>
+            <p>{{ captionText.brief }}</p>
+            <p><b>ELABORATION_HERE</b></p>
+            <p>{{ captionText.project_info }}</p>
+            <p>{{ captionText.cta }}</p>
+            <p> Source: {{ promise.source_name }}
+              <a :href="promise.source_url"> {{ promise.source_url }}</a>
+            </p>
+            <p>{{ captionText.hashtags }}</p>
+          </div>
         </el-card>
 
         <promise-updates
@@ -172,6 +181,7 @@ export default {
       promiseUpdates: [],
       politicians: [],
       contributors: [],
+      viewCaption: false,
       statusOptions: [
         'Review Needed',
         'Fulfilled',
@@ -249,6 +259,9 @@ export default {
     }
   },
   methods: {
+    toggleViewCaption () {
+      this.viewCaption = !this.viewCaption
+    },
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
