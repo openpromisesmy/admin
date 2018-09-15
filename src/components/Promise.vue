@@ -34,7 +34,9 @@
         <img :src="promise.cover_image" />
       </el-card> 
 
-      <el-button type="success" class="edit-button"> Edit Promise </el-button>
+      <router-link :to="'/promises/' + promise.id + '/edit'">
+        <el-button type="success" class="edit-button"> Edit Promise </el-button>
+      </router-link>
 
     </template>
 
