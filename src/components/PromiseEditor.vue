@@ -18,11 +18,11 @@
         <el-row >
 
           <el-col :xs="24" :sm="8" >
-            <p><b>Created at: </b>{{ promise.created_at }}</p>
+            <p><b>Created at: </b>{{ formatDate(promise.created_at) }}</p>
           </el-col>
 
            <el-col :xs="24" :sm="8" >
-            <p><b>Updated at: </b>{{ promise.updated_at }}</p>
+            <p><b>Updated at: </b>{{ formatDate(promise.updated_at) }}</p>
           </el-col>
 
            <el-col :xs="24" :sm="8" >
@@ -259,6 +259,7 @@ export default {
     }
   },
   methods: {
+    formatDate,
     toggleViewCaption () {
       this.viewCaption = !this.viewCaption
     },
