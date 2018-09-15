@@ -55,7 +55,7 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="24" >
+          <el-col :xs="24" :sm="12" >
               <el-form-item label="Politician" prop="politician_id">
             <el-select v-model="promise.politician_id">
               <el-option
@@ -70,27 +70,30 @@
               </el-form-item>
           </el-col>
 
+          <el-col :xs="24" :sm="12" >
+              <el-form-item label="Category" prop="category">
+            <el-input type="text" placeholder="enter category. separate using comma" v-model="promise.category"></el-input>
+              </el-form-item>
+          </el-col>
+
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Title" prop="title">
             <el-input type="textarea" placeholder="enter title" v-model="promise.title"></el-input>
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
-              <el-form-item label="Category" prop="category">
-            <el-input type="text" placeholder="enter category" v-model="promise.category"></el-input>
-              </el-form-item>
-          </el-col>
-
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Quote" prop="quote">
-            <el-input type="textarea" placeholder="enter quote" v-model="promise.quote"></el-input>
+              <el-input type="textarea"
+                        placeholder="enter quote"
+                        v-model="promise.quote"
+                        rows="5" />
               </el-form-item>
           </el-col>
 
            <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
-            <el-input type="text" placeholder="enter source name" v-model="promise.source_name"></el-input>
+              <el-input type="text" placeholder="enter source name" v-model="promise.source_name"></el-input>
               </el-form-item>
           </el-col>
 
@@ -100,7 +103,7 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
+          <el-col :xs="24" :sm="24" >
               <el-form-item label="Source URL" prop="source_url">
             <el-input type="text" placeholder="enter source url" v-model="promise.source_url"></el-input>
               </el-form-item>
@@ -114,7 +117,7 @@
 
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Notes" prop="notes">
-            <el-input type="textarea" placeholder="enter notes" v-model="promise.notes"></el-input>
+            <el-input type="textarea" placeholder="enter notes" v-model="promise.notes" rows="4"></el-input>
               </el-form-item>
           </el-col>
 
