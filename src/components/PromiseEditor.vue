@@ -126,11 +126,15 @@
 
         <el-card v-if="appStatus === ''" id="caption-text" class="box-card">
           <h2>Caption Text</h2>
-          <p>{{ captionText.statement }}</p>
-          <p>{{ captionText.quote }}</p>
-          <p>{{ captionText.source }}</p>
+          <p>{{ captionText.header }}</p>
+          <p>{{ captionText.brief }}</p>
+          <p><b>ELABORATION_HERE</b></p>
           <p>{{ captionText.project_info }}</p>
           <p>{{ captionText.cta }}</p>
+          <p> Source: {{ promise.source_name }}
+            <a :href="promise.source_url"> {{ promise.source_url }}</a>
+          </p>
+          <p>{{ captionText.hashtags }}</p>
         </el-card>
 
         <promise-updates
@@ -205,14 +209,15 @@ export default {
     captionText: function () {
       const politician = this.politicians.find(politician => this.promise.politician_id === politician.id) || {}// eslint-disable-next-line
       const { primary_position, name } = politician// eslint-disable-next-line
-      const { source_date, title, quote, source_name, source_url } = this.promise
+      const { source_date, title, source_name, source_url } = this.promise
 
       return ({// eslint-disable-next-line
-        statement: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
-        quote, // eslint-disable-next-line
+        header: `PROMISE MADE: ${title}`,
+        brief: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
         source: `Source: ${source_name} - ${source_url}`,
-        project_info: 'OpenPromises is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
-        cta: 'Join our community group at OpenPromises Malaysia Watchers to get involved in the discussion.'
+        project_info: 'OpenPromises Malaysia is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
+        cta: 'If you believe in what we do, share this post out.',
+        hashtags: '#accountability #neutrality #checkandbalance'
       })
     }
   },
