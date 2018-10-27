@@ -32,7 +32,7 @@
       <el-card v-if="promise.cover_image" class="Promise_card_image">
         <p class="card-title"> <b> Image </b></p>
         <img :src="promise.cover_image" />
-      </el-card> 
+      </el-card>
 
       <router-link :to="'/promises/' + promise.id + '/edit'">
         <el-button type="success" class="edit-button"> Edit Promise </el-button>
