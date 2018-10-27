@@ -9,6 +9,12 @@
     </template>
     <template v-else-if="appStatus === 'submitted'">
       <p>Promise has been {{ mode === 'edit' ? 'updated' : 'created' }}</p>
+      <p>{{ JSON.stringify(result) }}</p>
+      <router-link :to="`/promises/${result.id}`">
+        <el-button type="primary">
+          View Promise
+        </el-button>
+      </router-link>
     </template>
     <template v-else-if="appStatus === 'error'">
       <p>There has been an error: {{ error }}</p>
@@ -185,6 +191,7 @@ export default {
       politicians: [],
       contributors: [],
       viewCaption: false,
+      result: null,
       statusOptions: [
         'Review Needed',
         'Fulfilled',
@@ -284,7 +291,7 @@ export default {
           delete promise.contributor_id
           await updatePromise(promise)
         } else {
-          await postPromise(promise)
+          this.result = await postPromise(promise)
         }
         this.appStatus = 'submitted'
         return
