@@ -226,7 +226,9 @@ export default {
 
       return ({// eslint-disable-next-line
         header: `PROMISE MADE: ${title}`,
+        // eslint-disable-next-line
         brief: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
+        // eslint-disable-next-line
         source: `Source: ${source_name} - ${source_url}`,
         project_info: 'OpenPromises Malaysia is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
         cta: 'If you believe in what we do, share this post out.',
