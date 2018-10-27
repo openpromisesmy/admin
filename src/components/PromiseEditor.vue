@@ -99,8 +99,15 @@
 
            <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
-              <el-input type="text" placeholder="enter source name" v-model="promise.source_name"></el-input>
               </el-form-item>
+              <el-select v-model="promise.source_name" placeholder="Select Source Name">
+                <el-option
+                  v-for="source in sources"
+                  :key="source"
+                  :label="source"
+                  :value="source">
+                </el-option>
+              </el-select>
           </el-col>
 
          <el-col :xs="24" :sm="12" >
@@ -192,6 +199,18 @@ export default {
       contributors: [],
       viewCaption: false,
       result: null,
+      sources: [
+        'The Star',
+        'Malay Mail',
+        'PH Manifesto GE14',
+        'MalaysiaKini',
+        'The Malaysian Insight',
+        'New Straits Times',
+        'The Sun',
+        'The Borneo Post',
+        'Daily Express',
+        'If not listed, notify Nazreen now'
+      ],
       statusOptions: [
         'Review Needed',
         'Fulfilled',
