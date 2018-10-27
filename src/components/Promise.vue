@@ -1,7 +1,7 @@
 <template>
   <main id="Promise">
     <p v-if="appStatus === 'loading'">
-      Loading ...
+      <loading-spinner />
     </p>
     <template v-else>
 
@@ -50,6 +50,7 @@ import { getPromise, getPolitician, listPromiseUpdates } from '@/api'
 
 export default {
   name: 'PromiseDesktop',
+  components: { LoadingSpinner },
   data () {
     return {
       appStatus: 'loading',
