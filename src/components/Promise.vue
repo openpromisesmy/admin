@@ -25,6 +25,11 @@
       </el-card>
 
       <el-card>
+        <p class="card-title"> <b> State </b></p>
+        <p> {{ promise.state }} </p>
+      </el-card>
+
+      <el-card>
         <p class="card-title"> <b> Status </b></p>
         <p>{{ promise.status || 'Review Needed' }}</p>
       </el-card>
