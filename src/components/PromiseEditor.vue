@@ -35,7 +35,7 @@
             <p><b>Contributor: </b>{{ contributor }}</p>
           </el-col>
 
-        <el-col :xs="24" :sm="12" >
+        <el-col :xs="24" :sm="8" >
               <el-form-item label="Live" prop="live">
             <el-select v-model="promise.live" placeholder="Select">
               <el-option
@@ -48,7 +48,7 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
+          <el-col :xs="24" :sm="8" >
               <el-form-item label="Status" prop="status">
             <el-select v-model="promise.status" placeholder="Select">
               <el-option
@@ -56,6 +56,19 @@
                 :key="status"
                 :label="status"
                 :value="status">
+              </el-option>
+            </el-select>
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="8" >
+              <el-form-item label="State" prop="state">
+            <el-select v-model="promise.state" placeholder="Select">
+              <el-option
+                v-for="state in malaysianStates"
+                :key="state"
+                :label="state"
+                :value="state">
               </el-option>
             </el-select>
               </el-form-item>
@@ -184,6 +197,7 @@ import {
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
+import malaysianStates from '@/utils/malaysianStates'
 
 export default {
   name: 'PromiseEditor',
@@ -209,10 +223,10 @@ export default {
         'The Sun',
         'The Borneo Post',
         'Daily Express',
-        'If not listed, notify Nazreen now'
+        'If not listed, notify Nazreen now' // TODO: move this out to a file, like in utils
       ],
       statusOptions: [
-        'Review Needed',
+        'Review Needed', // TODO: move this out to a file, like in utils
         'Fulfilled',
         'Broken',
         'Partially Fulfilled',
@@ -221,6 +235,7 @@ export default {
         'At Risk',
         'Retracted'
       ],
+      malaysianStates,
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
         live: [{ required: true, type: 'boolean', message: 'Please select whether promise is live.', trigger: 'blur' }],
@@ -310,7 +325,11 @@ export default {
           delete promise.contributor_id
           await updatePromise(promise)
         } else {
-          this.result = await postPromise(promise)
+          const result = await postPromise(promise)
+          if (result instanceof Error) {
+            throw result
+          }
+          this.result = result
         }
         this.appStatus = 'submitted'
         return
