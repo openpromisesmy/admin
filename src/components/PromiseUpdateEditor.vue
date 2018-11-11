@@ -60,15 +60,15 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
+          <el-col :xs="24">
               <el-form-item label="Description" prop="description">
-            <el-input type="text" placeholder="enter description" v-model="promiseUpdate.description"></el-input>
+              <el-input type="textarea" placeholder="enter description" v-model="promiseUpdate.description" :rows=5></el-input>
               </el-form-item>
           </el-col>
 
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Quote" prop="quote">
-            <el-input type="textarea" placeholder="enter quote" v-model="promiseUpdate.quote"></el-input>
+              <el-input type="textarea" placeholder="enter quote" v-model="promiseUpdate.quote"></el-input>
               </el-form-item>
           </el-col>
 
