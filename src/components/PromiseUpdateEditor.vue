@@ -116,7 +116,7 @@ import { postPromiseUpdate, getPromiseUpdate, updatePromiseUpdate } from '@/api'
 export default {
   name: 'PromiseUpdateEditor',
   props: ['contributors', 'promiseID', 'mode'],
-  data() {
+  data () {
     return {
       appStatus: 'loading',
       error: undefined,
@@ -208,7 +208,7 @@ export default {
     }
   },
   computed: {
-    contributor: function() {
+    contributor: function () {
       if (this.contributors.length > 0) {
         const contributor = this.contributors.find(
           contributor => contributor.id === this.promiseUpdate.contributor_id
@@ -218,7 +218,7 @@ export default {
       }
     }
   },
-  async created() {
+  async created () {
     try {
       if (this.mode === 'edit') {
         const promiseUpdate = await getPromiseUpdate(this.$route.params.id)
@@ -232,7 +232,7 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    onSubmit () {
       this.$refs['form'].validate(valid => {
         if (valid) {
           this.appStatus = 'submitting'
@@ -243,7 +243,7 @@ export default {
         }
       })
     },
-    async submitPromiseUpdate(promiseUpdate) {
+    async submitPromiseUpdate (promiseUpdate) {
       try {
         if (this.mode === 'edit') {
           delete promiseUpdate.contributor_id
