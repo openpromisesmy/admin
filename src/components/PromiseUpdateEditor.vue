@@ -146,7 +146,7 @@ export default {
         source_date: [{ required: true, type: 'date', message: 'Please select a source date', trigger: 'blur' }],
         source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
         source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
-        status: [{ message: 'Please indicate promiseUpdate status', trigger: 'blur' }]
+        status: [{ required: true, message: 'Please indicate promiseUpdate status', trigger: 'blur' }]
       }
     }
   },
