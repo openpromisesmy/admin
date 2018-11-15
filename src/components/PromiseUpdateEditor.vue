@@ -111,11 +111,7 @@
 </template>
 
 <script>
-import {
-  postPromiseUpdate,
-  getPromiseUpdate,
-  updatePromiseUpdate
-} from '@/api'
+import { postPromiseUpdate, getPromiseUpdate, updatePromiseUpdate } from '@/api'
 
 export default {
   name: 'PromiseUpdateEditor',
@@ -135,25 +131,88 @@ export default {
         'At Risk',
         'Retracted'
       ],
-      liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
+      liveOptions: [
+        { label: 'true', value: true },
+        { label: 'false', value: false }
+      ],
       rules: {
-        live: [{ required: true, type: 'boolean', message: 'Please select whether promiseUpdate is live.', trigger: 'blur' }],
-        title: [{ required: true, message: 'Please select a politician', trigger: 'blur' }],
-        quote: [{ required: true, message: 'Please paste exact words from the source', trigger: 'blur' }],
-        contributor_id: [{ required: true, type: 'text', message: 'contributor_id is required', trigger: 'blur' }],
-        description: [{ required: true, message: 'Please enter description', trigger: 'blur' }],
+        live: [
+          {
+            required: true,
+            type: 'boolean',
+            message: 'Please select whether promiseUpdate is live.',
+            trigger: 'blur'
+          }
+        ],
+        title: [
+          {
+            required: true,
+            message: 'Please select a politician',
+            trigger: 'blur'
+          }
+        ],
+        quote: [
+          {
+            required: true,
+            message: 'Please paste exact words from the source',
+            trigger: 'blur'
+          }
+        ],
+        contributor_id: [
+          {
+            required: true,
+            type: 'text',
+            message: 'contributor_id is required',
+            trigger: 'blur'
+          }
+        ],
+        description: [
+          {
+            required: true,
+            message: 'Please enter description',
+            trigger: 'blur'
+          }
+        ],
         date: [{ message: 'Please select a date', trigger: 'blur' }],
-        source_date: [{ required: true, type: 'date', message: 'Please select a source date', trigger: 'blur' }],
-        source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
-        source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
-        status: [{ message: 'Please indicate promiseUpdate status', trigger: 'blur' }]
+        source_date: [
+          {
+            required: true,
+            type: 'date',
+            message: 'Please select a source date',
+            trigger: 'blur'
+          }
+        ],
+        source_url: [
+          {
+            required: true,
+            type: 'url',
+            message: 'Please indicate a source url',
+            trigger: 'blur'
+          }
+        ],
+        source_name: [
+          {
+            required: true,
+            message: 'Please indicate a source name',
+            trigger: 'blur'
+          }
+        ],
+        status: [
+          {
+            required: true,
+            message: 'Please indicate promiseUpdate status',
+            trigger: 'blur'
+          }
+        ]
       }
     }
   },
   computed: {
     contributor: function () {
       if (this.contributors.length > 0) {
-        const contributor = this.contributors.find(contributor => contributor.id === this.promiseUpdate.contributor_id)
+        const contributor = this.contributors.find(
+          contributor => contributor.id === this.promiseUpdate.contributor_id
+        )
         if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
@@ -174,7 +233,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$refs['form'].validate((valid) => {
+      this.$refs['form'].validate(valid => {
         if (valid) {
           this.appStatus = 'submitting'
           this.promiseUpdate.promise_id = this.promiseID
