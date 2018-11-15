@@ -11,6 +11,7 @@ import PromiseEditor from '@/components/PromiseEditor'
 import PoliticianEditor from '@/components/PoliticianEditor'
 import Stats from '@/components/Stats'
 import Promise from '@/components/Promise'
+import ReviewNeeded from '@/components/ReviewNeeded'
 
 import store from '../store'
 
@@ -70,6 +71,12 @@ export default new Router({
       name: 'Login',
       component: Auth,
       beforeEnter: ifNotAuthenticated
+    },
+    {
+      path: '/promises/review-needed',
+      name: 'Review Needed',
+      component: ReviewNeeded,
+      beforeEnter: ifAuthenticated
     },
     {
       path: '/promises/new',
