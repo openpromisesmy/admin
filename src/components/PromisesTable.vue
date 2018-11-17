@@ -6,6 +6,7 @@
     style="width: 100%">
     <el-table-column
       sortable
+      v-if="!exclude.includes('created_at')"
       prop="created_at"
       label="Created At"
       width="150">
@@ -18,9 +19,15 @@
       label="Title"
       width="350">
     </el-table-column>
+    <el-table-column
+      v-if="!exclude.includes('source_name')"
+      prop="source_name"
+      label="Source Name"
+      width="200">
     </el-table-column>
     <el-table-column
       sortable
+      v-if="!exclude.includes('source_date')"
       prop="source_date"
       label="Source Date"
       width="150">
@@ -34,17 +41,20 @@
       width="180">
     </el-table-column>
     <el-table-column
+      v-if="!exclude.includes('politician_name')"
       prop="politician_name"
       label="Politician"
       width="150">
     </el-table-column>
     <el-table-column
       sortable
+      v-if="!exclude.includes('status')"
       prop="status"
       label="Status"
       width="125">
     </el-table-column>
     <el-table-column
+      v-if="!exclude.includes('actions')"
       label="Actions"
       width="125">
       <template slot-scope="scope">
@@ -72,7 +82,7 @@ import queryString from 'query-string'
 
 export default {
   name: 'PromisesTable',
-  props: ['promises'],
+  props: ['promises', 'exclude'],
   methods: { formatDate },
   components: { LoadingSpinner }
 }

@@ -19,7 +19,7 @@
     <div class="stats_container">
     </div>
 
-   <promises-table :promises="promises" />
+   <promises-table :promises="promises" :exclude="['source_name']"/>
   </template>
   </div>
 </template>
