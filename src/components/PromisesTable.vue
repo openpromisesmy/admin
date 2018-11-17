@@ -72,13 +72,10 @@
     </el-table-column>
   </el-table>
   </template>
-  </div>
-</template>
 
 <script>
 import LoadingSpinner from '@/components//LoadingSpinner'
-import { formatDate, parsePromises } from '@/utils'
-import queryString from 'query-string'
+import { formatDate } from '@/utils'
 
 export default {
   name: 'PromisesTable',
