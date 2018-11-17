@@ -45,7 +45,7 @@
 <script>
 import { listContributors } from '@/api'
 import { loadCache, updateCache } from '@/utils'
-import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import LoadingSpinner from '@/components//LoadingSpinner'
 
 export default {
   name: 'Contributors',

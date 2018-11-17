@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import LoadingSpinner from '@/components//LoadingSpinner'
 
 export default {
   name: 'Politician',

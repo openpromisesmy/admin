@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import LoadingSpinner from '@/components/shared/LoadingSpinner'
+import LoadingSpinner from '@/components//LoadingSpinner'
 import { formatDate } from '@/utils'
 import { getPromise, getPolitician, listPromiseUpdates } from '@/api'
 

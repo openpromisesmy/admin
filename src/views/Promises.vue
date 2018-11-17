@@ -2,7 +2,7 @@
   <div class="container">
     <el-row>
       <el-col :span="16">
-        <h1>Promises that need reviewing {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
+        <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
       </el-col>
       <el-col :span="8">
         <router-link to="/promises/new">
@@ -17,10 +17,22 @@
       </template>
     <template v-else>
     <div class="stats_container">
+    <el-button type="info" class="add-button" @click="resetFilter()">Reset Filter</el-button>
+    <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
+      <b>{{ stat.value }}</b> {{ stat.number }}
+    </el-button>
     </div>
+    <!-- <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
+      Previous Page
+    </el-button> -->
+    <span><b>{{ pageNumber }}</b></span>
+    <el-button type="primary" @click="nextPage()">
+      Next Page
+    </el-button>
+    <p>Pagination is based on {{ this.query.orderBy }}</p>
 
     <el-table
-    :data="promises"
+    :data="filteredPromises"
     :default-sort = "{prop: 'created_at', order: 'descending'}"
     border
     style="width: 100%">
@@ -57,6 +69,25 @@
       label="Politician"
       width="150">
     </el-table-column>
+    <!-- <el-table-column
+      prop="quote"
+      label="Quote"
+      width="250">
+    </el-table-column> -->
+    <el-table-column
+      prop="source_name"
+      label="Source"
+      width="180"
+      >
+    </el-table-column>
+    <!-- <el-table-column
+      prop="source_url"
+      label="Source Link"
+      width="100">
+      <template slot-scope="scope">
+        <a :href="scope.row.source_url" target="_blank">View Source</a>
+      </template>
+    </el-table-column> -->
     <el-table-column
       sortable
       prop="status"
@@ -81,16 +112,17 @@
 
 <script>
 import { listPromises, listPoliticians } from '@/api'
-import LoadingSpinner from '@/components/shared/LoadingSpinner'
-import { formatDate, parsePromises, loadCache, updateCache } from '@/utils'
+import LoadingSpinner from '@/components//LoadingSpinner'
+import { formatDate, filterByStatus, parsePromises, loadCache, updateCache } from '@/utils'
 import queryString from 'query-string'
 
 export default {
-  name: 'ReviewNeeded',
+  name: 'Promises',
   data () {
     return {
+      pageNumber: 1,
       query: {
-        status: 'Review Needed',
+        pageSize: 25,
         orderBy: 'source_date',
         reverse: true
       },
@@ -101,6 +133,15 @@ export default {
   },
   components: { LoadingSpinner },
   computed: {
+    stats: function () {
+      const statusOptions = new Set(this.promises.map(promise => promise.status))
+      const stats = []
+      statusOptions.forEach(statusOption => {
+        const hits = this.promises.filter(promise => promise.status === statusOption)
+        stats.push({ value: statusOption || 'undefined', number: hits.length })
+      })
+      return stats
+    },
     queryString: function () {
       return queryString.stringify(this.query)
     }
@@ -121,10 +162,40 @@ export default {
       const promises = await listPromises(queryString)
 
       this.promises = this.parsePromises(promises, this.politicians)
+      this.filteredPromises = [...this.promises]
       this.appStatus = ''
     },
     parsePromises,
-    formatDate
+    filterPromisesByStatus (status) {
+      this.filteredPromises = filterByStatus(this.promises, status)
+    },
+    resetFilter () {
+      this.filteredPromises = [...this.promises]
+    },
+    formatDate,
+    updateStartAfter (reverse) {
+      if (this.pageNumber === 1) delete this.query.startAfter
+
+      if (this.pageNumber > 1) {
+        this.query.startAfter = reverse ? this.promises[this.promises.length - 1][this.query.orderBy] : this.promises[0][this.query.orderBy]
+      }
+    },
+    nextPage () {
+      this.pageNumber++
+      this.query.reverse = true
+      this.updateQuery()
+    },
+    previousPage () {
+      if (this.pageNumber === 1) return
+      this.pageNumber--
+      this.query.reverse = false
+      this.updateQuery()
+    },
+    updateQuery (obj) {
+      this.query = { ...this.query, ...obj }
+      this.updateStartAfter(this.query.reverse)
+      this.listPromisesHandler(this.queryString, true)
+    }
   },
   async mounted () {
     try {
