@@ -5,6 +5,17 @@
     border
     style="width: 100%">
     <el-table-column
+      prop="live"
+      label="Live"
+      width="125">
+      <template slot-scope="scope">
+        <el-button v-if="scope.row.live" type="success" icon="el-icon-check" circle></el-button>
+        <span v-else>
+          {{ scope.row.live.toString() }}
+        </span>
+      </template>
+    </el-table-column>
+    <el-table-column
       sortable
       v-if="!exclude.includes('created_at')"
       prop="created_at"
@@ -79,7 +90,10 @@ import { formatDate } from '@/utils'
 
 export default {
   name: 'PromisesTable',
-  props: ['promises', 'exclude'],
+  props: {
+    promises: { type: Array },
+    exclude: { type: Array, default: () => [] }
+  },
   methods: { formatDate },
   components: { LoadingSpinner }
 }

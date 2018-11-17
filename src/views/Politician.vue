@@ -20,62 +20,7 @@
     </template>
     <template v-else>
     <h2>Promises by {{ politician.name }}</h2>
-    <el-table
-      :data="promises"
-      border
-      style="width: 100%">
-    <el-table-column
-      prop="live"
-      label="Live"
-      width="125">
-      <template slot-scope="scope">
-        <el-button v-if="scope.row.live" type="success" icon="el-icon-check" circle></el-button>
-        <span v-else>
-          {{ scope.row.live.toString() }}
-        </span>
-      </template>
-    </el-table-column>
-    <el-table-column
-      sortable
-      prop="created_at"
-      label="Created Date"
-    >
-    </el-table-column>
-    <el-table-column
-      prop="title"
-      label="Title">
-      <template slot-scope="scope">
-        <router-link :to="'/promises/' + scope.row.id">{{ scope.row.title }}</router-link>
-      </template>
-    </el-table-column>
-    <el-table-column
-      sortable
-      prop="source_date"
-      label="Source Date"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="category"
-      label="Category"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="status"
-      label="Status"
-      width="125">
-    </el-table-column>
-    <el-table-column
-      label="Actions"
-      width="125">
-      <template slot-scope="scope">
-        <router-link :to="'/promises/' + scope.row.id + '/edit'">
-          <el-button type="info">
-          Edit
-          </el-button>
-        </router-link>
-      </template>
-    </el-table-column>
-  </el-table>
+    <promises-table :promises="promises" :exclude="['politician_name', 'source_name']" />
     </template>
   </main>
 </template>
@@ -86,10 +31,11 @@ import { formatDate } from '@/utils'
 import LoadingSpinner from '@/components//LoadingSpinner'
 import PoliticianDetails from '@/components/PoliticianDetails'
 import PromiseStatsWidget from '@/components/PromiseStatsWidget'
+import PromisesTable from '@/components/PromisesTable'
 
 export default {
   name: 'Politician',
-  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget },
+  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget, PromisesTable },
   data () {
     return {
       politician: 'loading',
