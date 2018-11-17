@@ -90,7 +90,10 @@ import { formatDate } from '@/utils'
 
 export default {
   name: 'PromisesTable',
-  props: ['promises', 'exclude'],
+  props: {
+    promises: { type: Array },
+    exclude: { type: Array, default: () => [] }
+  },
   methods: { formatDate },
   components: { LoadingSpinner }
 }
