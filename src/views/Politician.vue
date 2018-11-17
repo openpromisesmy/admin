@@ -9,6 +9,11 @@
           <politician-details v-bind="{ politician }" />
         </el-col>
         <el-col :span="8">
+          <router-link :to="'/promises/new?politician_id=' + politician.id">
+              <el-button type="primary">
+              New Promise
+              </el-button>
+            </router-link>
           <promise-stats-widget v-if="promises !== 'loading'"
           :promises="promises"/>
         </el-col>
