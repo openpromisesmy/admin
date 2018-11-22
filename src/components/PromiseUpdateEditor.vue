@@ -74,7 +74,6 @@
 
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
-              </el-form-item>
               <el-select v-model="promiseUpdate.source_name" placeholder="Select Source Name">
                 <el-option
                   v-for="source_name in sourceNames"
@@ -83,6 +82,7 @@
                   :value="source_name">
                 </el-option>
               </el-select>
+              </el-form-item>
           </el-col>
 
          <el-col :xs="24" :sm="12" >
