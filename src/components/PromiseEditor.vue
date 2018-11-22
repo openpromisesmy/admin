@@ -63,7 +63,7 @@
 
           <el-col :xs="24" :sm="8" >
               <el-form-item label="State" prop="state">
-            <el-select v-model="promise.state" placeholder="Select">
+            <el-select v-model="promise.state" placeholder="Select" clearable>
               <el-option
                 v-for="state in malaysianStates"
                 :key="state"
@@ -197,7 +197,7 @@ import {
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
-import malaysianStates from '@/utils/malaysianStates'
+import malaysianStates from '@/constants/malaysianStates'
 import source_names from '@/constants/source_names'
 import statusOptions from '@/constants/statusOptions'
 
