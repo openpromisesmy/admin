@@ -120,6 +120,7 @@
 <script>
 import { postPromiseUpdate, getPromiseUpdate, updatePromiseUpdate } from '@/api'
 import source_names from '@/constants/source_names'
+import statusOptions from '@/constants/statusOptions'
 
 export default {
   name: 'PromiseUpdateEditor',
@@ -129,16 +130,7 @@ export default {
       appStatus: 'loading',
       error: undefined,
       promiseUpdate: {},
-      statusOptions: [
-        'Review Needed',
-        'Fulfilled',
-        'Broken',
-        'Partially Fulfilled',
-        'In Progress',
-        'Not Started',
-        'At Risk',
-        'Retracted'
-      ],
+      statusOptions,
       source_names,
       liveOptions: [
         { label: 'true', value: true },
