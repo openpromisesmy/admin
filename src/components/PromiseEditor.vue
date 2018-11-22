@@ -115,10 +115,10 @@
               </el-form-item>
               <el-select v-model="promise.source_name" placeholder="Select Source Name">
                 <el-option
-                  v-for="source in sources"
-                  :key="source"
-                  :label="source"
-                  :value="source">
+                  v-for="source_name in source_names"
+                  :key="source_name"
+                  :label="source_name"
+                  :value="source_name">
                 </el-option>
               </el-select>
           </el-col>
@@ -198,6 +198,7 @@ import {
 import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/utils/malaysianStates'
+import source_names from '@/constants/source_names'
 
 export default {
   name: 'PromiseEditor',
@@ -213,18 +214,7 @@ export default {
       contributors: [],
       viewCaption: false,
       result: null,
-      sources: [
-        'The Star',
-        'Malay Mail',
-        'PH Manifesto GE14',
-        'MalaysiaKini',
-        'The Malaysian Insight',
-        'New Straits Times',
-        'The Sun',
-        'The Borneo Post',
-        'Daily Express',
-        'If not listed, notify Nazreen now' // TODO: move this out to a file, like in utils
-      ],
+      source_names,
       statusOptions: [
         'Review Needed', // TODO: move this out to a file, like in utils
         'Fulfilled',
@@ -284,8 +274,8 @@ export default {
       this.politicians = await loadCache(this, 'politicians', listPoliticians())
       this.contributors = await await loadCache(this, 'contributors', listContributors())
 
-      if(this.$route.query) {
-        if(this.$route.query.politician_id && !this.promise.politician_id) {
+      if (this.$route.query) {
+        if (this.$route.query.politician_id && !this.promise.politician_id) {
           this.promise.politician_id = this.$route.query.politician_id
         }
       }
