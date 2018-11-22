@@ -72,10 +72,17 @@
               </el-form-item>
           </el-col>
 
-           <el-col :xs="24" :sm="12" >
+          <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
-            <el-input type="text" placeholder="enter source name" v-model="promiseUpdate.source_name"></el-input>
               </el-form-item>
+              <el-select v-model="promiseUpdate.source_name" placeholder="Select Source Name">
+                <el-option
+                  v-for="source_name in source_names"
+                  :key="source_name"
+                  :label="source_name"
+                  :value="source_name">
+                </el-option>
+              </el-select>
           </el-col>
 
          <el-col :xs="24" :sm="12" >
@@ -112,6 +119,7 @@
 
 <script>
 import { postPromiseUpdate, getPromiseUpdate, updatePromiseUpdate } from '@/api'
+import source_names from '@/constants/source_names'
 
 export default {
   name: 'PromiseUpdateEditor',
@@ -131,6 +139,7 @@ export default {
         'At Risk',
         'Retracted'
       ],
+      source_names,
       liveOptions: [
         { label: 'true', value: true },
         { label: 'false', value: false }
