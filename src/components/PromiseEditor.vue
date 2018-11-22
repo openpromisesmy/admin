@@ -36,16 +36,18 @@
           </el-col>
 
         <el-col :xs="24" :sm="8" >
+            <el-tooltip class="item" effect="dark" content="Whether or not the promise will be displayed to the public. True means it will be public. False means it will be saved in the database but not viewable by the public." placement="top">
               <el-form-item label="Live" prop="live">
-            <el-select v-model="promise.live" placeholder="Select">
-              <el-option
-                v-for="item in liveOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+              <el-select v-model="promise.live" placeholder="Select">
+                <el-option
+                  v-for="item in liveOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
               </el-form-item>
+            </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="8" >
@@ -62,16 +64,18 @@
           </el-col>
 
           <el-col :xs="24" :sm="8" >
+            <el-tooltip class="item" effect="dark" content="If the promise is specific to a state. Otherwise, leave this blank." placement="top">
               <el-form-item label="State" prop="state">
-            <el-select v-model="promise.state" placeholder="Select" clearable>
-              <el-option
-                v-for="state in malaysianStates"
-                :key="state"
-                :label="state"
-                :value="state">
-              </el-option>
-            </el-select>
+              <el-select v-model="promise.state" placeholder="Select" clearable>
+                <el-option
+                  v-for="state in malaysianStates"
+                  :key="state"
+                  :label="state"
+                  :value="state">
+                </el-option>
+              </el-select>
               </el-form-item>
+            </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="12" >
@@ -90,9 +94,11 @@
           </el-col>
 
           <el-col :xs="24" :sm="12" >
-              <el-form-item label="Category" prop="category">
+            <el-tooltip class="item" effect="dark" content="e.g. Human Rights, Economy. Separate categories by comma." placement="top">
+            <el-form-item label="Category" prop="category">
             <el-input type="text" placeholder="enter category. separate using comma" v-model="promise.category"></el-input>
-              </el-form-item>
+            </el-form-item>
+            </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="24" >
@@ -102,12 +108,14 @@
           </el-col>
 
           <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="The exact quote from the article that proves that the promise was made. If you need to extract multiple parts, connect them using elipses (the three dots)" placement="top">
               <el-form-item label="Quote" prop="quote">
               <el-input type="textarea"
                         placeholder="enter quote"
                         v-model="promise.quote"
                         rows="5" />
               </el-form-item>
+            </el-tooltip>
           </el-col>
 
            <el-col :xs="24" :sm="12" >
@@ -136,15 +144,19 @@
           </el-col>
 
           <el-col :xs="24" :sm="12" >
+            <el-tooltip class="item" effect="dark" content="Trackers, leave this blank. Editors, fill this with url to poster image or image related to the promise." placement="top">
               <el-form-item label="Image" prop="cover_image">
-            <el-input type="text" placeholder="enter image link" v-model="promise.cover_image"></el-input>
+              <el-input type="text" placeholder="enter image link" v-model="promise.cover_image"></el-input>
               </el-form-item>
+            </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="Trackers, paste in the promise write up here. Also mention anything else about the promise that would be useful to know. This will not be viewable by the public." placement="top">
               <el-form-item label="Notes" prop="notes">
-            <el-input type="textarea" placeholder="enter notes" v-model="promise.notes" rows="4"></el-input>
+              <el-input type="textarea" placeholder="enter notes" v-model="promise.notes" rows="4"></el-input>
               </el-form-item>
+            </el-tooltip>
           </el-col>
 
         </el-row>
