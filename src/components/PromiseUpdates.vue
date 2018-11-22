@@ -7,6 +7,7 @@
         :promiseUpdate="promiseUpdate"
       />
       <promise-update-editor
+        v-if="mode !== 'view'"
         :contributors="contributors"
         :promiseID="promiseID"
         mode="new"
@@ -20,7 +21,7 @@ import PromiseUpdateCard from '@/components/PromiseUpdateCard'
 
 export default {
   name: 'PromiseUpdates',
-  props: ['promiseUpdates', 'contributors', 'promiseID'],
+  props: ['promiseUpdates', 'contributors', 'promiseID', 'mode'],
   components: { PromiseUpdateEditor, PromiseUpdateCard }
 }
 </script>

@@ -77,7 +77,7 @@
               </el-form-item>
               <el-select v-model="promiseUpdate.source_name" placeholder="Select Source Name">
                 <el-option
-                  v-for="source_name in source_names"
+                  v-for="source_name in sourceNames"
                   :key="source_name"
                   :label="source_name"
                   :value="source_name">
@@ -119,7 +119,7 @@
 
 <script>
 import { postPromiseUpdate, getPromiseUpdate, updatePromiseUpdate } from '@/api'
-import source_names from '@/constants/source_names'
+import sourceNames from '@/constants/sourceNames'
 import statusOptions from '@/constants/statusOptions'
 
 export default {
@@ -131,7 +131,7 @@ export default {
       error: undefined,
       promiseUpdate: {},
       statusOptions,
-      source_names,
+      sourceNames,
       liveOptions: [
         { label: 'true', value: true },
         { label: 'false', value: false }

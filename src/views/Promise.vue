@@ -4,6 +4,7 @@
       <loading-spinner />
     </p>
     <template v-else>
+      <h1> View Promise </h1>
 
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
@@ -39,6 +40,12 @@
         <img :src="promise.cover_image" />
       </el-card>
 
+      <promise-updates
+          :promiseUpdates="promiseUpdates"
+          :promiseID="promise.id"
+          mode="view"
+      />
+
       <router-link :to="'/promises/' + promise.id + '/edit'">
         <el-button type="success" class="edit-button"> Edit Promise </el-button>
       </router-link>
@@ -52,10 +59,11 @@
 import LoadingSpinner from '@/components//LoadingSpinner'
 import { formatDate } from '@/utils'
 import { getPromise, getPolitician, listPromiseUpdates } from '@/api'
+import PromiseUpdates from '@/components/PromiseUpdates'
 
 export default {
   name: 'PromiseDesktop',
-  components: { LoadingSpinner },
+  components: { LoadingSpinner, PromiseUpdates },
   data () {
     return {
       appStatus: 'loading',
