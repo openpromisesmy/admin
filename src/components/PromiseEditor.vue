@@ -284,8 +284,8 @@ export default {
       this.politicians = await loadCache(this, 'politicians', listPoliticians())
       this.contributors = await await loadCache(this, 'contributors', listContributors())
 
-      if(this.$route.query) {
-        if(this.$route.query.politician_id && !this.promise.politician_id) {
+      if (this.$route.query) {
+        if (this.$route.query.politician_id && !this.promise.politician_id) {
           this.promise.politician_id = this.$route.query.politician_id
         }
       }
