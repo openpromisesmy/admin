@@ -197,7 +197,7 @@ import {
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
-import malaysianStates from '@/utils/malaysianStates'
+import malaysianStates from '@/constants/malaysianStates'
 import source_names from '@/constants/source_names'
 import statusOptions from '@/constants/statusOptions'
 
