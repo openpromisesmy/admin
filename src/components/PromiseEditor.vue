@@ -198,6 +198,7 @@ import {
 import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/utils/malaysianStates'
+import source_names from '@/constants/source_names'
 
 export default {
   name: 'PromiseEditor',
@@ -213,18 +214,7 @@ export default {
       contributors: [],
       viewCaption: false,
       result: null,
-      source_names: [
-        'The Star',
-        'Malay Mail',
-        'PH Manifesto GE14',
-        'MalaysiaKini',
-        'The Malaysian Insight',
-        'New Straits Times',
-        'The Sun',
-        'The Borneo Post',
-        'Daily Express',
-        'If not listed, notify Nazreen now' // TODO: move this out to a file, like in utils
-      ],
+      source_names,
       statusOptions: [
         'Review Needed', // TODO: move this out to a file, like in utils
         'Fulfilled',
