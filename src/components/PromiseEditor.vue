@@ -63,7 +63,7 @@
 
           <el-col :xs="24" :sm="8" >
               <el-form-item label="State" prop="state">
-            <el-select v-model="promise.state" placeholder="Select">
+            <el-select v-model="promise.state" placeholder="Select" clearable>
               <el-option
                 v-for="state in malaysianStates"
                 :key="state"
