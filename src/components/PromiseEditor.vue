@@ -199,6 +199,7 @@ import PromiseUpdates from '@/components/PromiseUpdates'
 import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/utils/malaysianStates'
 import source_names from '@/constants/source_names'
+import statusOptions from '@/constants/statusOptions'
 
 export default {
   name: 'PromiseEditor',
@@ -215,16 +216,7 @@ export default {
       viewCaption: false,
       result: null,
       source_names,
-      statusOptions: [
-        'Review Needed', // TODO: move this out to a file, like in utils
-        'Fulfilled',
-        'Broken',
-        'Partially Fulfilled',
-        'In Progress',
-        'Not Started',
-        'At Risk',
-        'Retracted'
-      ],
+      statusOptions,
       malaysianStates,
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       rules: {
