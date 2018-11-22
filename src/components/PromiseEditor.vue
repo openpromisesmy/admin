@@ -115,10 +115,10 @@
               </el-form-item>
               <el-select v-model="promise.source_name" placeholder="Select Source Name">
                 <el-option
-                  v-for="source in sources"
-                  :key="source"
-                  :label="source"
-                  :value="source">
+                  v-for="source_name in source_names"
+                  :key="source_name"
+                  :label="source_name"
+                  :value="source_name">
                 </el-option>
               </el-select>
           </el-col>
@@ -213,7 +213,7 @@ export default {
       contributors: [],
       viewCaption: false,
       result: null,
-      sources: [
+      source_names: [
         'The Star',
         'Malay Mail',
         'PH Manifesto GE14',
