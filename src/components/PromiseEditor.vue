@@ -107,13 +107,49 @@
               </el-form-item>
           </el-col>
 
+          <el-col :xs="24" :sm="12">
+              <el-form-item label="Deadline" prop="deadline">
+            <el-date-picker type="deadline" placeholder="enter deadline for the promise" v-model="promise.deadline"></el-date-picker>
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Review Date" prop="review_date">
+            <el-date-picker type="review_date" placeholder="enter review date" v-model="promise.deadline"></el-date-picker>
+              </el-form-item>
+          </el-col>
+
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="The exact quote from the article that proves that the promise was made. If you need to extract multiple parts, connect them using elipses (the three dots)" placement="top">
               <el-form-item label="Quote" prop="quote">
               <el-input type="textarea"
                         placeholder="enter quote"
                         v-model="promise.quote"
-                        rows="5" />
+                        rows="3" />
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="A concise description of the promise." placement="top">
+              <el-form-item label="Description" prop="description">
+              <el-input type="textarea" placeholder="enter description" v-model="promise.description" rows="4"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
+              <el-form-item label="Context" prop="context">
+              <el-input type="textarea" placeholder="enter context" v-model="promise.context" rows="4"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="Any additional information on the promise." placement="top">
+              <el-form-item label="Elaboration" prop="elaboration">
+              <el-input type="textarea" placeholder="enter elaboration" v-model="promise.elaboration" rows="4"></el-input>
               </el-form-item>
             </el-tooltip>
           </el-col>
