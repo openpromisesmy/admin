@@ -1,6 +1,7 @@
 <template>
   <main id="PromiseEditor">
     <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
+    <!-- TODO: extract RequestStatus, make modular/dry -->
     <template v-if="appStatus === 'loading'">
       <p> Loading {{ mode === 'edit' ? 'promise' : '' }}...</p>
     </template>
@@ -187,6 +188,22 @@
             </el-tooltip>
           </el-col>
 
+        <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered fulfilled?" placement="top">
+              <el-form-item label="Fulfilled Clause" prop="fulfilled_clause">
+              <el-input type="text" placeholder="enter fulfilled clause" v-model="promise.clauses.fulfilled"></el-input>
+              </el-form-item>
+            </el-tooltip>
+        </el-col>
+
+        <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered broken?" placement="top">
+              <el-form-item label="Broken Clause" prop="broken_clause">
+              <el-input type="text" placeholder="enter broken clause" v-model="promise.clauses.broken"></el-input>
+              </el-form-item>
+            </el-tooltip>
+        </el-col>
+
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="Trackers, paste in the promise write up here. Also mention anything else about the promise that would be useful to know. This will not be viewable by the public." placement="top">
               <el-form-item label="Notes" prop="notes">
@@ -249,6 +266,13 @@ import malaysianStates from '@/constants/malaysianStates'
 import sourceNames from '@/constants/sourceNames'
 import statusOptions from '@/constants/statusOptions'
 
+function parsePromiseForForm (promise) {
+  if (promise.clauses === undefined) {
+    promise.clauses = {}
+  }
+  return promise
+}
+
 export default {
   name: 'PromiseEditor',
   components: { PromiseUpdates },
@@ -257,7 +281,9 @@ export default {
       appStatus: 'loading',
       mode: '',
       error: undefined,
-      promise: {},
+      promise: {
+        clauses: {}
+      },
       promiseUpdates: [],
       politicians: [],
       contributors: [],
@@ -322,7 +348,7 @@ export default {
 
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
-        this.promise = promise
+        this.promise = parsePromiseForForm(promise)
         this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
       } else {
         this.promise.contributor_id = this.$store.state.user.id
