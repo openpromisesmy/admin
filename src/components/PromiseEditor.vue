@@ -64,7 +64,13 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="8" >
+          <el-col :xs="24" :sm="8">
+            <el-form-item label="Review Date" prop="review_date">
+            <el-date-picker type="review_date" placeholder="enter review date" v-model="promise.deadline"></el-date-picker>
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="12" >
             <el-tooltip class="item" effect="dark" content="If the promise is specific to a state. Otherwise, leave this blank." placement="top">
               <el-form-item label="State" prop="state">
               <el-select v-model="promise.state" placeholder="Select" clearable>
@@ -94,7 +100,9 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
+          <h1>Main Information</h1>
+
+          <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="e.g. Human Rights, Economy. Separate categories by comma." placement="top">
             <el-form-item label="Category" prop="category">
             <el-input type="text" placeholder="enter category. separate using comma" v-model="promise.category"></el-input>
@@ -108,27 +116,10 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12">
+          <el-col :xs="24" :sm="24">
               <el-form-item label="Deadline" prop="deadline">
             <el-date-picker type="deadline" placeholder="enter deadline for the promise" v-model="promise.deadline"></el-date-picker>
               </el-form-item>
-          </el-col>
-
-          <el-col :xs="24" :sm="12">
-            <el-form-item label="Review Date" prop="review_date">
-            <el-date-picker type="review_date" placeholder="enter review date" v-model="promise.deadline"></el-date-picker>
-              </el-form-item>
-          </el-col>
-
-          <el-col :xs="24" :sm="24" >
-            <el-tooltip class="item" effect="dark" content="The exact quote from the article that proves that the promise was made. If you need to extract multiple parts, connect them using elipses (the three dots)" placement="top">
-              <el-form-item label="Quote" prop="quote">
-              <el-input type="textarea"
-                        placeholder="enter quote"
-                        v-model="promise.quote"
-                        rows="3" />
-              </el-form-item>
-            </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="24" >
@@ -139,21 +130,7 @@
             </el-tooltip>
           </el-col>
 
-          <el-col :xs="24" :sm="24" >
-            <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
-              <el-form-item label="Context" prop="context">
-              <el-input type="textarea" placeholder="enter context" v-model="promise.context" rows="4"></el-input>
-              </el-form-item>
-            </el-tooltip>
-          </el-col>
-
-          <el-col :xs="24" :sm="24" >
-            <el-tooltip class="item" effect="dark" content="Any additional information on the promise." placement="top">
-              <el-form-item label="Elaboration" prop="elaboration">
-              <el-input type="textarea" placeholder="enter elaboration" v-model="promise.elaboration" rows="4"></el-input>
-              </el-form-item>
-            </el-tooltip>
-          </el-col>
+          <h1>Source</h1>
 
            <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
@@ -180,13 +157,37 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="12" >
-            <el-tooltip class="item" effect="dark" content="Trackers, leave this blank. Editors, fill this with url to poster image or image related to the promise." placement="top">
-              <el-form-item label="Image" prop="cover_image">
-              <el-input type="text" placeholder="enter image link" v-model="promise.cover_image"></el-input>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="The exact quote from the article that proves that the promise was made. If you need to extract multiple parts, connect them using elipses (the three dots)" placement="top">
+              <el-form-item label="Quote" prop="quote">
+              <el-input type="textarea"
+                        placeholder="enter quote"
+                        v-model="promise.quote"
+                        rows="3" />
               </el-form-item>
             </el-tooltip>
           </el-col>
+
+          <h1>Supporting information</h1>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
+              <el-form-item label="Context" prop="context">
+              <el-input type="textarea" placeholder="enter context" v-model="promise.context" rows="4"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
+          <el-col :xs="24" :sm="24" >
+            <el-tooltip class="item" effect="dark" content="Any additional information on the promise." placement="top">
+              <el-form-item label="Elaboration" prop="elaboration">
+              <el-input type="textarea" placeholder="enter elaboration" v-model="promise.elaboration" rows="4"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
+        <h1> Clauses </h1>
 
         <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered fulfilled?" placement="top">
@@ -203,6 +204,14 @@
               </el-form-item>
             </el-tooltip>
         </el-col>
+
+          <el-col :xs="24" :sm="12" >
+            <el-tooltip class="item" effect="dark" content="Trackers, leave this blank. Editors, fill this with url to poster image or image related to the promise." placement="top">
+              <el-form-item label="Image" prop="cover_image">
+              <el-input type="text" placeholder="enter image link" v-model="promise.cover_image"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
 
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="Trackers, paste in the promise write up here. Also mention anything else about the promise that would be useful to know. This will not be viewable by the public." placement="top">
