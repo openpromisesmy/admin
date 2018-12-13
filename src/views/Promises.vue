@@ -31,87 +31,14 @@
     </el-button>
     <p>Pagination is based on {{ this.query.orderBy }}</p>
 
-    <el-table
-    :data="filteredPromises"
-    :default-sort = "{prop: 'created_at', order: 'descending'}"
-    border
-    style="width: 100%">
-    <el-table-column
-      sortable
-      prop="created_at"
-      label="Created At"
-      width="150">
-      <template slot-scope="scope">
-        <p>{{ formatDate(scope.row.created_at) }}</p>
-      </template>
-    </el-table-column>
-    <el-table-column
-      prop="title"
-      label="Title"
-      width="350">
-    </el-table-column>
-    <el-table-column
-      sortable
-      prop="source_date"
-      label="Source Date"
-      width="150">
-      <template slot-scope="scope">
-        <p>{{ formatDate(scope.row.source_date) }}</p>
-      </template>
-    </el-table-column>
-    <el-table-column
-      prop="category"
-      label="Category"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="politician_name"
-      label="Politician"
-      width="150">
-    </el-table-column>
-    <!-- <el-table-column
-      prop="quote"
-      label="Quote"
-      width="250">
-    </el-table-column> -->
-    <el-table-column
-      prop="source_name"
-      label="Source"
-      width="180"
-      >
-    </el-table-column>
-    <!-- <el-table-column
-      prop="source_url"
-      label="Source Link"
-      width="100">
-      <template slot-scope="scope">
-        <a :href="scope.row.source_url" target="_blank">View Source</a>
-      </template>
-    </el-table-column> -->
-    <el-table-column
-      sortable
-      prop="status"
-      label="Status"
-      width="125">
-    </el-table-column>
-    <el-table-column
-      label="Actions"
-      width="125">
-      <template slot-scope="scope">
-        <router-link :to="'/promises/' + scope.row.id + '/edit'">
-          <el-button type="info">
-          Edit
-          </el-button>
-        </router-link>
-      </template>
-    </el-table-column>
-  </el-table>
+    <promises-table :promises="filteredPromises" />
   </template>
   </div>
 </template>
 
 <script>
 import { listPromises, listPoliticians } from '@/api'
+import PromisesTable from '@/components/PromisesTable'
 import LoadingSpinner from '@/components//LoadingSpinner'
 import { formatDate, filterByStatus, parsePromises, loadCache, updateCache } from '@/utils'
 import queryString from 'query-string'
@@ -131,7 +58,7 @@ export default {
       politicians: []
     }
   },
-  components: { LoadingSpinner },
+  components: { LoadingSpinner, PromisesTable },
   computed: {
     stats: function () {
       const statusOptions = new Set(this.promises.map(promise => promise.status))
