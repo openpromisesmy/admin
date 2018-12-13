@@ -31,6 +31,11 @@
       </el-card>
 
       <el-card>
+        <p class="card-title"> <b> Deadline </b></p>
+        <p> {{ formatDate(promise.deadline) || '-' }} </p>
+      </el-card>
+
+      <el-card>
         <p class="card-title"> <b> Category </b></p>
         <p> {{ promise.category || '-' }} </p>
       </el-card>
@@ -43,6 +48,11 @@
       <el-card>
         <p class="card-title"> <b> Status </b></p>
         <p>{{ promise.status || 'Review Needed' }}</p>
+      </el-card>
+
+      <el-card>
+        <p class="card-title"> <b> Clauses </b></p>
+        <p> TODO: display clauses here </p>
       </el-card>
 
       <el-card v-if="promise.cover_image" class="Promise_card_image">
