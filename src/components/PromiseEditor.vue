@@ -94,7 +94,9 @@
               </el-form-item>
           </el-col>
 
-          <h1>Main Information</h1>
+          <el-col>
+            <h1>Main Information</h1>
+          </el-col>
 
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="e.g. Human Rights, Economy. Separate categories by comma." placement="top">
@@ -124,7 +126,9 @@
             </el-tooltip>
           </el-col>
 
-          <h1>Source</h1>
+          <el-col>
+            <h1>Source</h1>
+          </el-col>
 
            <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
@@ -162,7 +166,9 @@
             </el-tooltip>
           </el-col>
 
+          <el-col>
           <h1>Supporting information</h1>
+          </el-col>
 
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
@@ -180,7 +186,9 @@
             </el-tooltip>
           </el-col>
 
-        <h1> Clauses </h1>
+        <el-col>
+          <h1> Clauses </h1>
+        </el-col>
 
         <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered fulfilled?" placement="top">
@@ -196,6 +204,10 @@
               <el-input type="text" placeholder="enter broken clause" v-model="promise.clauses.broken"></el-input>
               </el-form-item>
             </el-tooltip>
+        </el-col>
+
+        <el-col>
+          <h1>Supplementary Information</h1>
         </el-col>
 
           <el-col :xs="24" :sm="12" >
