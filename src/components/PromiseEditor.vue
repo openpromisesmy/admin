@@ -64,12 +64,6 @@
               </el-form-item>
           </el-col>
 
-          <el-col :xs="24" :sm="8">
-            <el-form-item label="Review Date" prop="review_date">
-            <el-date-picker type="review_date" placeholder="enter review date" v-model="promise.deadline"></el-date-picker>
-              </el-form-item>
-          </el-col>
-
           <el-col :xs="24" :sm="12" >
             <el-tooltip class="item" effect="dark" content="If the promise is specific to a state. Otherwise, leave this blank." placement="top">
               <el-form-item label="State" prop="state">
