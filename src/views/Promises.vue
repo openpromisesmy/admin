@@ -3,6 +3,7 @@
     <el-row>
       <el-col :span="16">
         <h1>{{ promises.length > 0 ? `${promises.length}` : '' }} Most Recent Promises</h1>
+        <p>Based on source date</p>
       </el-col>
       <el-col :span="8">
         <router-link to="/promises/new">
@@ -17,7 +18,7 @@
       </template>
     <template v-else>
 
-    <promises-table :promises="filteredPromises" exclude="[source_name]" />
+    <promises-table :promises="promises" exclude="[source_name]" />
   </template>
   </div>
 </template>
@@ -40,7 +41,6 @@ export default {
         reverse: true
       },
       promises: [],
-      filteredPromises: [],
       politicians: []
     }
   },
@@ -75,13 +75,9 @@ export default {
       const promises = await listPromises(queryString)
 
       this.promises = this.parsePromises(promises, this.politicians)
-      this.filteredPromises = [...this.promises]
       this.appStatus = ''
     },
     parsePromises,
-    resetFilter () {
-      this.filteredPromises = [...this.promises]
-    },
     formatDate,
     updateStartAfter (reverse) {
       if (this.pageNumber === 1) delete this.query.startAfter
