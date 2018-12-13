@@ -157,7 +157,6 @@
               </el-form-item>
           </el-col>
 
-
           <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="The exact quote from the article that proves that the promise was made. If you need to extract multiple parts, connect them using elipses (the three dots)" placement="top">
               <el-form-item label="Quote" prop="quote">
