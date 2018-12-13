@@ -112,7 +112,7 @@
 
           <el-col :xs="24" :sm="24">
               <el-form-item label="Deadline" prop="deadline">
-            <el-date-picker type="deadline" placeholder="enter deadline for the promise" v-model="promise.deadline"></el-date-picker>
+            <el-date-picker type="date" placeholder="enter deadline for the promise" v-model="promise.deadline"></el-date-picker>
               </el-form-item>
           </el-col>
 
