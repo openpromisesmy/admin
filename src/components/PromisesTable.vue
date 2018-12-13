@@ -29,6 +29,11 @@
       prop="title"
       label="Title"
       width="350">
+      <template slot-scope="scope">
+        <router-link :to="'/promises/' + scope.row.id">
+        <p>{{ scope.row.title }}</p>
+        </router-link>
+      </template>
     </el-table-column>
     <el-table-column
       v-if="!exclude.includes('source_name')"
@@ -69,11 +74,6 @@
       label="Actions"
       width="125">
       <template slot-scope="scope">
-        <router-link :to="'/promises/' + scope.row.id">
-          <el-button type="primary">
-          View
-          </el-button>
-        </router-link>
         <router-link :to="'/promises/' + scope.row.id + '/edit'">
           <el-button type="info">
           Edit
