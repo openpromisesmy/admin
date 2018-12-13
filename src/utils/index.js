@@ -2,7 +2,7 @@ import moment from 'moment'
 import { isEmpty, capitalize } from 'lodash'
 
 function formatDate (date) {
-  return moment(date).format('D MMM YYYY')
+  return date ? moment(date).format('D MMM YYYY') : '-'
 }
 
 function filterByStatus (array, status) {
