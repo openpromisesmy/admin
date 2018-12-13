@@ -2,7 +2,7 @@
   <div class="container">
     <el-row>
       <el-col :span="16">
-        <h1>Promises {{ promises.length > 0 ? `- ${promises.length}` : '' }}</h1>
+        <h1>{{ promises.length > 0 ? `${promises.length}` : '' }} Most Recent Promises</h1>
       </el-col>
       <el-col :span="8">
         <router-link to="/promises/new">
@@ -16,22 +16,8 @@
       <LoadingSpinner />
       </template>
     <template v-else>
-    <div class="stats_container">
-    <el-button type="info" class="add-button" @click="resetFilter()">Reset Filter</el-button>
-    <el-button v-for="stat in stats" :key="stat.value" @click="filterPromisesByStatus(stat.value)">
-      <b>{{ stat.value }}</b> {{ stat.number }}
-    </el-button>
-    </div>
-    <!-- <el-button v-if="pageNumber > 1" type="primary" @click="previousPage()">
-      Previous Page
-    </el-button> -->
-    <span><b>{{ pageNumber }}</b></span>
-    <el-button type="primary" @click="nextPage()">
-      Next Page
-    </el-button>
-    <p>Pagination is based on {{ this.query.orderBy }}</p>
 
-    <promises-table :promises="filteredPromises" />
+    <promises-table :promises="filteredPromises" exclude="[source_name]" />
   </template>
   </div>
 </template>
@@ -40,7 +26,7 @@
 import { listPromises, listPoliticians } from '@/api'
 import PromisesTable from '@/components/PromisesTable'
 import LoadingSpinner from '@/components//LoadingSpinner'
-import { formatDate, filterByStatus, parsePromises, loadCache, updateCache } from '@/utils'
+import { formatDate, parsePromises, loadCache, updateCache } from '@/utils'
 import queryString from 'query-string'
 
 export default {
@@ -93,9 +79,6 @@ export default {
       this.appStatus = ''
     },
     parsePromises,
-    filterPromisesByStatus (status) {
-      this.filteredPromises = filterByStatus(this.promises, status)
-    },
     resetFilter () {
       this.filteredPromises = [...this.promises]
     },
