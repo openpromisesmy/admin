@@ -399,13 +399,13 @@ export default {
       try {
         if (this.mode === 'edit') {
           delete promise.contributor_id
-          await updatePromise(promise)
+          this.result = await updatePromise(promise)
         } else {
-          const result = await postPromise(promise)
-          if (result instanceof Error) {
-            throw result
+          const postResult = await postPromise(promise)
+          if (postResult instanceof Error) {
+            throw postResult
           }
-          this.result = result
+          this.result = postResult
         }
         this.appStatus = 'submitted'
         return
