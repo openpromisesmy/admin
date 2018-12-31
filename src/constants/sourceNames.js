@@ -6,7 +6,10 @@ export default [
   'The Malaysian Insight',
   'New Straits Times',
   'The Sun',
+  'Utusan Borneo',
   'The Borneo Post',
   'Daily Express',
-  'If not listed, notify Nazreen now' // TODO: move this out to a file, like in utils
+  'Official Twitter',
+  'Official Facebook',
+  'Others'
 ]
