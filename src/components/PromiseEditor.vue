@@ -10,8 +10,8 @@
     </template>
     <template v-else-if="appStatus === 'submitted'">
       <p>Promise has been {{ mode === 'edit' ? 'updated' : 'created' }}</p>
-      <p>{{ JSON.stringify(result) }}</p>
-      <router-link :to="`/promises/${result.id}`">
+      <p v-if="Object.keys(result) > 0">{{ JSON.stringify(result) }}</p>
+      <router-link :to="`/promises/${result.id || $route.params.id}`">
         <el-button type="primary">
           View Promise
         </el-button>
