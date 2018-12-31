@@ -35,15 +35,20 @@
         <p> {{ formatDate(promise.deadline) || '-' }} </p>
       </el-card>
 
-      <el-card>
-        <p class="card-title"> <b> Category </b></p>
-        <p> {{ promise.category || '-' }} </p>
-      </el-card>
-
-      <el-card>
-        <p class="card-title"> <b> State </b></p>
-        <p> {{ promise.state || '-' }} </p>
-      </el-card>
+      <el-row>
+        <el-col span="12">
+          <el-card>
+            <p class="card-title"> <b> State </b></p>
+            <p> {{ promise.state || '-' }} </p>
+          </el-card>
+        </el-col>
+        <el-col span="12">
+          <el-card>
+            <p class="card-title"> <b> Category </b></p>
+            <p> {{ promise.category || '-' }} </p>
+          </el-card>
+        </el-col>
+      </el-row>
 
       <el-card>
         <p class="card-title"> <b> Status </b></p>
