@@ -4,8 +4,6 @@
       <loading-spinner />
     </p>
     <template v-else>
-      <h1> View Promise </h1>
-
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
         <h2>{{ promise.title }}</h2>
