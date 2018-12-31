@@ -171,17 +171,17 @@
           </el-col>
 
           <el-col :xs="24" :sm="24" >
-            <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
-              <el-form-item label="Context" prop="context">
-              <el-input type="textarea" placeholder="enter context" v-model="promise.context" rows="4"></el-input>
+            <el-tooltip class="item" effect="dark" content="Any additional information on the promise." placement="top">
+              <el-form-item label="Elaboration" prop="elaboration">
+              <el-input type="textarea" placeholder="enter elaboration" v-model="promise.elaboration" rows="4"></el-input>
               </el-form-item>
             </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="24" >
-            <el-tooltip class="item" effect="dark" content="Any additional information on the promise." placement="top">
-              <el-form-item label="Elaboration" prop="elaboration">
-              <el-input type="textarea" placeholder="enter elaboration" v-model="promise.elaboration" rows="4"></el-input>
+            <el-tooltip class="item" effect="dark" content="Any information on any element of the promise that would be important to know." placement="top">
+              <el-form-item label="Context" prop="context">
+              <el-input type="textarea" placeholder="enter context" v-model="promise.context" rows="4"></el-input>
               </el-form-item>
             </el-tooltip>
           </el-col>
