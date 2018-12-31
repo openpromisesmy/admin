@@ -228,7 +228,12 @@
 
         </el-row>
 
-          <el-button @click="onSubmit"> Submit </el-button>
+          <el-button
+            id="submit"
+            type="primary"
+            @click="onSubmit">
+            Submit
+          </el-button>
 
         </el-form>
 
@@ -391,4 +396,10 @@ export default {
   text-transform: capitalize
 }
 
+#submit {
+  width: 100%;
+  padding: 20px;
+  font-size: 2rem;
+  margin-bottom: 30px
+}
 </style>
