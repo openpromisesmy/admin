@@ -232,26 +232,8 @@
 
         </el-form>
 
-        <el-card v-if="appStatus === ''" id="caption-text" class="box-card">
-          <h1>Caption Text Generator
-            <el-button type="success" v-if="!viewCaption" @click="toggleViewCaption">
-              View Caption Text
-            </el-button>
-            <el-button type="primary" v-else @click="toggleViewCaption">
-              Hide Caption Text
-              </el-button>
-          </h1>
-          <div v-if="viewCaption">
-            <p>{{ captionText.header }}</p>
-            <p>{{ captionText.brief }}</p>
-            <p><b>ELABORATION_HERE</b></p>
-            <p>{{ captionText.project_info }}</p>
-            <p>{{ captionText.cta }}</p>
-            <p> Source: {{ promise.source_name }}
-              <a :href="promise.source_url"> {{ promise.source_url }}</a>
-            </p>
-            <p>{{ captionText.hashtags }}</p>
-          </div>
+        <el-card v-if="appStatus === ''" class="box-card">
+          <post-caption-generator :promise="promise" />
         </el-card>
 
         <promise-updates
@@ -275,6 +257,7 @@ import {
   listPromiseUpdates
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
+import PostCaptionGenerator from '@/components/PostCaptionGenerator'
 import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/constants/malaysianStates'
 import sourceNames from '@/constants/sourceNames'
@@ -289,7 +272,7 @@ function parsePromiseForForm (promise) {
 
 export default {
   name: 'PromiseEditor',
-  components: { PromiseUpdates },
+  components: { PromiseUpdates, PostCaptionGenerator },
   data () {
     return {
       appStatus: 'loading',
@@ -301,7 +284,6 @@ export default {
       promiseUpdates: [],
       politicians: [],
       contributors: [],
-      viewCaption: false,
       result: null,
       sourceNames,
       statusOptions,
@@ -329,22 +311,6 @@ export default {
         if (!contributor) return
         return contributor.name + ' - ' + contributor.email
       }
-    },
-    captionText: function () {
-      const politician = this.politicians.find(politician => this.promise.politician_id === politician.id) || {}// eslint-disable-next-line
-      const { primary_position, name } = politician// eslint-disable-next-line
-      const { source_date, title, source_name, source_url } = this.promise
-
-      return ({// eslint-disable-next-line
-        header: `PROMISE MADE: ${title}`,
-        // eslint-disable-next-line
-        brief: `On ${formatDate(source_date)}, ${primary_position}, ${name}, said that ${title}.`,
-        // eslint-disable-next-line
-        source: `Source: ${source_name} - ${source_url}`,
-        project_info: 'OpenPromises Malaysia is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
-        cta: 'If you believe in what we do, share this post out.',
-        hashtags: '#accountability #neutrality #checkandbalance'
-      })
     }
   },
   async created () {
@@ -382,9 +348,6 @@ export default {
   },
   methods: {
     formatDate,
-    toggleViewCaption () {
-      this.viewCaption = !this.viewCaption
-    },
     onSubmit () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
@@ -426,14 +389,6 @@ export default {
 
 #PromiseEditor_header {
   text-transform: capitalize
-}
-
-#caption-text{
-  margin: 20px
-}
-
-#caption-text > h2 {
-  margin: 0
 }
 
 </style>
