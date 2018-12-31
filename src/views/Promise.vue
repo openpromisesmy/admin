@@ -4,8 +4,6 @@
       <loading-spinner />
     </p>
     <template v-else>
-      <h1> View Promise </h1>
-
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
         <h2>{{ promise.title }}</h2>
@@ -23,32 +21,37 @@
       <el-card>
         <p class="card-title"> <b> Context </b></p>
         <p> {{ promise.context || '-' }} </p>
-      </el-card>
 
-      <el-card>
         <p class="card-title"> <b> Elaboration </b></p>
         <p> {{ promise.elaboration || '-' }} </p>
       </el-card>
 
       <el-card>
-        <p class="card-title"> <b> Deadline </b></p>
-        <p> {{ formatDate(promise.deadline) || '-' }} </p>
+        <el-row>
+          <el-col span="12">
+            <p class="card-title"> <b> Deadline </b></p>
+            <p> {{ formatDate(promise.deadline) || '-' }} </p>
+          </el-col>
+
+          <el-col span="12">
+            <p class="card-title"> <b> Status </b></p>
+            <p>{{ promise.status || 'Review Needed' }}</p>
+          </el-col>
+        </el-row>
       </el-card>
 
-      <el-card>
-        <p class="card-title"> <b> Category </b></p>
-        <p> {{ promise.category || '-' }} </p>
-      </el-card>
-
-      <el-card>
-        <p class="card-title"> <b> State </b></p>
-        <p> {{ promise.state || '-' }} </p>
-      </el-card>
-
-      <el-card>
-        <p class="card-title"> <b> Status </b></p>
-        <p>{{ promise.status || 'Review Needed' }}</p>
-      </el-card>
+    <el-card>
+      <el-row>
+        <el-col span="12">
+            <p class="card-title"> <b> State </b></p>
+            <p> {{ promise.state || '-' }} </p>
+        </el-col>
+        <el-col span="12">
+            <p class="card-title"> <b> Category </b></p>
+            <p> {{ promise.category || '-' }} </p>
+        </el-col>
+      </el-row>
+    </el-card>
 
       <el-card>
         <p class="card-title"> <b> Clauses </b></p>
