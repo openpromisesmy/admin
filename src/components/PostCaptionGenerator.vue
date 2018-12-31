@@ -10,9 +10,10 @@
             </h1>
     <div v-if="viewCaption">
       <p><b>PROMISE MADE:</b> {{ promise.title }}</p>
-      <p v-if="promise.description"><b>Description:</b> {{ promise.description }}</p>
-      <p v-if="promise.elaboration"><b>Elaboration:</b> {{ promise.elaboration }}</p>
-      <p v-if="promise.context"><b>Context:</b> {{ promise.context }}</p>
+      <p v-if="promise.description"><b>DESCRIPTION:</b> {{ promise.description }}</p>
+      <p v-if="promise.elaboration"><b>ELABORATION:</b> {{ promise.elaboration }}</p>
+      <p v-if="promise.context"><b>CONTEXT:</b> {{ promise.context }}</p>
+      <p v-if="promise.clauses.broken"><b>BROKEN CLAUSE:</b> {{ promise.clauses.broken }}</p>
       <p>{{ captionText.project_info }}</p>
       <p>{{ captionText.cta }}</p>
       <p> Sources:</p>
