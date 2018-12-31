@@ -31,29 +31,31 @@
       </el-card>
 
       <el-card>
-        <p class="card-title"> <b> Deadline </b></p>
-        <p> {{ formatDate(promise.deadline) || '-' }} </p>
+        <el-row>
+          <el-col span="12">
+            <p class="card-title"> <b> Deadline </b></p>
+            <p> {{ formatDate(promise.deadline) || '-' }} </p>
+          </el-col>
+
+          <el-col span="12">
+            <p class="card-title"> <b> Status </b></p>
+            <p>{{ promise.status || 'Review Needed' }}</p>
+          </el-col>
+        </el-row>
       </el-card>
 
+    <el-card>
       <el-row>
         <el-col span="12">
-          <el-card>
             <p class="card-title"> <b> State </b></p>
             <p> {{ promise.state || '-' }} </p>
-          </el-card>
         </el-col>
         <el-col span="12">
-          <el-card>
             <p class="card-title"> <b> Category </b></p>
             <p> {{ promise.category || '-' }} </p>
-          </el-card>
         </el-col>
       </el-row>
-
-      <el-card>
-        <p class="card-title"> <b> Status </b></p>
-        <p>{{ promise.status || 'Review Needed' }}</p>
-      </el-card>
+    </el-card>
 
       <el-card>
         <p class="card-title"> <b> Clauses </b></p>
