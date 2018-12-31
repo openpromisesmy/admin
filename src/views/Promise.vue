@@ -23,9 +23,7 @@
       <el-card>
         <p class="card-title"> <b> Context </b></p>
         <p> {{ promise.context || '-' }} </p>
-      </el-card>
 
-      <el-card>
         <p class="card-title"> <b> Elaboration </b></p>
         <p> {{ promise.elaboration || '-' }} </p>
       </el-card>
