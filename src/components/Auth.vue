@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { googleSignIn, getContributor } from '@/api'
+import { googleSignIn, getContributorByEmail } from '@/api'
 
 export default {
   name: 'Auth',
@@ -27,7 +27,7 @@ export default {
       try {
         const user = await googleSignIn()
         this.appStatus = 'loading'
-        const userData = await getContributor(user.email)
+        const userData = await getContributorByEmail(user.email)
         this.appStatus = ''
         this.$store.commit('login', Object.assign({}, user, userData[0]))
         this.$router.push('/')

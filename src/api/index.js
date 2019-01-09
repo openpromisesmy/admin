@@ -27,7 +27,8 @@ axios.interceptors.response.use(
   })
 
 const listContributors = () => getSomething('/contributors/')
-const getContributor = email => getSomething(`/contributors/?email=${email}`)
+const getContributor = id => getSomething(`/contributors/${id}`)
+const getContributorByEmail = email => getSomething(`/contributors/?email=${email}`)
 
 const listPoliticians = () => getSomething(POLITICIANS_PATH + 'all?orderBy=name')
 const getPolitician = id => getSomething(`/politicians/${id}`)
@@ -52,6 +53,7 @@ export {
   googleSignIn,
   googleLogout,
   getContributor,
+  getContributorByEmail,
   getPolitician,
   listContributors,
   listPoliticians,

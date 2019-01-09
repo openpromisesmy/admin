@@ -4,6 +4,21 @@
       <loading-spinner />
     </p>
     <template v-else>
+
+    <el-row>
+      <el-col :xs="24" :sm="8" >
+        <p><b>Created at: </b>{{ formatDate(promise.created_at) }}</p>
+      </el-col>
+
+        <el-col :xs="24" :sm="8" >
+        <p><b>Updated at: </b>{{ formatDate(promise.updated_at) }}</p>
+      </el-col>
+
+        <el-col :xs="24" :sm="8" >
+        <p><b>Contributor: </b>{{ contributor.email }}</p>
+      </el-col>
+    </el-row>
+
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
         <h2>{{ promise.title }}</h2>
@@ -81,7 +96,7 @@
 <script>
 import LoadingSpinner from '@/components//LoadingSpinner'
 import { formatDate } from '@/utils'
-import { getPromise, getPolitician, listPromiseUpdates } from '@/api'
+import { getPromise, getPolitician, listPromiseUpdates, getContributor } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
 
 export default {
@@ -90,9 +105,10 @@ export default {
   data () {
     return {
       appStatus: 'loading',
-      politician: '',
-      promise: '',
-      promiseUpdates: ''
+      politician: null,
+      promise: null,
+      promiseUpdates: [],
+      contributor: {}
     }
   },
   methods: { formatDate },
@@ -114,6 +130,7 @@ export default {
       this.promise = await getPromise(this.$route.params.id)
       this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
       this.politician = await getPolitician(this.promise.politician_id)
+      this.contributor = await getContributor(this.promise.contributor_id)
       this.appStatus = ''
     } catch (e) {
       console.error(e)
