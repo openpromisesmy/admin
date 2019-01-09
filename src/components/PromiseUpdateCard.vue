@@ -3,7 +3,7 @@
     <el-card>
       <div slot="header">
         <el-tag class="status">{{ promiseUpdate.status }}</el-tag>
-        {{ formatDate(promiseUpdate.source_date) }}
+        <b>{{ formatDate(promiseUpdate.source_date) }}</b>
         <span v-if="contributor">{{ contributor.email }}</span>
         <span class="source">
           Source:
