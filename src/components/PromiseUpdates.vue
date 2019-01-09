@@ -3,7 +3,6 @@
       <promise-update-card
         v-for="promiseUpdate in promiseUpdates"
         :key="promiseUpdate.id"
-        v-if="promiseUpdates.length > 0"
         :promiseUpdate="promiseUpdate"
       />
       <promise-update-editor
