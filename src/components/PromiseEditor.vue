@@ -193,7 +193,11 @@
         <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered fulfilled?" placement="top">
               <el-form-item label="Fulfilled Clause" prop="fulfilled_clause">
-              <el-input type="text" placeholder="enter fulfilled clause" v-model="promise.clauses.fulfilled"></el-input>
+              <el-input
+                type="textarea"
+                rows="2"
+                placeholder="enter fulfilled clause" v-model="promise.clauses.fulfilled">
+              </el-input>
               </el-form-item>
             </el-tooltip>
         </el-col>
@@ -201,7 +205,11 @@
         <el-col :xs="24" :sm="24" >
             <el-tooltip class="item" effect="dark" content="What exact condition needs to be met for this promise to be considered broken?" placement="top">
               <el-form-item label="Broken Clause" prop="broken_clause">
-              <el-input type="text" placeholder="enter broken clause" v-model="promise.clauses.broken"></el-input>
+              <el-input
+                type="textarea"
+                rows="2"
+                placeholder="enter broken clause" v-model="promise.clauses.broken">
+              </el-input>
               </el-form-item>
             </el-tooltip>
         </el-col>
