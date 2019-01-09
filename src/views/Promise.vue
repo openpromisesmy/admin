@@ -4,6 +4,17 @@
       <loading-spinner />
     </p>
     <template v-else>
+      <el-col :xs="24" :sm="8" >
+        <p><b>Created at: </b>{{ formatDate(promise.created_at) }}</p>
+      </el-col>
+
+        <el-col :xs="24" :sm="8" >
+        <p><b>Updated at: </b>{{ formatDate(promise.updated_at) }}</p>
+      </el-col>
+
+        <el-col :xs="24" :sm="8" >
+        <p><b>Contributor: </b>{{ contributor }}</p>
+      </el-col>
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
         <h2>{{ promise.title }}</h2>
