@@ -33,7 +33,7 @@
           </el-col>
 
            <el-col :xs="24" :sm="8" >
-            <p><b>Contributor: </b>{{ contributor }}</p>
+            <p><b>Contributor: </b>{{ contributor.email }}</p>
           </el-col>
 
         <el-col :xs="24" :sm="8" >
@@ -318,21 +318,11 @@ export default {
       }
     }
   },
-  computed: {
-    contributor: function () {
-      if (this.contributors.length > 0) {
-        const contributor = this.contributors.find(contributor => contributor.id === this.promise.contributor_id)
-        if (!contributor) return
-        return contributor.name + ' - ' + contributor.email
-      }
-    }
-  },
   async created () {
     try {
       this.mode = this.$route.path.split('/').slice(-1)[0]
       // TODO: use Promise.all to make faster?
       this.politicians = await loadCache(this, 'politicians', listPoliticians())
-      this.contributors = await await loadCache(this, 'contributors', listContributors())
 
       if (this.$route.query) {
         if (this.$route.query.politician_id && !this.promise.politician_id) {
@@ -344,6 +334,7 @@ export default {
         const promise = await getPromise(this.$route.params.id)
         this.promise = parsePromiseForForm(promise)
         this.promiseUpdates = await listPromiseUpdates(`?promise_id=${this.$route.params.id}&orderBy=source_date`)
+        this.contributor = await getContributor(this.promise.contributor_id)
       } else {
         this.promise.contributor_id = this.$store.state.user.id
       }
