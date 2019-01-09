@@ -266,6 +266,7 @@ import {
   getPromise,
   listPoliticians,
   listContributors,
+  getContributor,
   updatePromise,
   listPromiseUpdates
 } from '@/api'
@@ -296,7 +297,7 @@ export default {
       },
       promiseUpdates: [],
       politicians: [],
-      contributors: [],
+      contributor: {},
       result: null,
       sourceNames,
       statusOptions,

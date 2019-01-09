@@ -107,7 +107,8 @@ export default {
       appStatus: 'loading',
       politician: null,
       promise: null,
-      promiseUpdates: []
+      promiseUpdates: [],
+      contributor: {}
     }
   },
   methods: { formatDate },
