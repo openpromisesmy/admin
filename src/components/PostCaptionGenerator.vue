@@ -41,16 +41,13 @@ export default {
     formatDate,
     toggleViewCaption () {
       this.viewCaption = !this.viewCaption
-    },
+    }
   },
   computed: {
     captionText: function () {
-      const { source_date, title, source_name, source_url, id } = this.promise
+      const { id } = this.promise
 
-      return ({// eslint-disable-next-line
-        // eslint-disable-next-line
-        // eslint-disable-next-line
-        source: `Source: ${source_name} - ${source_url}`,
+      return ({
         project_info: 'OpenPromises Malaysia is a Malaysian homegrown non-partisan project. None of our members are affiliated with any of the political parties and our intention of running this project is to increase the quality and integrity of our representatives.',
         cta: 'If you believe in what we do, share this post out.',
         hashtags: '#accountability #neutrality #checkandbalance',
@@ -70,5 +67,3 @@ export default {
   margin: 0
 }
 </style>
-
-
