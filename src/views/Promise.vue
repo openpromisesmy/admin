@@ -43,12 +43,12 @@
 
       <el-card>
         <el-row>
-          <el-col span="12">
+          <el-col :span="12">
             <p class="card-title"> <b> Deadline </b></p>
             <p> {{ formatDate(promise.deadline) || '-' }} </p>
           </el-col>
 
-          <el-col span="12">
+          <el-col :span="12">
             <p class="card-title"> <b> Status </b></p>
             <p>{{ promise.status || 'Review Needed' }}</p>
           </el-col>
@@ -57,11 +57,11 @@
 
     <el-card>
       <el-row>
-        <el-col span="12">
+        <el-col :span="12">
             <p class="card-title"> <b> State </b></p>
             <p> {{ promise.state || '-' }} </p>
         </el-col>
-        <el-col span="12">
+        <el-col :span="12">
             <p class="card-title"> <b> Category </b></p>
             <p> {{ promise.category || '-' }} </p>
         </el-col>
@@ -100,7 +100,7 @@ import { getPromise, getPolitician, listPromiseUpdates, getContributor } from '@
 import PromiseUpdates from '@/components/PromiseUpdates'
 
 export default {
-  name: 'PromiseDesktop',
+  name: 'Promise',
   components: { LoadingSpinner, PromiseUpdates },
   data () {
     return {
