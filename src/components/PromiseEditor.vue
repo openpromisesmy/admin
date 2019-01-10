@@ -362,15 +362,21 @@ export default {
         }
       })
     },
+    displaySuccessToast () {
+      const verb = this.mode === 'edit' ? 'updated' : 'submitted'
+      this.$toast.success(`promise ${verb}`, 'Success', { position: 'topRight' })
+    },
+    navigateToPromise () {
+      const id = this.result.id || this.$route.params.id
+      const route = `/promises/${id}`
+      this.$router.push(route)
+    },
     async submitPromise (promise) {
       try {
-        let verb
         if (this.mode === 'edit') {
-          verb = 'updated'
           delete promise.contributor_id
           this.result = await updatePromise(promise)
         } else {
-          verb = 'submitted'
           const postResult = await postPromise(promise)
           if (postResult instanceof Error) {
             throw postResult
@@ -378,7 +384,8 @@ export default {
           this.result = postResult
         }
         this.appStatus = 'submitted'
-        this.$toast.success(`promise ${verb}`, 'Success', { position: 'topRight'})
+        this.displaySuccessToast()
+        this.navigateToPromise()
         return
       } catch (e) {
         console.error(e)
