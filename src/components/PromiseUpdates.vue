@@ -30,7 +30,7 @@ export default {
   async created () {
     try {
       this.contributors = await listContributors()
-    } catch(e) {
+    } catch (e) {
       console.error(e)
     }
   }
