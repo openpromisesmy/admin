@@ -362,11 +362,11 @@ export default {
         }
       })
     },
-    displaySuccessToast() {
+    displaySuccessToast () {
       const verb = this.mode === 'edit' ? 'updated' : 'submitted'
-      this.$toast.success(`promise ${verb}`, 'Success', { position: 'topRight'})
+      this.$toast.success(`promise ${verb}`, 'Success', { position: 'topRight' })
     },
-    navigateToPromise() {
+    navigateToPromise () {
       const id = this.result.id || this.$route.params.id
       const route = `/promises/${id}`
       this.$router.push(route)
