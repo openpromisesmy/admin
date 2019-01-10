@@ -366,6 +366,11 @@ export default {
       const verb = this.mode === 'edit' ? 'updated' : 'submitted'
       this.$toast.success(`promise ${verb}`, 'Success', { position: 'topRight'})
     },
+    navigateToPromise() {
+      const id = this.result.id || this.$route.params.id
+      const route = `/promises/${id}`
+      this.$router.push(route)
+    },
     async submitPromise (promise) {
       try {
         if (this.mode === 'edit') {
@@ -380,6 +385,7 @@ export default {
         }
         this.appStatus = 'submitted'
         this.displaySuccessToast()
+        this.navigateToPromise()
         return
       } catch (e) {
         console.error(e)
