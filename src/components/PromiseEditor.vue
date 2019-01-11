@@ -246,10 +246,6 @@
 
         </el-form>
 
-        <el-card v-if="appStatus === ''" class="box-card">
-          <post-caption-generator :promise="promise" />
-        </el-card>
-
         <promise-updates
           v-if="mode === 'edit'"
           :promiseUpdates="promiseUpdates"
@@ -271,7 +267,6 @@ import {
   listPromiseUpdates
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
-import PostCaptionGenerator from '@/components/PostCaptionGenerator'
 import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/constants/malaysianStates'
 import sourceNames from '@/constants/sourceNames'
@@ -287,7 +282,7 @@ function parsePromiseForForm (promise) {
 
 export default {
   name: 'PromiseEditor',
-  components: { PromiseUpdates, PostCaptionGenerator, ErrorPanel },
+  components: { PromiseUpdates, ErrorPanel },
   data () {
     return {
       appStatus: 'loading',
