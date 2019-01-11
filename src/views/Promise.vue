@@ -68,9 +68,15 @@
       </el-row>
     </el-card>
 
-      <el-card>
-        <p class="card-title"> <b> Clauses </b></p>
-        <p> TODO: display clauses here </p>
+      <el-card v-if="promise.clauses">
+        <template v-if="promise.clauses.fulfilled">
+          <p class="card-title"> <b> Fulfilled Clause</b></p>
+          <p>{{ promise.clauses.fulfilled }}</p>
+        </template>
+        <template v-if="promise.clauses.broken">
+          <p class="card-title"> <b> Broken Clause</b></p>
+          <p>{{ promise.clauses.broken }}</p>
+        </template>
       </el-card>
 
       <el-card v-if="promise.cover_image" class="Promise_card_image">
