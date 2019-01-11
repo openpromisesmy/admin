@@ -136,7 +136,14 @@
                 <el-input
                   type="text"
                   placeholder="enter source url"
+                  @change="onChangeSourceUrl"
                   v-model="promise.source_url" />
+              </el-form-item>
+          </el-col>
+
+          <el-col :xs="24" :sm="12" >
+              <el-form-item label="Source Date" prop="source_date">
+            <el-date-picker type="date" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
               </el-form-item>
           </el-col>
 
@@ -144,18 +151,12 @@
               <el-form-item label="Source Name" prop="source_name">
               <el-select v-model="promise.source_name" placeholder="Select Source Name">
                 <el-option
-                  v-for="source_name in sourceNames"
-                  :key="source_name"
-                  :label="source_name"
-                  :value="source_name">
+                  v-for="source in sources"
+                  :key="source.name"
+                  :label="source.name"
+                  :value="source.name">
                 </el-option>
               </el-select>
-              </el-form-item>
-          </el-col>
-
-         <el-col :xs="24" :sm="12" >
-              <el-form-item label="Source Date" prop="source_date">
-            <el-date-picker type="date" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
               </el-form-item>
           </el-col>
 
@@ -270,9 +271,9 @@ import {
   listPromiseUpdates
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
-import { formatDate, loadCache, updateCache } from '@/utils'
+import { formatDate, loadCache, updateCache, extractHostname } from '@/utils'
 import malaysianStates from '@/constants/malaysianStates'
-import sourceNames from '@/constants/sourceNames'
+import sources from '@/constants/sources'
 import statusOptions from '@/constants/statusOptions'
 import ErrorPanel from '@/components/ErrorPanel'
 
@@ -298,7 +299,7 @@ export default {
       politicians: [],
       contributor: {},
       result: null,
-      sourceNames,
+      sources,
       statusOptions,
       malaysianStates,
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
@@ -352,6 +353,10 @@ export default {
   },
   methods: {
     formatDate,
+    onChangeSourceUrl (value) {
+      const hostname = extractHostname(value)
+      console.log(hostname)
+    },
     onSubmit () {
       try {
         this.appStatus = null
