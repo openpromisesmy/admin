@@ -131,6 +131,12 @@
             <h1>Source</h1>
           </el-col>
 
+          <el-col :xs="24" :sm="24" >
+              <el-form-item label="Source URL" prop="source_url">
+            <el-input type="text" placeholder="enter source url" v-model="promise.source_url"></el-input>
+              </el-form-item>
+          </el-col>
+
            <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Name" prop="source_name">
               <el-select v-model="promise.source_name" placeholder="Select Source Name">
@@ -147,12 +153,6 @@
          <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Date" prop="source_date">
             <el-date-picker type="date" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
-              </el-form-item>
-          </el-col>
-
-          <el-col :xs="24" :sm="24" >
-              <el-form-item label="Source URL" prop="source_url">
-            <el-input type="text" placeholder="enter source url" v-model="promise.source_url"></el-input>
               </el-form-item>
           </el-col>
 
