@@ -345,7 +345,11 @@ export default {
       return matchUrlToSourceName(this.promise.source_url)
     }
   },
-
+  watch: {
+    sourceName: function (oldValue, newValue) {
+      this.promise.source_name = this.sourceName
+    }
+  },
   methods: {
     formatDate,
     onSubmit () {
