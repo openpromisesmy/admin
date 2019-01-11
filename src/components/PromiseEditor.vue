@@ -136,27 +136,15 @@
                 <el-input
                   type="text"
                   placeholder="enter source url"
-                  @change="onChangeSourceUrl"
-                  v-model="promise.source_url" />
+                  v-model="promise.source_url">
+                  <template slot="append">{{ sourceName }}</template>
+                </el-input>
               </el-form-item>
           </el-col>
 
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Date" prop="source_date">
             <el-date-picker type="date" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
-              </el-form-item>
-          </el-col>
-
-           <el-col :xs="24" :sm="12" >
-              <el-form-item label="Source Name" prop="source_name">
-              <el-select v-model="promise.source_name" placeholder="Select Source Name">
-                <el-option
-                  v-for="source in sources"
-                  :key="source.name"
-                  :label="source.name"
-                  :value="source.name">
-                </el-option>
-              </el-select>
               </el-form-item>
           </el-col>
 
@@ -271,7 +259,7 @@ import {
   listPromiseUpdates
 } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
-import { formatDate, loadCache, updateCache, extractHostname } from '@/utils'
+import { formatDate, loadCache, updateCache, matchUrlToSourceName } from '@/utils'
 import malaysianStates from '@/constants/malaysianStates'
 import sources from '@/constants/sources'
 import statusOptions from '@/constants/statusOptions'
@@ -351,16 +339,20 @@ export default {
       console.error(e)
     }
   },
+  computed: {
+    sourceName: function () {
+      if (!this.promise.source_url) return
+      return matchUrlToSourceName(this.promise.source_url)
+    }
+  },
+
   methods: {
     formatDate,
-    onChangeSourceUrl (value) {
-      const hostname = extractHostname(value)
-      console.log(hostname)
-    },
     onSubmit () {
       try {
         this.appStatus = null
         this.error = null
+        this.promise.source_name = this.sourceName
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.appStatus = 'submitting'
@@ -398,7 +390,6 @@ export default {
         return
       } catch (e) {
         this.appStatus = 'error'
-        console.error(e)
         this.error = e.response.data
         this.$toast.error(this.error, 'Error:', { position: 'topRight' })
       }

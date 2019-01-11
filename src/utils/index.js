@@ -86,7 +86,7 @@ function extractHostname (url) {
 function matchUrlToSourceName (url) {
   const hostname = extractHostname(url)
   const result = sources.find(x => x.hostname === hostname)
-  return result.name
+  return result && result.name
 }
 
 export {
