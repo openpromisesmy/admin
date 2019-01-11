@@ -355,16 +355,18 @@ export default {
   methods: {
     formatDate,
     onSubmit () {
-      this.appStatus = null
-      this.error = null
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          this.appStatus = 'submitting'
-          this.submitPromise(this.promise)
-        } else {
-          return false
-        }
-      })
+      try {
+        this.appStatus = null
+        this.error = null
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.appStatus = 'submitting'
+            this.submitPromise(this.promise)
+          }
+        })
+      } catch(e) {
+        this.$toast.warning('There seems to be an error with validation. Reselect source date?', 'Oops', { position: 'topRight'})
+      }
     },
     displaySuccessToast () {
       const verb = this.mode === 'edit' ? 'updated' : 'submitted'
@@ -393,6 +395,7 @@ export default {
         return
       } catch (e) {
         this.appStatus = 'error'
+        console.error(e)
         this.error = e.response.data
         this.$toast.error(this.error, 'Error:', { position: 'topRight' })
       }
