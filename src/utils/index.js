@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { isEmpty, capitalize } from 'lodash'
+import sources from '@/constants/sources'
 
 function formatDate (date) {
   return date ? moment(date).format('D MMM YYYY') : '-'
@@ -67,6 +68,27 @@ async function loadCache (self, key, promise) {
   return self.$store.state[key]
 }
 
+function extractHostname (url) {
+  var hostname
+
+  if (url.indexOf('//') > -1) {
+    hostname = url.split('/')[2]
+  } else {
+    hostname = url.split('/')[0]
+  }
+
+  hostname = hostname.split(':')[0]
+  hostname = hostname.split('?')[0]
+
+  return hostname
+}
+
+function matchUrlToSourceName (url) {
+  const hostname = extractHostname(url)
+  const result = sources.find(x => x.hostname === hostname)
+  return result && result.name
+}
+
 export {
   formatDate,
   filterByStatus,
@@ -74,5 +96,7 @@ export {
   parsePromises,
   sortByName,
   updateCache,
-  loadCache
+  loadCache,
+  extractHostname,
+  matchUrlToSourceName
 }
