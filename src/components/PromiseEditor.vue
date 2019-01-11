@@ -133,7 +133,7 @@
 
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Source URL" prop="source_url">
-            <el-input type="text" placeholder="enter source url" v-model="promise.source_url"></el-input>
+                <el-input type="text" placeholder="enter source url" v-model="promise.source_url" />
               </el-form-item>
           </el-col>
 
