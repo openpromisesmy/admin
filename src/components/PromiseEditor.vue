@@ -355,6 +355,8 @@ export default {
   methods: {
     formatDate,
     onSubmit () {
+      this.appStatus = null
+      this.error = null
       this.$refs['form'].validate((valid) => {
         if (valid) {
           this.appStatus = 'submitting'
