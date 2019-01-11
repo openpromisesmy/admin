@@ -362,8 +362,8 @@ export default {
             this.submitPromise(this.promise)
           }
         })
-      } catch(e) {
-        this.$toast.warning('There seems to be an error with validation. Reselect source date?', 'Oops', { position: 'topRight'})
+      } catch (e) {
+        this.$toast.warning('There seems to be an error with validation. Reselect source date?', 'Oops', { position: 'topRight' })
       }
     },
     displaySuccessToast () {
