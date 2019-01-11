@@ -2,6 +2,10 @@
   <main id="PromiseEditor">
     <h1 id="PromiseEditor_header">{{ mode }} Promise</h1>
     <!-- TODO: extract RequestStatus, make modular/dry -->
+    <error-panel
+      v-if="appStatus === 'error'"
+      :message="error"
+    />
     <template v-if="appStatus === 'loading'">
       <p> Loading {{ mode === 'edit' ? 'promise' : '' }}...</p>
     </template>
@@ -16,9 +20,6 @@
           View Promise
         </el-button>
       </router-link>
-    </template>
-    <template v-else-if="appStatus === 'error'">
-      <p>There has been an error: {{ error }}</p>
     </template>
     <template v-else>
     <el-form v-on:submit.prevent="onSubmit" :rules="rules" label-position="left" label-width="100px" ref="form" :model="promise">
@@ -275,6 +276,7 @@ import { formatDate, loadCache, updateCache } from '@/utils'
 import malaysianStates from '@/constants/malaysianStates'
 import sourceNames from '@/constants/sourceNames'
 import statusOptions from '@/constants/statusOptions'
+import ErrorPanel from '@/components/ErrorPanel'
 
 function parsePromiseForForm (promise) {
   if (promise.clauses === undefined) {
@@ -285,7 +287,7 @@ function parsePromiseForForm (promise) {
 
 export default {
   name: 'PromiseEditor',
-  components: { PromiseUpdates, PostCaptionGenerator },
+  components: { PromiseUpdates, PostCaptionGenerator, ErrorPanel },
   data () {
     return {
       appStatus: 'loading',
@@ -353,6 +355,8 @@ export default {
   methods: {
     formatDate,
     onSubmit () {
+      this.appStatus = null
+      this.error = null
       this.$refs['form'].validate((valid) => {
         if (valid) {
           this.appStatus = 'submitting'
@@ -388,9 +392,9 @@ export default {
         this.navigateToPromise()
         return
       } catch (e) {
-        console.error(e)
         this.appStatus = 'error'
         this.error = e.response.data
+        this.$toast.error(this.error, 'Error:', { position: 'topRight' })
       }
     }
   }

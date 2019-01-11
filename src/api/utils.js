@@ -41,8 +41,7 @@ async function postSomething (path, data) {
     const response = await axios.post(API_URL + path, data)
     return response.data
   } catch (e) {
-    console.error(e)
-    return e
+    throw e
   }
 }
 
@@ -54,8 +53,7 @@ async function updateSomething (path, data) {
     const response = await axios.post(API_URL + path, data)
     return response.data
   } catch (e) {
-    console.error(e)
-    return e
+    throw e
   }
 }
 
