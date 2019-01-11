@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { isEmpty, capitalize } from 'lodash'
+import sources from '@/constants/sources'
 
 function formatDate (date) {
   return date ? moment(date).format('D MMM YYYY') : '-'
@@ -82,6 +83,12 @@ function extractHostname (url) {
   return hostname
 }
 
+function matchUrlToSourceName (url) {
+  const hostname = extractHostname(url)
+  const result = sources.find(x => x.hostname === hostname)
+  return result.name
+}
+
 export {
   formatDate,
   filterByStatus,
@@ -90,5 +97,6 @@ export {
   sortByName,
   updateCache,
   loadCache,
-  extractHostname
+  extractHostname,
+  matchUrlToSourceName
 }
