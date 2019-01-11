@@ -5,14 +5,16 @@
       <p>Use this for building new components in isolation before importing them into their parent components.</p>
     </el-header>
     <el-main>
-      <div id="test"/>
+      <error-panel message="hoora" />
     </el-main>
     <el-footer>Footer</el-footer>
   </el-container>
 </template>
 
 <script>
+import ErrorPanel from '@/components/ErrorPanel'
 export default {
+  components: { ErrorPanel },
   data () {
     return {}
   }
@@ -27,12 +29,12 @@ export default {
 }
 
 .el-main {
-  background-color: black;
+  background-color: grey;
+  width: 50%;
 }
 
 #test {
   height: 100px;
-  width: 100px;
   background-color: red;
 }
 </style>
