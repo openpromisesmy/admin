@@ -132,14 +132,16 @@
           </el-col>
 
           <el-col :xs="24" :sm="24" >
-              <el-form-item label="Source URL" prop="source_url">
-                <el-input
-                  type="text"
-                  placeholder="enter source url"
-                  v-model="promise.source_url">
-                  <template slot="append">{{ sourceName }}</template>
-                </el-input>
-              </el-form-item>
+              <el-tooltip class="item" effect="dark" content="The full link starting from https, if source name is not auto detected, let Nazreen know." placement="top">
+                <el-form-item label="Source URL" prop="source_url">
+                  <el-input
+                    type="text"
+                    placeholder="enter source url"
+                    v-model="promise.source_url">
+                    <template slot="append">{{ sourceName }}</template>
+                  </el-input>
+                </el-form-item>
+              </el-tooltip>
           </el-col>
 
           <el-col :xs="24" :sm="12" >
