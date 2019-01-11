@@ -78,6 +78,10 @@
         <img :src="promise.cover_image" />
       </el-card>
 
+      <el-card>
+        <post-caption-generator :promise="promise" />
+      </el-card>
+
       <promise-updates
           :promiseUpdates="promiseUpdates"
           :promiseID="promise.id"
@@ -98,10 +102,11 @@ import LoadingSpinner from '@/components//LoadingSpinner'
 import { formatDate } from '@/utils'
 import { getPromise, getPolitician, listPromiseUpdates, getContributor } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
+import PostCaptionGenerator from '@/components/PostCaptionGenerator'
 
 export default {
   name: 'Promise',
-  components: { LoadingSpinner, PromiseUpdates },
+  components: { LoadingSpinner, PostCaptionGenerator, PromiseUpdates },
   data () {
     return {
       appStatus: 'loading',
