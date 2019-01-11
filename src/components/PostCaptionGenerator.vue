@@ -1,47 +1,36 @@
 <template>
-  <article id="caption-text">
-    <h1>Caption Text Generator
-              <el-button type="success" v-if="!viewCaption" @click="toggleViewCaption">
-                View Caption Text
-              </el-button>
-              <el-button type="primary" v-else @click="toggleViewCaption">
-                Hide Caption Text
-                </el-button>
-            </h1>
-    <div v-if="viewCaption">
-      <p><b>PROMISE MADE:</b> {{ promise.title }}</p>
-      <p v-if="promise.description"><b>DESCRIPTION:</b> {{ promise.description }}</p>
-      <p v-if="promise.elaboration"><b>ELABORATION:</b> {{ promise.elaboration }}</p>
-      <p v-if="promise.context"><b>CONTEXT:</b> {{ promise.context }}</p>
-      <p v-if="promise.clauses.broken"><b>BROKEN CLAUSE:</b> {{ promise.clauses.broken }}</p>
-      <p>{{ captionText.project_info }}</p>
-      <p>{{ captionText.cta }}</p>
-      <p> Sources:</p>
-      <p> {{ promise.source_name }} -
-        <a :href="promise.source_url"> {{ promise.source_url }}</a>
-      </p>
-      <p>{{ captionText.hashtags }}</p>
-      <p>View this promise on our website at {{captionText.promise_url}}</p>
+  <collapsible-card title="PROMISE MADE Caption">
+    <div id="caption-text">
+        <p><b>PROMISE MADE:</b> {{ promise.title }}</p>
+        <p v-if="promise.description"><b>DESCRIPTION:</b> {{ promise.description }}</p>
+        <p v-if="promise.elaboration"><b>ELABORATION:</b> {{ promise.elaboration }}</p>
+        <p v-if="promise.context"><b>CONTEXT:</b> {{ promise.context }}</p>
+        <p v-if="promise.clauses.broken"><b>BROKEN CLAUSE:</b> {{ promise.clauses.broken }}</p>
+        <p>{{ captionText.project_info }}</p>
+        <p>{{ captionText.cta }}</p>
+        <p> Sources:</p>
+        <p> {{ promise.source_name }} -
+          <a :href="promise.source_url"> {{ promise.source_url }}</a>
+        </p>
+        <p>{{ captionText.hashtags }}</p>
+        <p>View this promise on our website at {{captionText.promise_url}}</p>
     </div>
-  </article>
+  </collapsible-card>
 </template>
 
 <script>
 import { formatDate } from '@/utils'
+import CollapsibleCard from '@/components/CollapsibleCard'
+
 export default {
-  data: () => ({
-    viewCaption: false
-  }),
+  components: { CollapsibleCard },
   props: {
     promise: {
       type: Object
     }
   },
   methods: {
-    formatDate,
-    toggleViewCaption () {
-      this.viewCaption = !this.viewCaption
-    }
+    formatDate
   },
   computed: {
     captionText: function () {
@@ -58,12 +47,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #caption-text{
   margin: 20px
-}
-
-#caption-text > h2 {
-  margin: 0
 }
 </style>
