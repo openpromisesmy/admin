@@ -151,6 +151,10 @@ export default {
         this.$toast.warning('There seems to be an error with validation.', 'Oops', { position: 'topRight' })
       }
     },
+    displaySuccessToast () {
+      const verb = this.mode === 'edit' ? 'updated' : 'submitted'
+      this.$toast.success(`politician ${verb}`, 'Success', { position: 'topRight' })
+    },
     async submitPolitician (politician) {
       try {
         if (this.mode === 'new') {
@@ -167,6 +171,7 @@ export default {
           } else {
             this.appStatus = 'submitted'
           }
+          this.displaySuccessToast()
         }
       } catch (e) {
         console.error(e)
