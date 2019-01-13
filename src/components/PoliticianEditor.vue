@@ -105,7 +105,6 @@ export default {
         phone_number: [{ type: 'string', trigger: 'blur' }],
         facebook_url: [{ type: 'url', trigger: 'blur' }],
         twitter_url: [{ type: 'url', trigger: 'blur' }],
-        name: [{ required: true, message: 'Please input politician name', trigger: 'blur' }],
         live: [{ required: true, type: 'boolean', message: 'Please select whether politician is live.', trigger: 'blur' }],
         name: [{ required: true, message: 'Please input politician name', trigger: 'blur' }],
         primary_position: [{ required: true, message: 'primary position is required', trigger: 'blur' }],
@@ -175,9 +174,9 @@ export default {
             throw res.response.data
           }
         }
-          this.appStatus = 'submitted'
-          this.displaySuccessToast()
-          this.navigateToPolitician()
+        this.appStatus = 'submitted'
+        this.displaySuccessToast()
+        this.navigateToPolitician()
       } catch (e) {
         console.error(e)
         this.appStatus = 'error'
