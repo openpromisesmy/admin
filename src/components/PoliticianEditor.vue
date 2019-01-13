@@ -155,22 +155,29 @@ export default {
       const verb = this.mode === 'edit' ? 'updated' : 'submitted'
       this.$toast.success(`politician ${verb}`, 'Success', { position: 'topRight' })
     },
+    navigateToPolitician () {
+      const id = this.result.id || this.$route.params.id
+      const route = `/politicians/${id}`
+      this.$router.push(route)
+    },
     async submitPolitician (politician) {
       try {
         if (this.mode === 'new') {
           const res = await postPolitician(politician)
+          this.result = res
           if (!res.id) {
             throw res.response.data
           }
         } else if (this.mode === 'edit') {
           const res = await updatePolitician(politician)
+          this.result = res
           if (res !== '') {
             throw res.response.data
           }
         }
           this.appStatus = 'submitted'
           this.displaySuccessToast()
-
+          this.navigateToPolitician()
       } catch (e) {
         console.error(e)
         this.appStatus = 'error'
