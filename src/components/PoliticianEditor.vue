@@ -122,6 +122,9 @@ export default {
         this.appStatus = 'loading'
         const id = this.$route.path.split('/').slice(-2)[0]
         const politician = await getPolitician(id)
+        if (!politician.contact_details) {
+          politician.contact_details = {}
+        }
         this.politician = politician
         this.appStatus = ''
       } else {
