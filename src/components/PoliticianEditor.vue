@@ -164,7 +164,8 @@ export default {
 }
 
 .PoliticianEditor_header {
-  text-transform: capitalize
+  text-transform: capitalize;
+  text-align: center
 }
 
 </style>
