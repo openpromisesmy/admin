@@ -1,6 +1,10 @@
 <template>
   <main id="PoliticianEditor">
     <h1 class="PoliticianEditor_header">{{ mode }} Politician</h1>
+    <error-panel
+      v-if="appStatus === 'error'"
+      :message="error"
+    />
     <template v-if="appStatus === 'loading'">
       <p>Loading ...</p>
     </template>
@@ -65,11 +69,15 @@
 
 <script>
 import { postPolitician, getPolitician, updatePolitician } from '@/api'
+import ErrorPanel from '@/components/ErrorPanel'
+
 export default {
   name: 'PoliticianEditor',
+  components: { ErrorPanel },
   data () {
     return {
       appStatus: 'loading',
+      error: null,
       mode: '',
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       politician: {
@@ -113,14 +121,20 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          this.appStatus = 'submitting'
-          this.submitPolitician(this.politician)
-        } else {
-          return false
-        }
-      })
+      try {
+        this.appStatus = null
+        this.error = null
+        this.$refs['form'].validate((valid) => {
+          if (valid) {
+            this.appStatus = 'submitting'
+            this.submitPolitician(this.politician)
+          } else {
+            return false
+          }
+        })
+      } catch (e) {
+        this.$toast.warning('There seems to be an error with validation.', 'Oops', { position: 'topRight' })
+      }
     },
     async submitPolitician (politician) {
       try {
@@ -141,6 +155,9 @@ export default {
         }
       } catch (e) {
         console.error(e)
+        this.appStatus = 'error'
+        this.error = e.response.data
+        this.$toast.error(this.error, 'Error:', { position: 'topRight' })
       }
     }
   }
