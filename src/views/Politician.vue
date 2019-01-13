@@ -9,14 +9,12 @@
           <politician-details v-bind="{ politician }" />
         </el-col>
         <el-col :span="8">
-          <router-link :to="'/promises/new?politician_id=' + politician.id">
-              <el-button type="primary">
-              New Promise
-              </el-button>
-            </router-link>
+          <contact-details v-bind="politician.contact_details"/>
+        </el-col>
+      </el-row>
+      <el-row>
           <promise-stats-widget v-if="promises !== 'loading'"
           :promises="promises"/>
-        </el-col>
       </el-row>
     </template>
     <template v-if="promises === 'loading'">
@@ -37,10 +35,11 @@ import LoadingSpinner from '@/components//LoadingSpinner'
 import PoliticianDetails from '@/components/PoliticianDetails'
 import PromiseStatsWidget from '@/components/PromiseStatsWidget'
 import PromisesTable from '@/components/PromisesTable'
+import ContactDetails from '@/components/ContactDetails'
 
 export default {
   name: 'Politician',
-  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget, PromisesTable },
+  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget, PromisesTable, ContactDetails },
   data () {
     return {
       politician: 'loading',
