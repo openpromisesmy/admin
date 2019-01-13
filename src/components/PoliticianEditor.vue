@@ -62,6 +62,21 @@
             <h1>Contact Details</h1>
           </el-col>
 
+          <el-col>
+              <el-form-item label="Email" prop="email">
+                <el-input type="text" placeholder="enter email" v-model="politician.contact_details.email"></el-input>
+              </el-form-item>
+              <el-form-item label="Phone number" prop="phone_number">
+                <el-input type="text" placeholder="enter phone number" v-model="politician.contact_details.phone_number"></el-input>
+              </el-form-item>
+              <el-form-item label="Facebook Link" prop="facebook_url">
+                <el-input type="text" placeholder="enter facebook url" v-model="politician.contact_details.facebook_url"></el-input>
+              </el-form-item>
+              <el-form-item label="Twitter Link" prop="twitter_url">
+                <el-input type="text" placeholder="enter twitter url" v-model="politician.contact_details.twitter_url"></el-input>
+              </el-form-item>
+          </el-col>
+
         </el-row>
 
           <el-button v-on:click="onSubmit"> Submit </el-button>
@@ -83,12 +98,17 @@ export default {
       mode: '',
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       politician: {
-        contributor_id: this.$store.state.user.id
+        contributor_id: this.$store.state.user.id,
+        contact_details: {}
       },
       rules: {
+        email: [{ type: 'string', trigger: 'blur' }],
+        phone_number: [{ type: 'string', trigger: 'blur' }],
+        facebook_url: [{ type: 'url', trigger: 'blur' }],
+        twitter_url: [{ type: 'url', trigger: 'blur' }],
+        name: [{ required: true, message: 'Please input politician name', trigger: 'blur' }],
         live: [{ required: true, type: 'boolean', message: 'Please select whether politician is live.', trigger: 'blur' }],
         name: [{ required: true, message: 'Please input politician name', trigger: 'blur' }],
-        // contributor_id: [{ required: true, type: 'text', message: 'contributor_id is required', trigger: 'blur' }],
         primary_position: [{ required: true, message: 'primary position is required', trigger: 'blur' }],
         brief: [{ required: true, message: 'brief is required', trigger: 'blur' }],
         status: [{ required: true, message: 'Please enter status', trigger: 'blur' }],
