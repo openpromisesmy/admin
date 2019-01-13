@@ -2,8 +2,8 @@
   <div class="container">
     <el-row>
       <el-col :span="16">
-        <h1>{{ promises.length > 0 ? `${promises.length}` : '' }} Most Recent Promises</h1>
-        <p>Based on source date</p>
+        <h1>{{ promises.length > 0 ? `${promises.length}` : '' }} Recently Submited/Updated Promises</h1>
+        <p>Based on updated_at date</p>
       </el-col>
       <el-col :span="8">
         <router-link to="/promises/new">
@@ -37,7 +37,7 @@ export default {
       pageNumber: 1,
       query: {
         pageSize: 25,
-        orderBy: 'source_date',
+        orderBy: 'updated_at',
         reverse: true
       },
       promises: [],

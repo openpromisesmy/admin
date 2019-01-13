@@ -28,7 +28,7 @@ export default {
       activeIndex: '0',
       navigation: [
         { text: 'Home', url: '/' },
-        { text: 'Promises', url: '/promises' },
+        { text: 'Latest Promises', url: '/promises' },
         { text: 'Review Needed', url: '/promises/review-needed' },
         { text: 'Politicians', url: '/politicians' },
         { text: 'Contributors', url: '/contributors' },
