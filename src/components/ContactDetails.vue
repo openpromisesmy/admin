@@ -1,10 +1,10 @@
 <template>
-  <section>
-    <p><b>Email</b> {{ email }} </p>
-    <p><b>Phone Number</b> {{ phone_number }} </p>
-    <p><b>Facebook</b> {{ facebook_url }} </p>
-    <p><b>Twitter</b> {{ twitter_url }} </p>
-  </section>
+  <el-card>
+    <p><b>Email:</b> {{ email }} </p>
+    <p><b>Phone Number:</b> {{ phone_number }} </p>
+    <p><b>Facebook:</b> <a :href="facebook_url"> {{ facebook_url }} </a> </p>
+    <p><b>Twitter:</b> <a :href="twitter_url"> {{ twitter_url }} </a> </p>
+  </el-card>
 </template>
 
 <script>
