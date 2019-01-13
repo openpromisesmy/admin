@@ -159,20 +159,18 @@ export default {
       try {
         if (this.mode === 'new') {
           const res = await postPolitician(politician)
-          if (res.id) {
-            this.appStatus = 'submitted'
-          } else {
-            return alert(res.response.data)
+          if (!res.id) {
+            throw res.response.data
           }
         } else if (this.mode === 'edit') {
           const res = await updatePolitician(politician)
           if (res !== '') {
-            return alert(res.response.data)
-          } else {
-            this.appStatus = 'submitted'
+            throw res.response.data
           }
-          this.displaySuccessToast()
         }
+          this.appStatus = 'submitted'
+          this.displaySuccessToast()
+
       } catch (e) {
         console.error(e)
         this.appStatus = 'error'
