@@ -36,25 +36,25 @@
 
           <el-col>
               <el-form-item label="Name" prop="name">
-            <el-input type="text" placeholder="enter name" v-model="politician.name"></el-input>
+                <el-input type="text" placeholder="enter name" v-model="politician.name"></el-input>
               </el-form-item>
           </el-col>
 
           <el-col>
               <el-form-item label="Primary Position" prop="primary_position">
-            <el-input type="text" placeholder="enter primary position" v-model="politician.primary_position"></el-input>
+                <el-input type="text" placeholder="enter primary position" v-model="politician.primary_position"></el-input>
               </el-form-item>
           </el-col>
 
           <el-col>
               <el-form-item label="Brief" prop="brief">
-            <el-input type="textarea" placeholder="enter brief" v-model="politician.brief"></el-input>
+                <el-input type="textarea" placeholder="enter brief" v-model="politician.brief"></el-input>
               </el-form-item>
           </el-col>
 
           <el-col>
               <el-form-item label="Profile Image" prop="profile_image">
-            <el-input type="text" placeholder="enter profile image link" v-model="politician.profile_image"></el-input>
+                <el-input type="text" placeholder="enter profile image link" v-model="politician.profile_image"></el-input>
               </el-form-item>
           </el-col>
 
