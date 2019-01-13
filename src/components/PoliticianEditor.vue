@@ -98,7 +98,6 @@ export default {
       mode: '',
       liveOptions: [{ label: 'true', value: true }, { label: 'false', value: false }],
       politician: {
-        contributor_id: this.$store.state.user.id,
         contact_details: {}
       },
       rules: {
@@ -113,15 +112,6 @@ export default {
         brief: [{ required: true, message: 'brief is required', trigger: 'blur' }],
         status: [{ required: true, message: 'Please enter status', trigger: 'blur' }],
         profile_image: [{ required: true, type: 'url', message: 'Please indicate the profile image url', trigger: 'blur' }]
-      }
-    }
-  },
-  computed: {
-    contributor: function () {
-      if (this.contributors.length > 0) {
-        const contributor = this.contributors.find(contributor => contributor.id === this.politician.contributor_id)
-        if (!contributor) return
-        return contributor.name + ' - ' + contributor.email
       }
     }
   },
