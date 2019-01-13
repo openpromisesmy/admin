@@ -30,6 +30,10 @@
               </el-form-item>
           </el-col>
 
+          <el-col>
+            <h1>Main Information</h1>
+          </el-col>
+
           <el-col :xs="24" :sm="24" >
               <el-form-item label="Name" prop="name">
             <el-input type="text" placeholder="enter name" v-model="politician.name"></el-input>
@@ -52,6 +56,10 @@
               <el-form-item label="Profile Image" prop="profile_image">
             <el-input type="text" placeholder="enter profile image link" v-model="politician.profile_image"></el-input>
               </el-form-item>
+          </el-col>
+
+          <el-col>
+            <h1>Contact Details</h1>
           </el-col>
 
         </el-row>
