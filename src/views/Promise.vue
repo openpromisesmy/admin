@@ -21,7 +21,8 @@
 
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
-        <h2>{{ promise.title }}</h2>
+        <h2 id="promiseTitle">{{ promise.title }}</h2>
+        <button class="el-button el-button--success" @click="copyTitle">Copy Title</button>
         <p class="Promise_Mobile_date">{{ formatDate(promise.source_date) }}</p>
       </el-card>
 
@@ -105,7 +106,7 @@
 
 <script>
 import LoadingSpinner from '@/components//LoadingSpinner'
-import { formatDate } from '@/utils'
+import { formatDate, copyTitle } from '@/utils'
 import { getPromise, getPolitician, listPromiseUpdates, getContributor } from '@/api'
 import PromiseUpdates from '@/components/PromiseUpdates'
 import PostCaptionGenerator from '@/components/PostCaptionGenerator'
@@ -122,7 +123,7 @@ export default {
       contributor: {}
     }
   },
-  methods: { formatDate },
+  methods: { formatDate, copyTitle },
   computed: {
     displayedValues () {
       let data = { ...this.promise }
