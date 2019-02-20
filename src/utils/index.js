@@ -90,7 +90,6 @@ function matchUrlToSourceName (url) {
 }
 
 function copyById (id) {
-  console.log(id)
   let text = document.getElementById(id)
   let range = document.createRange()
   range.selectNode(text)
