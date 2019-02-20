@@ -89,8 +89,9 @@ function matchUrlToSourceName (url) {
   return result && result.name
 }
 
-function copyTitle () {
-  let text = document.getElementById('promiseTitle')
+function copyById (id) {
+  console.log(id)
+  let text = document.getElementById(id)
   let range = document.createRange()
   range.selectNode(text)
   let selection = window.getSelection()
@@ -114,5 +115,5 @@ export {
   loadCache,
   extractHostname,
   matchUrlToSourceName,
-  copyTitle
+  copyById
 }
