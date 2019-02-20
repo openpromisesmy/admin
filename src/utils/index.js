@@ -89,6 +89,21 @@ function matchUrlToSourceName (url) {
   return result && result.name
 }
 
+function copyById (id) {
+  let text = document.getElementById(id)
+  let range = document.createRange()
+  range.selectNode(text)
+  let selection = window.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
+  try {
+    document.execCommand('copy')
+  } catch (err) {
+    console.log('unable to copy')
+  }
+  selection.removeAllRanges()
+}
+
 export {
   formatDate,
   filterByStatus,
@@ -98,5 +113,6 @@ export {
   updateCache,
   loadCache,
   extractHostname,
-  matchUrlToSourceName
+  matchUrlToSourceName,
+  copyById
 }
