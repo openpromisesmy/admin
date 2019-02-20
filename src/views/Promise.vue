@@ -22,7 +22,7 @@
       <el-card class="Promise_Mobile_hero">
         <p class="card-title">{{ politician.name }}</p>
         <h2 id="promiseTitle">{{ promise.title }}</h2>
-        <button class="el-button el-button--success" @click="copyById('promiseTitle')">Copy Title</button>
+        <button class="el-button" @click="copyTitle()">Copy Title</button>
         <p class="Promise_Mobile_date">{{ formatDate(promise.source_date) }}</p>
       </el-card>
 
@@ -123,7 +123,13 @@ export default {
       contributor: {}
     }
   },
-  methods: { formatDate, copyById },
+  methods: {
+    formatDate,
+    copyTitle () {
+      copyById('promiseTitle')
+      this.$toast.success(`Title copied to your clipboad! - ${this.promise.title}`)
+    }
+  },
   computed: {
     displayedValues () {
       let data = { ...this.promise }
