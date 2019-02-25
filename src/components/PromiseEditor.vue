@@ -301,7 +301,7 @@ export default {
         politician_id: [{ required: true, message: 'politician_id is required', trigger: 'blur' }],
         category: [{ required: true, message: 'Please enter category', trigger: 'blur' }],
         date: [{ message: 'Please select a date', trigger: 'blur' }],
-        source_date: [{ required: true, type: 'date', message: 'Please select a source date', trigger: 'blur' }],
+        source_date: [{ required: true, type: 'string', message: 'Please select a source date', trigger: 'blur' }],
         source_url: [{ required: true, type: 'url', message: 'Please indicate a source url', trigger: 'blur' }],
         source_name: [{ required: true, message: 'Please indicate a source name', trigger: 'blur' }],
         status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
