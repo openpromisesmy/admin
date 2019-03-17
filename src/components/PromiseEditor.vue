@@ -146,7 +146,7 @@
 
           <el-col :xs="24" :sm="12" >
               <el-form-item label="Source Date" prop="source_date">
-            <el-date-picker type="date" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
+            <el-date-picker type="date" value-format="yyyy-MM-dd" placeholder="enter source date" v-model="promise.source_date"></el-date-picker>
               </el-form-item>
           </el-col>
 
