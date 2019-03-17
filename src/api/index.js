@@ -49,6 +49,28 @@ const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${da
 
 const getGeneralStats = () => getSomething('/stats/general_stats')
 
+const mockLists = [
+  {
+    id: 'm54ertdfgcv',
+    title: 'Student Aids',
+    promise_ids: [
+      'CeX1MLvSq7IVx3nI1CgI',
+      'U5zwNgRbdu0NZRjFLoBF',
+      'o3lyMjqZrCALP6HSUZFS'
+    ]
+  },
+  {
+    id: 'ytughjbsdf8t7yiu',
+    title: 'Broadband service in Malaysia',
+    promise_ids: [
+      'XjGLsRtJ9spk5VeBidDl',
+      'bGvbmCPqIcpWQIZAp92C'
+    ]
+  }
+]
+
+const listLists = () => mockLists
+
 export {
   googleSignIn,
   googleLogout,
@@ -68,5 +90,6 @@ export {
   updatePromise,
   updatePromiseUpdate,
   updatePolitician,
-  getGeneralStats
+  getGeneralStats,
+  listLists
 }

@@ -1,0 +1,63 @@
+<template>
+  <div class="container">
+
+    <router-link to="/lists/new">
+      <el-button type="primary" class="add-button">Add List</el-button>
+    </router-link>
+
+    <template v-if="appStatus === 'loading'">
+      <p>Loading lists...This will take 2-4 seconds.</p>
+      <LoadingSpinner />
+      </template>
+    <template v-else>
+      <el-table
+        :data="lists"
+        border
+        style="width: 100%">
+        <el-table-column
+          prop="title"
+          label="Title"
+        >
+      </el-table-column>
+      </el-table>
+    </template>
+  </div>
+</template>
+
+<script>
+import { listLists } from '@/api'
+import LoadingSpinner from '@/components//LoadingSpinner'
+import queryString from 'query-string'
+
+export default {
+  name: 'Lists',
+  data () {
+    return {
+      appStatus: '',
+      lists: []
+    }
+  },
+  components: { LoadingSpinner },
+  async created () {
+    try {
+      this.appStatus = 'loading'
+      this.lists = await this.listListsHandler(this.queryString)
+      this.appStatus = ''
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  methods: {
+    async listListsHandler () {
+      this.appStatus = 'loading'
+
+      return await listLists()
+
+    }
+  }
+}
+
+</script>
+
+<style scoped>
+</style>

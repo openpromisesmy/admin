@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 import Promises from '@/views/Promises'
+import Lists from '@/views/Lists'
 import Politicians from '@/views/Politicians'
 import Politician from '@/views/Politician'
 import Contributors from '@/views/Contributors'
@@ -51,6 +52,12 @@ const routes = [
     path: '/politicians',
     name: 'Politicians',
     component: Politicians,
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/lists',
+    name: 'Lists',
+    component: Lists,
     beforeEnter: ifAuthenticated
   },
   {

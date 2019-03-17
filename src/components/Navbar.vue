@@ -30,6 +30,7 @@ export default {
         { text: 'Home', url: '/' },
         { text: 'Latest Promises', url: '/promises' },
         { text: 'Review Needed', url: '/promises/review-needed' },
+        { text: 'Lists', url: '/lists' },
         { text: 'Politicians', url: '/politicians' },
         { text: 'Contributors', url: '/contributors' },
         { text: 'Stats', url: '/stats' }
