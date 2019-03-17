@@ -71,6 +71,8 @@ const mockLists = [
 
 const listLists = () => mockLists
 
+const getList = id => mockLists.find(x => x.id === id)
+
 export {
   googleSignIn,
   googleLogout,
@@ -91,5 +93,6 @@ export {
   updatePromiseUpdate,
   updatePolitician,
   getGeneralStats,
-  listLists
+  listLists,
+  getList
 }
