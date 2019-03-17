@@ -13,11 +13,17 @@
       <el-table
         :data="lists"
         border
-        style="width: 100%">
+        style="width: 100%"
+      >
         <el-table-column
           prop="title"
           label="Title"
         >
+          <template slot-scope="scope">
+            <router-link :to="'/lists/' + scope.row.id">
+            <p>{{ scope.row.title }}</p>
+            </router-link>
+          </template>
       </el-table-column>
       </el-table>
     </template>
