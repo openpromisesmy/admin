@@ -29,8 +29,8 @@ export default {
     try {
       this.appStatus = 'loading'
       this.list = await this.getListHandler(this.$route.params.id)
-      this.list.promise_ids.forEach(async promise_id => {
-        this.promises.push(await getPromise(promise_id))
+      this.list.promise_ids.forEach(async promiseId => {
+        this.promises.push(await getPromise(promiseId))
       })
       this.appStatus = ''
     } catch (e) {
@@ -39,10 +39,10 @@ export default {
   },
   methods: {
     async getListHandler (id) {
-      return await getList(id)
+      return getList(id)
     },
     async getPromiseHandler (id) {
-      return await getPromise(id)
+      return getPromise(id)
     }
   }
 }

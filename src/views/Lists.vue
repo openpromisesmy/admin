@@ -33,7 +33,6 @@
 <script>
 import { listLists } from '@/api'
 import LoadingSpinner from '@/components//LoadingSpinner'
-import queryString from 'query-string'
 
 export default {
   name: 'Lists',
@@ -55,7 +54,7 @@ export default {
   },
   methods: {
     async listListsHandler () {
-      return await listLists()
+      return listLists()
     }
   }
 }
