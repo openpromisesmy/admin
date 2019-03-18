@@ -55,10 +55,7 @@ export default {
   },
   methods: {
     async listListsHandler () {
-      this.appStatus = 'loading'
-
       return await listLists()
-
     }
   }
 }
