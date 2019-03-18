@@ -19,7 +19,7 @@ export default {
   name: 'List',
   data () {
     return {
-      appStatus: '',
+      appStatus: 'loading',
       list: {},
       promises: []
     }
@@ -27,7 +27,6 @@ export default {
   components: { LoadingSpinner, PromisesTable },
   async created () {
     try {
-      this.appStatus = 'loading'
       this.list = await this.getListHandler(this.$route.params.id)
       this.list.promise_ids.forEach(async promiseId => {
         this.promises.push(await getPromise(promiseId))
