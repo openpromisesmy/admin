@@ -14,7 +14,6 @@
 import { getList, getPromise } from '@/api'
 import PromisesTable from '@/components/PromisesTable'
 import LoadingSpinner from '@/components//LoadingSpinner'
-import queryString from 'query-string'
 
 export default {
   name: 'List',
