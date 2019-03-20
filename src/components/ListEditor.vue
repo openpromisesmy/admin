@@ -43,7 +43,7 @@
           <el-col :xs="24" :sm="8">
             <p>
               <b>Contributor:</b>
-              {{ contributor.email || list.contributor.email }}
+              {{ contributor.email }}
             </p>
           </el-col>
 
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { postList, getList, updateList } from '@/api'
+import { postList, getList, updateList, getContributor } from '@/api'
 import { formatDate } from '@/utils'
 import ErrorPanel from '@/components/ErrorPanel'
 
@@ -116,6 +116,7 @@ export default {
 
       if (this.mode === 'edit') {
         this.list = await getList(this.$route.params.id)
+        this.contributor = await getContributor(this.list.contributor_id)
       } else {
         this.list.contributor_id = this.$store.state.user.id
         this.contributor.email = this.$store.state.user.email
