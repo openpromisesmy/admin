@@ -8,6 +8,8 @@ import {
   googleSignIn,
   googleLogout
 } from './google'
+import mocks from '../mocks'
+const mockLists = mocks.lists
 
 const PROMISES_PATH = '/promises/'
 const PROMISE_UPDATES_PATH = '/promiseUpdates/'
@@ -49,29 +51,11 @@ const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${da
 
 const getGeneralStats = () => getSomething('/stats/general_stats')
 
-const mockLists = [
-  {
-    id: 'm54ertdfgcv',
-    title: 'Student Aids',
-    promise_ids: [
-      'CeX1MLvSq7IVx3nI1CgI',
-      'U5zwNgRbdu0NZRjFLoBF',
-      'o3lyMjqZrCALP6HSUZFS'
-    ]
-  },
-  {
-    id: 'ytughjbsdf8t7yiu',
-    title: 'Broadband service in Malaysia',
-    promise_ids: [
-      'XjGLsRtJ9spk5VeBidDl',
-      'bGvbmCPqIcpWQIZAp92C'
-    ]
-  }
-]
-
+// TODO: replace with real
 const listLists = () => mockLists
-
 const getList = id => mockLists.find(x => x.id === id)
+const postList = data => ({ id: mockLists[0].id })
+const updateList = data => ({ id: mockLists[1].id })
 
 export {
   googleSignIn,
@@ -94,5 +78,7 @@ export {
   updatePolitician,
   getGeneralStats,
   listLists,
-  getList
+  getList,
+  postList,
+  updateList
 }

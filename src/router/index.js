@@ -11,6 +11,7 @@ import Auth from '@/components/Auth'
 import Account from '@/views/Account'
 import PromiseEditor from '@/components/PromiseEditor'
 import PoliticianEditor from '@/components/PoliticianEditor'
+import ListEditor from '@/components/ListEditor'
 import Stats from '@/views/Stats'
 import Promise from '@/views/Promise'
 import ReviewNeeded from '@/views/ReviewNeeded'
@@ -62,9 +63,21 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
+    path: '/lists/new',
+    name: 'New List',
+    component: ListEditor,
+    beforeEnter: ifAuthenticated
+  },
+  {
     path: '/lists/:id',
     name: 'List',
     component: List,
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/lists/:id/edit',
+    name: 'Edit List',
+    component: ListEditor,
     beforeEnter: ifAuthenticated
   },
   {
