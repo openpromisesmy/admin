@@ -69,9 +69,11 @@ const mockLists = [
   }
 ]
 
+// TODO: replace with real
 const listLists = () => mockLists
-
 const getList = id => mockLists.find(x => x.id === id)
+const postList = data => ({ id: mockLists[0].id })
+const updateList = data => ({ id: mockLists[1].id })
 
 export {
   googleSignIn,
@@ -94,5 +96,7 @@ export {
   updatePolitician,
   getGeneralStats,
   listLists,
-  getList
+  getList,
+  postList,
+  updateList
 }
