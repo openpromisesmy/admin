@@ -32,6 +32,9 @@ const mutations = {
   },
   cachePromises (state, promises) {
     state.promises = [...promises]
+  },
+  cacheLists (state, lists) {
+    state.lists = [...lists]
   }
 }
 
