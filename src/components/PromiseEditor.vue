@@ -115,6 +115,19 @@
           </el-col>
 
           <el-col>
+            <el-form-item label="Lists" prop="list_ids">
+              <el-select v-model="promise.list_ids" multiple placeholder="Select">
+                <el-option
+                  v-for="list in lists"
+                  :key="list.value"
+                  :label="list.title"
+                  :value="list.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+
+          <el-col>
             <h1>Main Information</h1>
           </el-col>
 
