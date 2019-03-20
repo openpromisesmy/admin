@@ -75,6 +75,12 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
+    path: '/lists/:id/edit',
+    name: 'Edit List',
+    component: ListEditor,
+    beforeEnter: ifAuthenticated
+  },
+  {
     path: '/contributors',
     name: 'Contributors',
     component: Contributors,
