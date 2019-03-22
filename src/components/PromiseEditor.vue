@@ -368,33 +368,33 @@ import {
   updatePromise,
   listPromiseUpdates,
   listLists
-} from "@/api";
-import PromiseUpdates from "@/components/PromiseUpdates";
+} from '@/api'
+import PromiseUpdates from '@/components/PromiseUpdates'
 import {
   formatDate,
   loadCache,
   updateCache,
   matchUrlToSourceName
-} from "@/utils";
-import malaysianStates from "@/constants/malaysianStates";
-import sources from "@/constants/sources";
-import statusOptions from "@/constants/statusOptions";
-import ErrorPanel from "@/components/ErrorPanel";
+} from '@/utils'
+import malaysianStates from '@/constants/malaysianStates'
+import sources from '@/constants/sources'
+import statusOptions from '@/constants/statusOptions'
+import ErrorPanel from '@/components/ErrorPanel'
 
-function parsePromiseForForm(promise) {
+function parsePromiseForForm (promise) {
   if (promise.clauses === undefined) {
-    promise.clauses = {};
+    promise.clauses = {}
   }
-  return promise;
+  return promise
 }
 
 export default {
-  name: "PromiseEditor",
+  name: 'PromiseEditor',
   components: { PromiseUpdates, ErrorPanel },
-  data() {
+  data () {
     return {
-      appStatus: "loading",
-      mode: "",
+      appStatus: 'loading',
+      mode: '',
       error: undefined,
       promise: {
         clauses: {}
@@ -408,190 +408,195 @@ export default {
       statusOptions,
       malaysianStates,
       liveOptions: [
-        { label: "true", value: true },
-        { label: "false", value: false }
+        { label: 'true', value: true },
+        { label: 'false', value: false }
       ],
       rules: {
-        list_ids: [{ type: "array", trigger: "blur" }],
+        list_ids: [{ type: 'array', trigger: 'blur' }],
         live: [
           {
             required: true,
-            type: "boolean",
-            message: "Please select whether promise is live.",
-            trigger: "blur"
+            type: 'boolean',
+            message: 'Please select whether promise is live.',
+            trigger: 'blur'
           }
         ],
         title: [
           {
             required: true,
-            message: "Please select a politician",
-            trigger: "blur"
+            message: 'Please select a politician',
+            trigger: 'blur'
           }
         ],
         quote: [
           {
             required: true,
-            message: "Please paste exact words from the source",
-            trigger: "blur"
+            message: 'Please paste exact words from the source',
+            trigger: 'blur'
           }
         ],
         contributor_id: [
           {
             required: true,
-            type: "text",
-            message: "contributor_id is required",
-            trigger: "blur"
+            type: 'text',
+            message: 'contributor_id is required',
+            trigger: 'blur'
           }
         ],
         politician_id: [
           {
             required: true,
-            message: "politician_id is required",
-            trigger: "blur"
+            message: 'politician_id is required',
+            trigger: 'blur'
           }
         ],
         category: [
-          { required: true, message: "Please enter category", trigger: "blur" }
+          { required: true, message: 'Please enter category', trigger: 'blur' }
         ],
-        date: [{ message: "Please select a date", trigger: "blur" }],
+        date: [{ message: 'Please select a date', trigger: 'blur' }],
         source_date: [
           {
             required: true,
-            type: "string",
-            message: "Please select a source date",
-            trigger: "blur"
+            type: 'string',
+            message: 'Please select a source date',
+            trigger: 'blur'
           }
         ],
         source_url: [
           {
             required: true,
-            type: "url",
-            message: "Please indicate a source url",
-            trigger: "blur"
+            type: 'url',
+            message: 'Please indicate a source url',
+            trigger: 'blur'
           }
         ],
         source_name: [
           {
             required: true,
-            message: "Please indicate a source name",
-            trigger: "blur"
+            message: 'Please indicate a source name',
+            trigger: 'blur'
           }
         ],
-        status: [{ message: "Please indicate promise status", trigger: "blur" }]
+        status: [{ message: 'Please indicate promise status', trigger: 'blur' }]
       }
-    };
+    }
   },
-  async created() {
+  async created () {
     try {
-      this.mode = this.$route.path.split("/").slice(-1)[0];
+      this.mode = this.$route.path.split('/').slice(-1)[0]
       // TODO: use Promise.all to make faster?
       this.politicians = await loadCache(
         this,
-        "politicians",
+        'politicians',
         listPoliticians()
-      );
-      this.lists = await loadCache(this, "lists", listLists());
+      )
+      this.lists = await loadCache(this, 'lists', listLists())
 
       if (this.$route.query) {
         if (this.$route.query.politician_id && !this.promise.politician_id) {
-          this.promise.politician_id = this.$route.query.politician_id;
+          this.promise.politician_id = this.$route.query.politician_id
         }
       }
 
-      if (this.mode === "edit") {
-        const promise = await getPromise(this.$route.params.id);
-        this.promise = parsePromiseForForm(promise);
+      if (this.mode === 'edit') {
+        const promise = await getPromise(this.$route.params.id)
+        this.promise = parsePromiseForForm(promise)
         this.promiseUpdates = await listPromiseUpdates(
           `?promise_id=${this.$route.params.id}&orderBy=source_date`
-        );
-        this.contributor = await getContributor(this.promise.contributor_id);
+        )
+        this.contributor = await getContributor(this.promise.contributor_id)
       } else {
-        this.promise.contributor_id = this.$store.state.user.id;
+        this.promise.contributor_id = this.$store.state.user.id
       }
-      this.appStatus = "";
+      this.appStatus = ''
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   },
-  async mounted() {
+  async mounted () {
     try {
       this.politicians = await updateCache(
         this,
-        "politicians",
+        'politicians',
         listPoliticians()
-      );
+      )
       this.contributors = await updateCache(
         this,
-        "contributors",
+        'contributors',
         listContributors()
-      );
+      )
+      this.politicians = await updateCache(
+        this,
+        'lists',
+        listLists()
+      )
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   },
   computed: {
-    sourceName: function() {
-      if (!this.promise.source_url) return;
-      return matchUrlToSourceName(this.promise.source_url);
+    sourceName: function () {
+      if (!this.promise.source_url) return
+      return matchUrlToSourceName(this.promise.source_url)
     }
   },
   watch: {
-    sourceName: function(oldValue, newValue) {
-      this.promise.source_name = this.sourceName;
+    sourceName: function (oldValue, newValue) {
+      this.promise.source_name = this.sourceName
     }
   },
   methods: {
     formatDate,
-    onSubmit() {
+    onSubmit () {
       try {
-        this.appStatus = null;
-        this.error = null;
-        this.promise.source_name = this.sourceName;
-        this.$refs["form"].validate(valid => {
+        this.appStatus = null
+        this.error = null
+        this.promise.source_name = this.sourceName
+        this.$refs['form'].validate(valid => {
           if (valid) {
-            this.appStatus = "submitting";
-            this.submitPromise(this.promise);
+            this.appStatus = 'submitting'
+            this.submitPromise(this.promise)
           }
-        });
+        })
       } catch (e) {
-        console.error(e);
+        console.error(e)
       }
     },
-    displaySuccessToast() {
-      const verb = this.mode === "edit" ? "updated" : "submitted";
-      this.$toast.success(`promise ${verb}`, "Success", {
-        position: "topRight"
-      });
+    displaySuccessToast () {
+      const verb = this.mode === 'edit' ? 'updated' : 'submitted'
+      this.$toast.success(`promise ${verb}`, 'Success', {
+        position: 'topRight'
+      })
     },
-    navigateToPromise() {
-      const id = this.result.id || this.$route.params.id;
-      const route = `/promises/${id}`;
-      this.$router.push(route);
+    navigateToPromise () {
+      const id = this.result.id || this.$route.params.id
+      const route = `/promises/${id}`
+      this.$router.push(route)
     },
-    async submitPromise(promise) {
+    async submitPromise (promise) {
       try {
-        if (this.mode === "edit") {
-          delete promise.contributor_id;
-          this.result = await updatePromise(promise);
+        if (this.mode === 'edit') {
+          delete promise.contributor_id
+          this.result = await updatePromise(promise)
         } else {
-          const postResult = await postPromise(promise);
+          const postResult = await postPromise(promise)
           if (postResult instanceof Error) {
-            throw postResult;
+            throw postResult
           }
-          this.result = postResult;
+          this.result = postResult
         }
-        this.appStatus = "submitted";
-        this.displaySuccessToast();
-        this.navigateToPromise();
-        return;
+        this.appStatus = 'submitted'
+        this.displaySuccessToast()
+        this.navigateToPromise()
+        return
       } catch (e) {
-        this.appStatus = "error";
-        this.error = e.response.data;
-        this.$toast.error(this.error, "Error:", { position: "topRight" });
+        this.appStatus = 'error'
+        this.error = e.response.data
+        this.$toast.error(this.error, 'Error:', { position: 'topRight' })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
