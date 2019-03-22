@@ -8,12 +8,11 @@ import {
   googleSignIn,
   googleLogout
 } from './google'
-import mocks from '../mocks'
-const mockLists = mocks.lists
 
 const PROMISES_PATH = '/promises/'
 const PROMISE_UPDATES_PATH = '/promiseUpdates/'
 const POLITICIANS_PATH = '/politicians/'
+const LISTS_PATH = '/lists/'
 
 axios.interceptors.response.use(
   function (response) {
@@ -44,18 +43,17 @@ const getPromise = id => getSomething(PROMISES_PATH + id)
 const postPromise = data => postSomething(PROMISES_PATH, data)
 const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
 
+const listLists = query => getSomething(LISTS_PATH + 'all?' + query)
+const getList = id => getSomething(LISTS_PATH + id)
+const postList = data => postSomething(LISTS_PATH, data)
+const updateList = data => updateSomething(`${LISTS_PATH}${data.id}`, data)
+
 const listPromiseUpdates = query => getSomething(PROMISE_UPDATES_PATH + 'all' + query)
 const getPromiseUpdate = id => getSomething(PROMISE_UPDATES_PATH + id)
 const postPromiseUpdate = data => postSomething(PROMISE_UPDATES_PATH, data)
 const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${data.id}`, data)
 
 const getGeneralStats = () => getSomething('/stats/general_stats')
-
-// TODO: replace with real
-const listLists = () => mockLists
-const getList = id => mockLists.find(x => x.id === id)
-const postList = data => ({ id: mockLists[0].id })
-const updateList = data => ({ id: mockLists[1].id })
 
 export {
   googleSignIn,
