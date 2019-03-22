@@ -525,6 +525,11 @@ export default {
         'contributors',
         listContributors()
       )
+      this.politicians = await updateCache(
+        this,
+        'lists',
+        listLists()
+      )
     } catch (e) {
       console.error(e)
     }
