@@ -9,6 +9,7 @@ export default [
   { name: 'Utusan Borneo', hostname: 'www.utusanborneo.com.my' },
   { name: 'The Borneo Post', hostname: 'www.theborneopost.com' },
   { name: 'Daily Express', hostname: 'www.dailyexpress.com.my' },
+  { name: 'Free Malaysia Today', hostname: 'www.freemalaysiatoday.com' },
   { name: 'Official Facebook', hostname: 'www.facebook.com' },
-  { name: 'Official Twitter', hostname: 'www.twitter.com' }
+  { name: 'Official Twitter', hostname: 'www.twitter.com' },
 ]
