@@ -11,5 +11,5 @@ export default [
   { name: 'Daily Express', hostname: 'www.dailyexpress.com.my' },
   { name: 'Free Malaysia Today', hostname: 'www.freemalaysiatoday.com' },
   { name: 'Official Facebook', hostname: 'www.facebook.com' },
-  { name: 'Official Twitter', hostname: 'www.twitter.com' },
+  { name: 'Official Twitter', hostname: 'www.twitter.com' }
 ]
