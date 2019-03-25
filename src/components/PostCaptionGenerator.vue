@@ -14,12 +14,13 @@
         </p>
         <p>{{ captionText.hashtags }}</p>
         <p>View this promise on our website at {{captionText.promise_url}}</p>
+        <button class="el-button" @click="copyCaption()">Copy Caption</button>
     </div>
   </collapsible-card>
 </template>
 
 <script>
-import { formatDate } from '@/utils'
+import { formatDate, copyById } from '@/utils'
 import CollapsibleCard from '@/components/CollapsibleCard'
 
 export default {
@@ -30,7 +31,11 @@ export default {
     }
   },
   methods: {
-    formatDate
+    formatDate,
+    copyCaption () {
+      copyById('caption-text')
+      this.$toast.success(`Caption copied to your clipboad! - ${this.promise.title}`)
+    }
   },
   computed: {
     captionText: function () {
