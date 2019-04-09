@@ -37,6 +37,14 @@
           </template>
       </el-table-column>
       <el-table-column
+          prop="description"
+          label="Description"
+        >
+          <template slot-scope="scope">
+            <p>{{ scope.row.description }}</p>
+          </template>
+      </el-table-column>
+      <el-table-column
       label="Actions"
       width="125">
       <template slot-scope="scope">
