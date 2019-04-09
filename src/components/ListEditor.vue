@@ -71,6 +71,9 @@
             <el-form-item label="Title" prop="title">
               <el-input type="textarea" placeholder="enter title" v-model="list.title"></el-input>
             </el-form-item>
+            <el-form-item label="Description" prop="description">
+              <el-input type="textarea" placeholder="add description" v-model="list.description"></el-input>
+            </el-form-item>
           </el-col>
         </el-row>
         <el-button id="submit" type="primary" @click="onSubmit">Submit</el-button>
@@ -95,7 +98,8 @@ export default {
       contributor: {},
       list: {
         live: false,
-        title: null
+        title: null,
+        description: ''
       },
       liveOptions: [
         { label: 'true', value: true },
@@ -105,8 +109,9 @@ export default {
         live: [
           { required: true, message: 'Please select live value' }],
         title: [
-          { required: true, message: 'Please enter a title', trigger: 'blur' }
-        ]
+          { required: true, message: 'Please enter a title', trigger: 'blur' }],
+        description: [
+          { required: false }]
       }
     }
   },
