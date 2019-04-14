@@ -29,9 +29,10 @@ export default {
   async created () {
     try {
       this.list = await this.getListHandler(this.$route.params.id)
-      this.list.promise_ids.forEach(async promiseId => {
-        this.promises.push(await getPromise(promiseId))
-      })
+      const pendingPromises = this.list.promise_ids.map(promiseId =>
+        getPromise(promiseId)
+      )
+      this.promises = await Promise.all(pendingPromises)
       this.appStatus = ''
     } catch (e) {
       console.error(e)
