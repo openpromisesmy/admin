@@ -12,5 +12,6 @@ export default [
   { name: 'Free Malaysia Today', hostname: 'www.freemalaysiatoday.com' },
   { name: 'Official Facebook', hostname: 'www.facebook.com' },
   { name: 'Official Twitter', hostname: 'www.twitter.com' },
-  { name: 'PH Manifesto', hostname: 'kempen.s3.amazonaws.com' }
+  { name: 'PH Manifesto', hostname: 'kempen.s3.amazonaws.com' },
+  { name: 'Bernama', hostname: 'www.bernama.com'}
 ]
