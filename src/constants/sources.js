@@ -15,4 +15,5 @@ export default [
   { name: 'PH Manifesto', hostname: 'kempen.s3.amazonaws.com' },
   { name: 'Bernama', hostname: 'www.bernama.com'},
   { name: 'The Straits Times', hostname: 'www.straitstimes.com'},
+  { name: 'The Edge Markets', hostname: 'www.theedgemarkets.com' }
 ]
