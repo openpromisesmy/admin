@@ -4,9 +4,9 @@
       <LoadingSpinner/>
     </template>
     <template v-else>
-      <h1>{{ list.title }}</h1>
+      <h1>{{ list.title }} ({{ promises.length }})</h1>
       <p>{{ list.description }}</p>
-      <promises-table :promises="promises" exclude="[source_name, politician_name]"/>
+      <promises-table :promises="promises" :exclude="['source_name', 'politician_name']"/>
     </template>
   </div>
 </template>
@@ -29,11 +29,15 @@ export default {
   async created () {
     try {
       this.list = await this.getListHandler(this.$route.params.id)
-      const pendingPromises = this.list.promise_ids.map(promiseId =>
-        getPromise(promiseId)
-      )
-      this.promises = await Promise.all(pendingPromises)
-      this.appStatus = ''
+      this.list.promise_ids.forEach(async promiseId => {
+        const promise = await getPromise(promiseId)
+        if (promise) {
+          this.promises.push(promise)
+          this.appStatus = '' // show loading up until first promise is loaded
+        } else {
+          console.error(`promise with ID ${promiseId} is undefined`)
+        }
+      })
     } catch (e) {
       console.error(e)
     }

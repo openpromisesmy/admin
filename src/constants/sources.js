@@ -13,9 +13,9 @@ export default [
   { name: 'Official Facebook', hostname: 'www.facebook.com' },
   { name: 'Official Twitter', hostname: 'www.twitter.com' },
   { name: 'PH Manifesto', hostname: 'kempen.s3.amazonaws.com' },
-  { name: 'Bernama', hostname: 'www.bernama.com'},
-  { name: 'The Straits Times', hostname: 'www.straitstimes.com'},
+  { name: 'Bernama', hostname: 'www.bernama.com' },
+  { name: 'The Straits Times', hostname: 'www.straitstimes.com' },
   { name: 'The Edge Markets', hostname: 'www.theedgemarkets.com' },
-  { name: 'Utusan', hostname: 'www.utusan.com.my'},
-  { name: 'Berita Harian', hostname: 'www.bharian.com.my'}
+  { name: 'Utusan', hostname: 'www.utusan.com.my' },
+  { name: 'Berita Harian', hostname: 'www.bharian.com.my' }
 ]
