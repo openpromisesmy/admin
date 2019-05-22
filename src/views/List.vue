@@ -29,7 +29,10 @@ export default {
   async created () {
     try {
       this.list = await this.getListHandler(this.$route.params.id)
-      if (this.list.promise_ids.length === 0) return this.appStatus = ''
+      if (this.list.promise_ids.length === 0) {
+        this.appStatus = ''
+        return
+      }
       this.list.promise_ids.forEach(async promiseId => {
         const promise = await getPromise(promiseId)
         if (promise) {
