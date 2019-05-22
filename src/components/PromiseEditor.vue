@@ -573,7 +573,8 @@ export default {
       try {
         if (this.mode === 'edit') {
           delete promise.contributor_id
-          this.result = await updatePromise(promise)
+          const promiseId = this.$route.params.id
+          this.result = await updatePromise(promiseId, promise)
         } else {
           const postResult = await postPromise(promise)
           if (postResult instanceof Error) {
