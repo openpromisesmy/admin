@@ -41,7 +41,7 @@ const listPoliticianPromises = id => getSomething(PROMISES_PATH + 'all?politicia
 const listPromises = query => getSomething(PROMISES_PATH + 'all?' + query)
 const getPromise = id => getSomething(PROMISES_PATH + id)
 const postPromise = data => postSomething(PROMISES_PATH, data)
-const updatePromise = data => updateSomething(`${PROMISES_PATH}${data.id}`, data)
+const updatePromise = ( id, data ) => updateSomething(`${PROMISES_PATH}${id}`, data)
 
 const listLists = query => getSomething(LISTS_PATH + '?' + query)
 const getList = id => getSomething(LISTS_PATH + id)
