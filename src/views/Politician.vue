@@ -4,6 +4,11 @@
       <p>Loading politician...</p>
     </template>
     <template v-else>
+      <router-link :to="'/promises/new?politician_id=' + politician.id">
+        <el-button type="primary">
+        New Promise
+        </el-button>
+      </router-link>
       <el-row id="main-info">
         <el-col :span="16">
           <politician-details v-bind="{ politician }" />
@@ -25,6 +30,7 @@
     <h2>Promises by {{ politician.name }}</h2>
     <promises-table :promises="promises" :exclude="['politician_name', 'source_name']" />
     </template>
+    
   </main>
 </template>
 

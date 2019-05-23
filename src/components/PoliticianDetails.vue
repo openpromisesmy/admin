@@ -16,11 +16,6 @@
                 Edit
                 </el-button>
             </router-link>
-            <router-link :to="'/promises/new?politician_id=' + politician.id">
-              <el-button type="primary">
-              New Promise
-              </el-button>
-            </router-link>
          </el-col>
     </el-row>
     </el-card>
