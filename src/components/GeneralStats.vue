@@ -28,7 +28,7 @@
 <script>
 import { getGeneralStats } from '@/api'
 import { loadCache, updateCache } from '@/utils'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
   name: 'GeneralStats',

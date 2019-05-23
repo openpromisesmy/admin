@@ -127,14 +127,15 @@
       <promise-updates :promiseUpdates="promiseUpdates" :promiseID="promise.id" mode="view"/>
 
       <router-link :to="'/promises/' + promise.id + '/edit'">
-        <el-button type="success" class="edit-button">Edit Promise</el-button>
+        <floating-action-button text="Edit" type="success" />
       </router-link>
     </template>
   </main>
 </template>
 
 <script>
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import FloatingActionButton from '@/components/FloatingActionButton'
 import { formatDate, copyById } from '@/utils'
 import {
   getPromise,
@@ -147,7 +148,12 @@ import PostCaptionGenerator from '@/components/PostCaptionGenerator'
 
 export default {
   name: 'Promise',
-  components: { LoadingSpinner, PostCaptionGenerator, PromiseUpdates },
+  components: {
+    FloatingActionButton,
+    LoadingSpinner,
+    PostCaptionGenerator,
+    PromiseUpdates
+  },
   data () {
     return {
       appStatus: 'loading',
@@ -236,11 +242,5 @@ export default {
   width: 50%;
   text-align: center;
   border-radius: 5%;
-}
-
-.edit-button {
-  width: 100%;
-  padding: 20px;
-  font-size: 2rem;
 }
 </style>
