@@ -4,11 +4,6 @@
       <p>Loading politician...</p>
     </template>
     <template v-else>
-      <router-link :to="'/promises/new?politician_id=' + politician.id">
-        <el-button type="primary">
-        New Promise
-        </el-button>
-      </router-link>
       <el-row id="main-info">
         <el-col :span="16">
           <politician-details v-bind="{ politician }" />
@@ -30,7 +25,9 @@
     <h2>Promises by {{ politician.name }}</h2>
     <promises-table :promises="promises" :exclude="['politician_name', 'source_name']" />
     </template>
-    
+    <router-link :to="'/promises/new?politician_id=' + politician.id">
+        <floating-action-button text="New Promise" type="primary"/>
+    </router-link>
   </main>
 </template>
 
@@ -42,10 +39,11 @@ import PoliticianDetails from '@/components/PoliticianDetails'
 import PromiseStatsWidget from '@/components/PromiseStatsWidget'
 import PromisesTable from '@/components/PromisesTable'
 import ContactDetails from '@/components/ContactDetails'
+import FloatingActionButton from '@/components/FloatingActionButton'
 
 export default {
   name: 'Politician',
-  components: { LoadingSpinner, PoliticianDetails, PromiseStatsWidget, PromisesTable, ContactDetails },
+  components: { FloatingActionButton, LoadingSpinner, PoliticianDetails, PromiseStatsWidget, PromisesTable, ContactDetails },
   data () {
     return {
       politician: 'loading',
