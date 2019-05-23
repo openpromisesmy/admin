@@ -134,7 +134,8 @@
 </template>
 
 <script>
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import FloatingActionButton from '@/components/FloatingActionButton'
 import { formatDate, copyById } from '@/utils'
 import {
   getPromise,
