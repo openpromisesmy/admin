@@ -345,8 +345,7 @@
             </el-tooltip>
           </el-col>
         </el-row>
-
-        <el-button id="submit" type="primary" @click="onSubmit">Submit</el-button>
+        <floating-action-button type="primary" :onClick="onSubmit" text="Submit"/>
       </el-form>
 
       <promise-updates
@@ -380,6 +379,7 @@ import malaysianStates from '@/constants/malaysianStates'
 import sources from '@/constants/sources'
 import statusOptions from '@/constants/statusOptions'
 import ErrorPanel from '@/components/ErrorPanel'
+import FloatingActionButton from '@/components/FloatingActionButton'
 
 function parsePromiseForForm (promise) {
   if (promise.clauses === undefined) {
@@ -390,7 +390,7 @@ function parsePromiseForForm (promise) {
 
 export default {
   name: 'PromiseEditor',
-  components: { PromiseUpdates, ErrorPanel },
+  components: { FloatingActionButton, PromiseUpdates, ErrorPanel },
   data () {
     return {
       appStatus: 'loading',
