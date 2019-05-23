@@ -27,7 +27,7 @@
 <script>
 import { listPromises, listPoliticians } from '@/api'
 import PromisesTable from '@/components/PromisesTable'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { formatDate, parsePromises, loadCache, updateCache } from '@/utils'
 import queryString from 'query-string'
 

@@ -62,7 +62,7 @@
 
 <script>
 import { listLists } from '@/api'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
   name: 'Lists',

@@ -31,7 +31,7 @@
 <script>
 import { getPolitician, listPoliticianPromises } from '@/api'
 import { formatDate } from '@/utils'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import PoliticianDetails from '@/components/PoliticianDetails'
 import PromiseStatsWidget from '@/components/PromiseStatsWidget'
 import PromisesTable from '@/components/PromisesTable'

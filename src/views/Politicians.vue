@@ -90,7 +90,7 @@
 <script>
 import { listPoliticians } from '@/api'
 import { formatDate, loadCache, updateCache } from '@/utils'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
   name: 'Politicians',

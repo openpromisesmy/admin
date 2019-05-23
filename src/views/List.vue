@@ -14,7 +14,7 @@
 <script>
 import { getList, getPromise } from '@/api'
 import PromisesTable from '@/components/PromisesTable'
-import LoadingSpinner from '@/components//LoadingSpinner'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
   name: 'List',
