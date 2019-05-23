@@ -111,7 +111,7 @@
 
         </el-row>
 
-          <el-button v-on:click="onSubmit"> Submit </el-button>
+          <el-button v-on:click="onSubmit"> Submit Update </el-button>
 
         </el-form>
 </main>
