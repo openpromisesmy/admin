@@ -28,5 +28,6 @@ export default {
   right: 10px;
   padding: 20px;
   font-size: 2rem;
+  z-index: 99999;
 }
 </style>
