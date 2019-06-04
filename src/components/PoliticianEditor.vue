@@ -162,7 +162,7 @@ export default {
     async submitPolitician (politician) {
       try {
         const contributorId = this.$store.state.user.id
-        const politicianWithContributorId = { ...politician, contributor_id : contributorId }
+        const politicianWithContributorId = { ...politician, contributor_id: contributorId }
         if (this.mode === 'new') {
           const res = await postPolitician(politicianWithContributorId)
           this.result = res
@@ -176,7 +176,7 @@ export default {
             throw res.response.data
           }
         } else {
-          throw 'mode not supported'
+          throw new Error('mode not supported')
         }
         this.appStatus = 'submitted'
         this.displaySuccessToast()
