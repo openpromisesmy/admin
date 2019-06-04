@@ -161,18 +161,22 @@ export default {
     },
     async submitPolitician (politician) {
       try {
+        const contributorId = this.$store.state.user.id
+        const politicianWithContributorId = { ...politician, contributor_id: contributorId }
         if (this.mode === 'new') {
-          const res = await postPolitician(politician)
+          const res = await postPolitician(politicianWithContributorId)
           this.result = res
           if (!res.id) {
             throw res.response.data
           }
         } else if (this.mode === 'edit') {
-          const res = await updatePolitician(politician)
+          const res = await updatePolitician(politicianWithContributorId)
           this.result = res
           if (res !== '') {
             throw res.response.data
           }
+        } else {
+          throw new Error('mode not supported')
         }
         this.appStatus = 'submitted'
         this.displaySuccessToast()
