@@ -38,6 +38,7 @@ async function getSomething (path) {
 
 async function postSomething (path, data) {
   try {
+    await setAuthData()
     const response = await axios.post(API_URL + path, data)
     return response.data
   } catch (e) {
