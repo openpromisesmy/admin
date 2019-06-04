@@ -175,6 +175,8 @@ export default {
           if (res !== '') {
             throw res.response.data
           }
+        } else {
+          throw 'mode not supported'
         }
         this.appStatus = 'submitted'
         this.displaySuccessToast()
