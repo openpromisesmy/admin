@@ -1,6 +1,6 @@
 <template>
   <main id="PromiseUpdateEditor">
-    <h1 id="PromiseUpdateEditor_header">{{ mode }} Promise Update</h1>
+    <h2 id="PromiseUpdateEditor_header">{{ mode }} Promise Update</h2>
     <template v-if="appStatus === 'loading'">
       <p> Loading {{ mode === 'edit' ? 'promiseUpdate' : '' }}...</p>
     </template>
