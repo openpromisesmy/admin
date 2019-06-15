@@ -347,12 +347,6 @@
         </el-row>
         <floating-action-button type="primary" :onClick="onSubmit" text="Submit"/>
       </el-form>
-
-      <promise-updates
-        v-if="mode === 'edit'"
-        :promiseUpdates="promiseUpdates"
-        :promiseID="promise.id"
-      />
     </template>
   </main>
 </template>
@@ -365,10 +359,8 @@ import {
   listContributors,
   getContributor,
   updatePromise,
-  listPromiseUpdates,
   listLists
 } from '@/api'
-import PromiseUpdates from '@/components/PromiseUpdates'
 import {
   formatDate,
   loadCache,
@@ -390,7 +382,7 @@ function parsePromiseForForm (promise) {
 
 export default {
   name: 'PromiseEditor',
-  components: { FloatingActionButton, PromiseUpdates, ErrorPanel },
+  components: { FloatingActionButton, ErrorPanel },
   data () {
     return {
       appStatus: 'loading',
@@ -399,7 +391,6 @@ export default {
       promise: {
         clauses: {}
       },
-      promiseUpdates: [],
       politicians: [],
       lists: [],
       contributor: {},
@@ -501,9 +492,6 @@ export default {
       if (this.mode === 'edit') {
         const promise = await getPromise(this.$route.params.id)
         this.promise = parsePromiseForForm(promise)
-        this.promiseUpdates = await listPromiseUpdates(
-          `?promise_id=${this.$route.params.id}&orderBy=source_date`
-        )
         this.contributor = await getContributor(this.promise.contributor_id)
       } else {
         this.promise.contributor_id = this.$store.state.user.id
