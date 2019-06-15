@@ -123,7 +123,7 @@
       <el-card>
         <post-caption-generator :promise="promise"/>
       </el-card>
-
+      <h2> Promise Updates </h2>
       <promise-updates :promiseUpdates="promiseUpdates" :promiseID="promise.id" mode="view"/>
 
       <router-link :to="'/promises/' + promise.id + '/edit'">
