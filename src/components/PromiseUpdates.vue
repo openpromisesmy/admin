@@ -7,7 +7,6 @@
         :promiseUpdate="promiseUpdate"
       />
       <promise-update-editor
-        v-if="mode !== 'view'"
         :contributors="contributors"
         :promiseID="promiseID"
         mode="new"
