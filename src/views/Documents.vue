@@ -12,7 +12,7 @@
       <el-table :data="documents" border style="width: 100%">
         <el-table-column prop="name" label="Name">
           <template slot-scope="scope">
-            <router-link :to="'/document/' + scope.row.id">
+            <router-link :to="'/documents/' + scope.row.id">
               <p>{{ scope.row.name }}</p>
             </router-link>
           </template>
@@ -33,7 +33,7 @@
               <el-button type="info">Edit</el-button>
             </router-link>
           </template>
-        </el-table-column> -->
+        </el-table-column>-->
       </el-table>
     </template>
   </div>

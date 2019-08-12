@@ -23,11 +23,11 @@ export default {
     return {
       appStatus: 'loading',
       list: {
-          id: "6m5o7jPjQEryvrLZqnLa",
-          name: "PH Manifesto",
-          description: "Pakatan Harapan's manifesto for GE15",
-          url: "https://sadfsadf.com/sadfasdf.pdf"
-        },
+        id: '6m5o7jPjQEryvrLZqnLa',
+        name: 'PH Manifesto',
+        description: "Pakatan Harapan's manifesto for GE15",
+        url: 'https://sadfsadf.com/sadfasdf.pdf'
+      },
       promises: []
     }
   },
