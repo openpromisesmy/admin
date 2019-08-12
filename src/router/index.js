@@ -4,6 +4,8 @@ import Home from '@/views/Home'
 import Promises from '@/views/Promises'
 import Lists from '@/views/Lists'
 import List from '@/views/List'
+import Documents from '@/views/Documents'
+import Document from '@/views/Document'
 import Politicians from '@/views/Politicians'
 import Politician from '@/views/Politician'
 import Contributors from '@/views/Contributors'
@@ -78,6 +80,18 @@ const routes = [
     path: '/lists/:id/edit',
     name: 'Edit List',
     component: ListEditor,
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/documents',
+    name: 'Documents',
+    component: Documents,
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/document/:id',
+    name: 'Document',
+    component: Document,
     beforeEnter: ifAuthenticated
   },
   {
