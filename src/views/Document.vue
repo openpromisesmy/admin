@@ -1,13 +1,22 @@
 <template>
   <div class="container">
     <template v-if="appStatus === 'loading'">
-      <LoadingSpinner/>
+      <LoadingSpinner />
     </template>
     <template v-else>
-      <h1>{{ list.name }} </h1>
-      <a :href="list.url">{{ list.url }}</a>
-      <p>{{ list.description }}</p>
-      <promises-table :promises="promises" :exclude="['source_name', 'politician_name']"/>
+      <el-card>
+        <h1>{{ list.name }}</h1>
+        <p>
+          <b>url:</b>
+          <a :href="list.url">{{ list.url }}</a>
+        </p>
+        <p>
+          <b>description:</b>
+          {{ list.description }}
+        </p>
+      </el-card>
+      <h2>Promises in this document:</h2>
+      <promises-table :promises="promises" :exclude="['source_name', 'politician_name']" />
     </template>
   </div>
 </template>

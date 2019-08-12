@@ -40,44 +40,44 @@
 </template>
 
 <script>
-import { listLists } from "@/api";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import { listLists } from '@/api'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
-  name: "Documents",
-  data() {
+  name: 'Documents',
+  data () {
     return {
-      appStatus: "",
+      appStatus: '',
       documents: [
         {
-          id: "6m5o7jPjQEryvrLZqnLa",
-          name: "PH Manifesto",
+          id: '6m5o7jPjQEryvrLZqnLa',
+          name: 'PH Manifesto',
           description: "Pakatan Harapan's manifesto for GE15",
-          url: "https://sadfsadf.com/sadfasdf.pdf"
+          url: 'https://sadfsadf.com/sadfasdf.pdf'
         },
         {
-          id: "6m5o7jPjQEryvrLZqnLa",
-          name: "PH Manifesto",
+          id: '6m5o7jPjQEryvrLZqnLa',
+          name: 'PH Manifesto',
           description: "Pakatan Harapan's manifesto for GE15",
-          url: "https://sadfsadf.com/sadfasdf.pdf"
+          url: 'https://sadfsadf.com/sadfasdf.pdf'
         },
         {
-          id: "6m5o7jPjQEryvrLZqnLa",
-          name: "PH Manifesto",
+          id: '6m5o7jPjQEryvrLZqnLa',
+          name: 'PH Manifesto',
           description: "Pakatan Harapan's manifesto for GE15",
-          url: "https://sadfsadf.com/sadfasdf.pdf"
+          url: 'https://sadfsadf.com/sadfasdf.pdf'
         },
         {
-          id: "6m5o7jPjQEryvrLZqnLa",
-          name: "PH Manifesto",
+          id: '6m5o7jPjQEryvrLZqnLa',
+          name: 'PH Manifesto',
           description: "Pakatan Harapan's manifesto for GE15",
-          url: "https://sadfsadf.com/sadfasdf.pdf"
+          url: 'https://sadfsadf.com/sadfasdf.pdf'
         }
       ]
-    };
+    }
   },
   components: { LoadingSpinner },
-  async created() {
+  async created () {
     // try {
     //   this.appStatus = 'loading'
     //   this.lists = await this.listListsHandler(this.queryString)
@@ -91,7 +91,7 @@ export default {
     //   return listLists();
     // }
   }
-};
+}
 </script>
 
 <style scoped>
