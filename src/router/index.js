@@ -89,7 +89,7 @@ const routes = [
     beforeEnter: ifAuthenticated
   },
   {
-    path: '/document/:id',
+    path: '/documents/:id',
     name: 'Document',
     component: Document,
     beforeEnter: ifAuthenticated
