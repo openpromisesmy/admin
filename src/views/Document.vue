@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { getDocument, getPromise } from '@/api'
+import { getDocument } from '@/api'
 import PromisesTable from '@/components/PromisesTable'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
