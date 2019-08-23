@@ -2,7 +2,7 @@
   <div class="home container">
     <h1>OpenPromises Tracking Dashboard</h1>
     <h2 id="slogan">"Shifting Malaysia's political culture, one promise at a time."</h2>
-            <el-row>
+            <!-- <el-row>
               <el-col :span="12">
                 <el-card id="shortcuts">
                 <div slot="header" class="clearfix">
@@ -30,7 +30,7 @@
                   </a>
                 </el-card>
               </el-col>
-            </el-row>
+            </el-row> -->
             <el-card>
               <promise-editor />
             </el-card>
