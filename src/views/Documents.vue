@@ -37,7 +37,8 @@ export default {
   name: 'Documents',
   data () {
     return {
-      appStatus: ''
+      appStatus: '',
+      documents: []
     }
   },
   components: { LoadingSpinner },

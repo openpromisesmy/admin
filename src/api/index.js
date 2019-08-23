@@ -55,33 +55,39 @@ const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${da
 
 const getGeneralStats = () => getSomething('/stats/general_stats')
 
+const mockDocuments = [
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  }
+]
+
 function listDocuments () {
-  return [
-    {
-      id: '6m5o7jPjQEryvrLZqnLa',
-      name: 'PH Manifesto',
-      description: "Pakatan Harapan's manifesto for GE15",
-      url: 'https://sadfsadf.com/sadfasdf.pdf'
-    },
-    {
-      id: '6m5o7jPjQEryvrLZqnLa',
-      name: 'PH Manifesto',
-      description: "Pakatan Harapan's manifesto for GE15",
-      url: 'https://sadfsadf.com/sadfasdf.pdf'
-    },
-    {
-      id: '6m5o7jPjQEryvrLZqnLa',
-      name: 'PH Manifesto',
-      description: "Pakatan Harapan's manifesto for GE15",
-      url: 'https://sadfsadf.com/sadfasdf.pdf'
-    },
-    {
-      id: '6m5o7jPjQEryvrLZqnLa',
-      name: 'PH Manifesto',
-      description: "Pakatan Harapan's manifesto for GE15",
-      url: 'https://sadfsadf.com/sadfasdf.pdf'
-    }
-  ]
+  return mockDocuments
+}
+
+function getDocument (id) {
+  return mockDocuments[0]
 }
 
 export {
@@ -109,5 +115,6 @@ export {
   postList,
   updateList,
 
-  listDocuments
+  listDocuments,
+  getDocument
 }
