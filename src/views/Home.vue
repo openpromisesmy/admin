@@ -31,18 +31,23 @@
                 </el-card>
               </el-col>
             </el-row> -->
-            <collapsible-card title="Submit Promise Form">
-              <promise-editor />
-            </collapsible-card>
+    <el-card>
+      <lists />
+    </el-card>
+    <collapsible-card title="Submit Promise Form">
+      <promise-editor />
+    </collapsible-card>
     </div>
 </template>
 
 <script>
 import PromiseEditor from '@/components/PromiseEditor'
 import CollapsibleCard from '@/components/CollapsibleCard'
+import Lists from '@/views/Lists'
+
 export default {
   name: 'Home',
-  components: { CollapsibleCard, PromiseEditor }
+  components: { CollapsibleCard, Lists, PromiseEditor }
 }
 </script>
 
