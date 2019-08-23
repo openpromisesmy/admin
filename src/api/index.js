@@ -55,6 +55,41 @@ const updatePromiseUpdate = data => updateSomething(`${PROMISE_UPDATES_PATH}${da
 
 const getGeneralStats = () => getSomething('/stats/general_stats')
 
+const mockDocuments = [
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  },
+  {
+    id: '6m5o7jPjQEryvrLZqnLa',
+    name: 'PH Manifesto',
+    description: "Pakatan Harapan's manifesto for GE15",
+    url: 'https://sadfsadf.com/sadfasdf.pdf'
+  }
+]
+
+function listDocuments () {
+  return mockDocuments
+}
+
+function getDocument (id) {
+  return mockDocuments[0]
+}
+
 export {
   googleSignIn,
   googleLogout,
@@ -78,5 +113,8 @@ export {
   listLists,
   getList,
   postList,
-  updateList
+  updateList,
+
+  listDocuments,
+  getDocument
 }
