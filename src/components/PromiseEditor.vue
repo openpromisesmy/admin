@@ -67,7 +67,7 @@
             </el-tooltip>
           </el-col>
 
-          <el-col :xs="24" :sm="8">
+          <el-col :xs="24" :sm="8" v-if="this.mode == 'edit'">
             <el-form-item label="Status" prop="status">
               <el-select v-model="promise.status" placeholder="Select">
                 <el-option
