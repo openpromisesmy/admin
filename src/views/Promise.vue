@@ -113,6 +113,13 @@
         </template>
       </el-card>
 
+      <el-card v-if="promise.post_url">
+        <p class="card-title">
+          <b>Post URL</b>
+        </p>
+        <a :href="promise.post_url">{{ promise.post_url }}</a>
+      </el-card>
+
       <el-card v-if="promise.cover_image" class="Promise_card_image">
         <p class="card-title">
           <b>Image</b>
