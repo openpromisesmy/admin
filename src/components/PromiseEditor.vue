@@ -67,7 +67,7 @@
             </el-tooltip>
           </el-col>
 
-          <el-col :xs="24" :sm="8">
+          <el-col :xs="24" :sm="8" v-if="this.mode == 'edit'">
             <el-form-item label="Status" prop="status">
               <el-select v-model="promise.status" placeholder="Select">
                 <el-option
@@ -344,6 +344,20 @@
               </el-form-item>
             </el-tooltip>
           </el-col>
+
+          <el-col :xs="24" :sm="12">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="The URL to the facebook post for this promise."
+              placement="top"
+            >
+              <el-form-item label="Post URL" prop="post_url">
+                <el-input type="text" placeholder="enter published post url" v-model="promise.post_url"></el-input>
+              </el-form-item>
+            </el-tooltip>
+          </el-col>
+
         </el-row>
         <floating-action-button type="primary" :onClick="onSubmit" text="Submit"/>
       </el-form>
