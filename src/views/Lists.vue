@@ -63,8 +63,8 @@ export default {
     }
   },
   methods: {
-    async listListsHandler () {
-      return listLists()
+    async listListsHandler (query) {
+      return listLists(query)
     }
   }
 }
