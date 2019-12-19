@@ -15,12 +15,12 @@ async function setAuthData () {
             return config
           },
           function (error) {
-            return Promise.reject(error)
+            return reject(error)
           }
         )
         resolve(user)
       } else {
-        // No user is signed in.
+        alert('No user is signed in. Try logging out then logging back in.')
       }
     })
   })

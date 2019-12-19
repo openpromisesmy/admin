@@ -2,7 +2,7 @@
   <div class="home container">
     <h1>OpenPromises Tracking Dashboard</h1>
     <h2 id="slogan">"Shifting Malaysia's political culture, one promise at a time."</h2>
-            <el-row>
+            <!-- <el-row>
               <el-col :span="12">
                 <el-card id="shortcuts">
                 <div slot="header" class="clearfix">
@@ -30,18 +30,24 @@
                   </a>
                 </el-card>
               </el-col>
-            </el-row>
-            <el-card>
-              <promise-editor />
-            </el-card>
+            </el-row> -->
+    <el-card>
+      <lists />
+    </el-card>
+    <collapsible-card title="Submit Promise Form">
+      <promise-editor />
+    </collapsible-card>
     </div>
 </template>
 
 <script>
 import PromiseEditor from '@/components/PromiseEditor'
+import CollapsibleCard from '@/components/CollapsibleCard'
+import Lists from '@/views/Lists'
+
 export default {
   name: 'Home',
-  components: { PromiseEditor }
+  components: { CollapsibleCard, Lists, PromiseEditor }
 }
 </script>
 
