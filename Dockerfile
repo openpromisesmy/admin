@@ -1,7 +1,7 @@
 FROM node:10.16-alpine as develop-stage
 WORKDIR /app
-# COPY /package*.json ./
-# RUN npm ci
+COPY /package*.json ./
+RUN npm ci
 # COPY /app .
 # CMD npm run dev
 
